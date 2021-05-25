@@ -1,2 +1,2 @@
 first push
-git template test
+git template test2
