@@ -52,7 +52,9 @@ callbacks_list = [
 
 # compile
 demo.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
+
 print("model 학습 시작...")
+
 # fit
 demo.fit(
     X[0],
@@ -63,4 +65,5 @@ demo.fit(
     callbacks=callbacks_list,
     validation_split=0.7,
 )
+
 print("model 학습 종료")

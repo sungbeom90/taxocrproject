@@ -180,6 +180,6 @@ class Detection_model(Model):
         return self.fin_conv(x)
 
     def _build(self, **kwargs):
-        inputs = Input(shape=[1024, 1024, 3])
+        inputs = Input(shape=[1, 1024, 1024, 3])
         outputs = self.call(inputs)
         super(Detection_model, self).__init__(inputs=inputs, outputs=outputs, **kwargs)
