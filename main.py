@@ -4,7 +4,7 @@ import cv2
 import os
 import tensorflow as tf
 
-enco_path = "/data/image/resized"
+enco_path = "data/image/resized"
 original_file_list = os.listdir(enco_path)
 num_enco_files = len(original_file_list)
 
