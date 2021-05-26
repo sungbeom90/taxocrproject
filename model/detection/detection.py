@@ -1,123 +1,180 @@
-# import necessary layers
-import tensorflow as tf
+# import necessary layers  
 from tensorflow.keras import Model
+from tensorflow.keras import layers
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import Conv2D
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.layers import Activation
 from tensorflow.keras.layers import MaxPool2D
-from tensorflow.keras.layers import Flatten, Dense
+from tensorflow.keras.layers import MaxPooling2D
+from tensorflow.keras.layers import Flatten, Dense 
 from tensorflow.keras.layers import Conv2DTranspose
+from tensorflow.keras.layers import Layer
+from tensorflow.keras.layers import Dropout
 from tensorflow.keras.layers import Concatenate
-import pickle
-import cv2
-import tensorflow
-import numpy as np
+
 import tensorflow.keras.backend as K
-
-# 나열한 모델입니다.
-import cv2
-
-inputs = Input(shape=(1024, 1024, 3))
-type(inputs)
-# Encoding_stage_1 (64 filters로 2개층)
-x = Conv2D(filters=64, kernel_size=3, padding="same")(inputs)
-x1 = BatchNormalization()(x)
-x1 = Activation("relu")(x1)
-x1 = Conv2D(filters=64, kernel_size=3, padding="same")(x1)
-x1 = BatchNormalization()(x1)
-x1 = Activation("relu")(x1)
-x_1 = MaxPool2D(2)(x1)
-# Encoding_stage_2 (128 filters로 2개층)
-x2 = Conv2D(filters=128, kernel_size=3, padding="same")(x_1)
-x2 = BatchNormalization()(x2)
-x2 = Activation("relu")(x2)
-x2 = Conv2D(filters=128, kernel_size=3, padding="same")(x2)
-x2 = BatchNormalization()(x2)
-x2 = Activation("relu")(x2)
-x_2 = MaxPool2D(2)(x2)
-# Encoding_stage_3 (256 filters로 2개층)
-x3 = Conv2D(filters=256, kernel_size=3, padding="same")(x_2)
-x3 = BatchNormalization()(x3)
-x3 = Activation("relu")(x3)
-x3 = Conv2D(filters=256, kernel_size=3, padding="same")(x3)
-x3 = BatchNormalization()(x3)
-x3 = Activation("relu")(x3)
-x_3 = MaxPool2D(2)(x3)
-# Encoding_stage_4 (512 filters로 2개층)
-x4 = Conv2D(filters=512, kernel_size=3, padding="same")(x_3)
-x4 = BatchNormalization()(x4)
-x4 = Activation("relu")(x4)
-x4 = Conv2D(filters=512, kernel_size=3, padding="same")(x4)
-x4 = BatchNormalization()(x4)
-x4 = Activation("relu")(x4)
-x_4 = MaxPool2D(2)(x4)
-# Encoding_stage_5 (512 filters 및 concatenate)
-x5 = Conv2D(filters=512, kernel_size=3, padding="same")(x_4)
-x5 = Concatenate(axis=-1)([x5, x_4])
-x5 = BatchNormalization()(x5)
-x5 = Conv2D(filters=1024, kernel_size=3, padding="same")(x5)
-# Decoding_stage_1 (512 filters 및 concatenate)
-t = Conv2DTranspose(512, 2, strides=(2, 2), padding="same")(x5)
-t = Concatenate(axis=-1)([t, x4])
-t1 = Conv2D(512, 3, padding="same")(t)
-t1 = BatchNormalization()(t1)
-t1 = Activation("relu")(t1)
-t1 = Conv2D(256, 3, padding="same")(t1)
-t1 = BatchNormalization()(t1)
-t1 = Activation("relu")(t1)
-# Decoding_stage_2 (256 filters 및 concatenate)
-t2 = Conv2DTranspose(256, 2, strides=(2, 2), padding="same")(t1)
-t2 = Concatenate(axis=-1)([t2, x3])
-t2 = Conv2D(256, 3, padding="same")(t2)
-t2 = BatchNormalization()(t2)
-t2 = Activation("relu")(t2)
-t2 = Conv2D(128, 3, padding="same")(t2)
-t2 = BatchNormalization()(t2)
-t2 = Activation("relu")(t2)
-# Decoding_stage_3 (128 filters 및 concatenate)
-t3 = Conv2DTranspose(128, 2, strides=(2, 2), padding="same")(t2)
-t3 = Concatenate(axis=-1)([t3, x2])
-t3 = Conv2D(128, 3, padding="same")(t3)
-t3 = BatchNormalization()(t3)
-t3 = Activation("relu")(t3)
-t3 = Conv2D(64, 3, padding="same")(t3)
-t3 = BatchNormalization()(t3)
-t3 = Activation("relu")(t3)
-# Decoding_stage_4 (164 filters 및 concatenate)
-t4 = Conv2DTranspose(64, 2, strides=(2, 2), padding="same")(t3)
-t4 = Concatenate(axis=-1)([t4, x1])
-t4 = Conv2D(64, 3, padding="same")(t4)
-t4 = BatchNormalization()(t4)
-t4 = Activation("relu")(t4)
-t4 = Conv2D(64, 3, padding="same")(t4)
-t4 = BatchNormalization()(t4)
-t4 = Activation("relu")(t4)
-decoder_output = Conv2D(3, 3, padding="same")(t4)
-# Output 기반 Model 생성 검증
-decoder = Model(inputs, decoder_output, name="decoder")
-decoder.summary()
-
-# 손실함수 - 기존 numpy.array 에서 tensor type으로 바꿈
-def loss_region(y_true, y_pred):
-    result = K.sum(K.square(y_true - y_pred), axis=-1)
-    return result
+import numpy as np
+import tensorflow as tf
 
 
-# compile
-decoder.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
+#Concatenate 클래스 선언
+class Concatenate_(Layer):
+    def __init__(self):
+        super(Concatenate_,self).__init__()
+        self.concat = Concatenate(axis=-1)
 
-# fit
-x = cv2.imread("./detection_data/test/after_0000000.jpg", cv2.IMREAD_COLOR)
-with open("./detection_data/test/heatmap_0", "rb") as MyFile:
-    y = pickle.load(MyFile)
-x = np.reshape(x, ((1,) + x.shape))
-print(x.shape)
-x = K.constant(x)
-print(type(x))
-y = np.reshape(y, ((1,) + y.shape))
-y = np.float32(y)
-print(y.shape)
-y = K.constant(y)
-print(type(y))
-decoder.fit(x, y, epochs=1, verbose=1)  # 배치사이즈 등 추가 필요
+    def call(self, fir, sec):
+        return self.concat([fir, sec])
+
+# Maxpool2D 클래스 선언
+class Max_Pool2D(Layer):
+    def __init__(self):
+        super(Max_Pool2D,self).__init__()
+        self.mxpool = MaxPool2D(2)
+
+    def call(self, inputs):
+        return self.mxpool(inputs)
+
+# Conv_layer 클래스 선언
+class Conv_layer(Layer):
+    def __init__(self, ft, ks):
+        super(Conv_layer,self).__init__()
+        self.filters = ft
+        self.kernel_size = ks
+        self.conv_layer = Conv2D(ft, ks, padding="same")
+        self.batch      = BatchNormalization()
+        self.activation = Activation('relu')
+
+    def call(self, inputs):
+        x = self.conv_layer(inputs)
+        x = self.batch(x)
+        return self.activation(x)
+
+# Stage_layer 클래스 선언
+class Stage_layer(Layer):
+    def __init__(self, stn):
+        super(Stage_layer,self).__init__()
+        self.conv_layer1 = Conv_layer(stn, 3)
+        self.conv_layer2 = Conv_layer(stn, 3)
+        self.mxpool = Max_Pool2D()
+
+    def call(self, inputs):
+        x = self.conv_layer1(inputs)
+        x1 = self.conv_layer2(x)
+        mx_1 = self.mxpool(x1)
+        return mx_1, x1
+
+# Encoding_layer 선언부
+class Encoding_layer(Layer):
+    def __init__(self):
+        super(Encoding_layer, self).__init__()
+        self.stage1 = Stage_layer(64)
+        self.stage2 = Stage_layer(128)
+        self.stage3 = Stage_layer(256)
+        self.stage4 = Stage_layer(512)
+        
+    def call(self, inputs):
+        mx_1, stg1 = self.stage1(inputs)
+        mx_2, stg2 = self.stage2(mx_1)
+        mx_3, stg3 = self.stage3(mx_2)
+        mx_4, stg4 = self.stage4(mx_3)
+        return mx_4, stg1, stg2, stg3, stg4
+
+# Middle_layer 클래스 선언
+class Middle_layer(Layer):
+    def __init__(self):
+        super(Middle_layer,self).__init__()
+        self.conv_layer1 = Conv_layer(512, 3)
+        self.conv_layer2 = Conv_layer(1024, 3)
+        self.concat = Concatenate_()
+        self.mxpool = Max_Pool2D()
+
+    def call(self, inputs, cont):
+        x = self.conv_layer1(inputs)
+        x_cont1 = self.concat(x, cont)
+        x1 = self.conv_layer2(x_cont1)
+        return x1
+
+# Conv_Transe_Layer 선언
+class Conv_Trans(Layer):
+    def __init__(self, ft):
+        super(Conv_Trans,self).__init__()
+        self.filters = ft
+        self.conv_trans = Conv2DTranspose(ft, kernel_size=2, strides=(2,2), padding="same")
+        self.batch      = BatchNormalization()
+        self.activation = Activation('relu')
+
+    def call(self, inputs):
+        x = self.conv_trans(inputs)
+        x = self.batch(x)
+        return self.activation(x)
+
+# Upstage_layer 선언
+class UpStage_layer(Layer):
+    def __init__(self, stn):
+        super(UpStage_layer,self).__init__()
+        self.stagenum = stn
+
+        if stn == 64:
+            self.conv_trans = Conv_Trans(64)
+            self.concat = Concatenate_() #stg2랑 더해지겠지
+            self.conv_layer1 = Conv_layer(64, 3)
+            self.conv_layer2 = Conv_layer(64, 3)  
+        else :    
+            self.conv_trans = Conv_Trans(stn)
+            self.concat = Concatenate_() #stg4랑 더해지겠지
+            self.conv_layer1 = Conv_layer(stn, 3)
+            self.conv_layer2 = Conv_layer(stn/2, 3)
+            
+    def call(self, inputs, cont):
+        x = self.conv_trans(inputs)
+        x_cont1 = self.concat(x, cont)
+        x1 = self.conv_layer1(x_cont1)        
+        x2 = self.conv_layer2(x1)
+        return x2
+
+### Decoding_layer 선언부
+class Decoding_layer(Layer):
+    def __init__(self):
+        super(Decoding_layer, self).__init__()
+        self.upstage1 = UpStage_layer(512)
+        self.upstage2 = UpStage_layer(256)
+        self.upstage3 = UpStage_layer(128)
+        self.upstage4 = UpStage_layer(64)
+        
+        
+    def call(self, inputs, stg1, stg2, stg3, stg4):
+        ups_1 = self.upstage1(inputs, stg4)
+        ups_2 = self.upstage2(ups_1, stg3)
+        ups_3 = self.upstage3(ups_2, stg2)
+        ups_4 = self.upstage4(ups_3, stg1)
+        return ups_4
+
+
+
+### Detection_model 
+
+class Detection_model(Model):
+    def __init__(self, **kwargs):
+        super(Detection_model, self).__init__()
+        self.encoding = Encoding_layer()
+        self.middle = Middle_layer()
+        self.decoding = Decoding_layer()
+        self.fin_conv = Conv2D(3,3, padding='same')
+        self._build(**kwargs)
+        
+    def call(self, inputs, training=False):
+        mx_4, stg1, stg2, stg3, stg4 = self.encoding(inputs)
+        x = self.middle(mx_4, mx_4)
+        x = self.decoding(x, stg1, stg2, stg3, stg4)
+        return self.fin_conv(x)
+
+    def _build(self, **kwargs):
+        inputs = Input(shape=[1024, 1024, 3])
+        outputs = self.call(inputs)
+        super(Detection_model, self).__init__(inputs=inputs, outputs=outputs, **kwargs)
+
+        
+demo = Detection_model()
+demo.summary()  
