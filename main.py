@@ -18,7 +18,7 @@ num_deco_f = len(heatmap_file_list)
 X = None
 Y = None
 
-for (i,) in range(num_enco_files):
+for i in range(num_enco_files):
     img_path = enco_path + "/after_" + str(i) + ".jpg"
     print(img_path)
     img = cv2.imread(img_path)
