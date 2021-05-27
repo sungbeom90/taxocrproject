@@ -61,7 +61,7 @@ callbacks_list = [
 ]
 
 # compile
-demo.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
+demo.compile(optimizer="adam", loss='categorical_crossentropy', metrics=["accuracy"])  # acc
 
 print("model 학습 시작...")
 
