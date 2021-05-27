@@ -27,7 +27,7 @@ for i in range(num_enco_files):
     if i == 0:
         X = img
     else:
-        X = np.concatenate((X, img), axis=0)  # 추가된 차원(4차원) 방향으로 이미지 연결
+        X = tf.concat([X, img], axis=0)  # 추가된 차원(4차원) 방향으로 이미지 연결
 
 for i in range(num_deco_f):
     img_path = deco_path + "/heatmap_" + str(i) + ".jpg"
@@ -38,7 +38,7 @@ for i in range(num_deco_f):
     if i == 0:
         Y = img
     else:
-        Y = np.concatenate((Y, img), axis=0)  # 추가된 차원(4차원) 방향으로 이미지 연결
+        Y = tf.concat([Y, img], axis=0)  # 추가된 차원(4차원) 방향으로 이미지 연결
 
 print("model 생성시작...")
 # model
