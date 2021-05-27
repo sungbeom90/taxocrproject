@@ -23,7 +23,7 @@ for i in range(num_enco_files):
     print(img_path)
     img = cv2.imread(img_path)
     img = tf.image.convert_image_dtype(img, tf.float32)
-    img = np.reshape(img, ((1,) + img.shape))  # 차원추가
+    img = tf.reshape(img, ((1,) + img.shape))  # 차원추가
     if i == 0:
         X = img
     else:
@@ -34,7 +34,7 @@ for i in range(num_deco_f):
     print(img_path)
     img = cv2.imread(img_path)
     img = tf.image.convert_image_dtype(img, tf.float32)
-    img = np.reshape(img, ((1,) + img.shape))  # 차원추가
+    img = tf.reshape(img, ((1,) + img.shape))  # 차원추가
     if i == 0:
         Y = img
     else:
