@@ -36,9 +36,9 @@ for i in range(num_deco_f):
     img = tf.image.convert_image_dtype(img, tf.float32)
     img = np.reshape(img, ((1,) + img.shape))  # 차원추가
     if i == 0:
-        X = img
+        Y = img
     else:
-        X = np.concatenate((X, img), axis=0)  # 추가된 차원(4차원) 방향으로 이미지 연결
+        Y = np.concatenate((Y, img), axis=0)  # 추가된 차원(4차원) 방향으로 이미지 연결
 
 print("model 생성시작...")
 # model
