@@ -4,6 +4,8 @@ import cv2
 import os
 import tensorflow as tf
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+import tensorflow.keras.backend as K
+import numpy as np
 
 enco_path = "data/image/resized"
 original_file_list = os.listdir(enco_path)
@@ -21,6 +23,7 @@ for i in range(num_enco_files):
     print(img_path)
     img = cv2.imread(img_path)
     img = tf.image.convert_image_dtype(img, tf.float32)
+    img = np.reshape(img, ((1,) + img.shape))
     X.append(img)
     # Y.append(label)
 
@@ -30,6 +33,7 @@ for i in range(num_deco_f):
     print(img_path)
     img = cv2.imread(img_path)
     img = tf.image.convert_image_dtype(img, tf.float32)
+    img = np.reshape(img, ((1,) + img.shape))
     Y.append(img)
 
 print("model 생성시작...")
@@ -37,6 +41,8 @@ print("model 생성시작...")
 demo = detection.Detection_model()
 demo.summary()
 print("model 생성완료")
+
+
 # callback
 callbacks_list = [
     EarlyStopping(
@@ -56,14 +62,6 @@ demo.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
 print("model 학습 시작...")
 
 # fit
-demo.fit(
-    X[0],
-    Y[0],
-    batch_size=1,
-    epochs=1,
-    verbose=True,
-    callbacks=callbacks_list,
-    validation_split=0.7,
-)
+demo.fit(X[0], Y[0], batch_size=1, epochs=1, verbose=True, callbacks=callbacks_list)
 
 print("model 학습 종료")
