@@ -1,6 +1,6 @@
 from model.detection import detection
 from model.detection.lossFuntion import loss_region
-from tests.detection import load_data
+from model.detection import load_data
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
 import cv2
