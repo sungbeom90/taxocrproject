@@ -187,12 +187,12 @@ class Detection_model(Model):
 
 
 class Detection_callback(Callback):
-    def __init__(self, train_x, train_y, test_x, test_y):
+    def __init__(self, train_x, val_x, test_x, val_y):
         super(Detection_callback, self).__init__()
         self.train_x = train_x
+        self.val_x = val_x
         self.train_y = train_y
-        self.test_x = test_x
-        self.test_y = test_y
+        self.val_y = val_y
 
     def on_train_begin(self, log):
         self.losses = []
@@ -208,9 +208,9 @@ class Detection_callback(Callback):
                 )
             )
         if (epoch + 1) % 5 == 0:
-            for i in range(len(self.train_y)):
+            for i in range(len(self.val_y)):
                 pred_y = model.predict(train_x[i])
                 predict_list = decoding_tests.fun_decoding(pred_y)
-                answer_list = decoding_tests.fun_decoding(train_y[i])
+                answer_list = decoding_tests.fun_decoding(val_y[i])
                 precision, recall = iou.TP_check(predict_list, answer_list)
                 print("precision: {}, recall: {}".format(precision, recall))

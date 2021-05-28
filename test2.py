@@ -30,6 +30,7 @@ callbacks_list = [
         monitor="val_loss",
         save_best_only=True,
     ),
+    Detection_callback(train_x=train_x, val_x=val_x, train_y=train_y, val_y=val_y),
 ]
 
 # compile
