@@ -186,7 +186,7 @@ class Detection_model(Model):
 
 
 class Detection_callback(Callback):
-    def __init__(self, train_x, val_x, test_x, val_y):
+    def __init__(self, train_x, val_x, train_y, val_y):
         super(Detection_callback, self).__init__()
         self.train_x = train_x
         self.val_x = val_x
@@ -196,8 +196,8 @@ class Detection_callback(Callback):
     def on_train_begin(self, log):
         self.losses = []
 
-    def on_epoch_end(self, epoch, log):
-        self.model.save_weights("data/train_weights/" + weight_name + "_last")
+    def on_epoch_end(self, epoch, logs):
+        #self.model.save_weights("data/train_weights/" + weight_name + "_last")
         self.losses.append(logs.get("loss"))
         if (epoch + 1) % 1 == 0:
             print("epoch : {}".format(epoch + 1))
