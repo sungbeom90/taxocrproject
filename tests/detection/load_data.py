@@ -41,8 +41,6 @@ def load_data():
         else:
             Y = np.concatenate((Y, img), axis=0)  # 추가된 차원(4차원) 방향으로 이미지 연결
 
-    train_x, train_y, test_x, test_y = train_test_split(X, Y, test_size=0.3)
-    val_x = X
-    val_y = Y
+    train_x, val_x, train_y, val_y = train_test_split(X, Y, test_size=0.3)
 
-    return train_x, train_y, val_x, val_y, test_x, test_y
+    return X, X, Y, Y

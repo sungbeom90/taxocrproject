@@ -10,7 +10,7 @@ import tensorflow.keras.backend as K
 import numpy as np
 
 # 훈련 데이터 불러오기
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+train_x, val_x, train_y, val_y = load_data.load_data()
 
 
 print("model 생성시작...")
