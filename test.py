@@ -60,7 +60,7 @@ R, B, G
 106 - 140
 
 
-name goni
+
 
 #IOU check
 # IOU 활용법
