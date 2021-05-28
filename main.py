@@ -7,6 +7,7 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 import tensorflow.keras.backend as K
 import numpy as np
 
+
 enco_path = "data/image/resized"
 original_file_list = os.listdir(enco_path)
 num_enco_files = len(original_file_list)
@@ -42,8 +43,8 @@ for i in range(num_deco_f):
 
 print("model 생성시작...")
 # model
-demo = detection.Detection_model()
-demo.summary()
+model = detection.Detection_model()
+model.summary()
 print("model 생성완료")
 
 
@@ -61,11 +62,11 @@ callbacks_list = [
 ]
 
 # compile
-demo.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
+model.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
 
 print("model 학습 시작...")
 
 # fit
-demo.fit(X, Y, batch_size=1, epochs=1, verbose=True, callbacks=callbacks_list)
+model.fit(X, Y, batch_size=1, epochs=1, verbose=True, callbacks=callbacks_list)
 
 print("model 학습 종료")

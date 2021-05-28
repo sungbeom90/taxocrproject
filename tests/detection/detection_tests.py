@@ -193,24 +193,24 @@ class Detection_callback(Callback):
         self.train_y = train_y
         self.test_x = test_x
         self.test_y = test_y
-    
+
     def on_train_begin(self, log):
         self.losses = []
 
     def on_epoch_end(self, epoch, log):
-        self.model.save_weights('data/train_weights/'+weight_name+'_last')
-        self.losses.append(logs.get('loss'))
-        if(epoch + 1) % 1 == 0:
-            print("epoch : {}".format(epoch+1))
-            print("loss : {}, val_loss : {}".format(logs.get('loss'),logs.get('val_loss')))
-        if(epoch + 1 )% 5 == 0:
+        self.model.save_weights("data/train_weights/" + weight_name + "_last")
+        self.losses.append(logs.get("loss"))
+        if (epoch + 1) % 1 == 0:
+            print("epoch : {}".format(epoch + 1))
+            print(
+                "loss : {}, val_loss : {}".format(
+                    logs.get("loss"), logs.get("val_loss")
+                )
+            )
+        if (epoch + 1) % 5 == 0:
             for i in range(len(self.train_y)):
-                pred_y = model.predict(train_x[i])                
+                pred_y = model.predict(train_x[i])
                 predict_list = decoding_tests.fun_decoding(pred_y)
                 answer_list = decoding_tests.fun_decoding(train_y[i])
                 precision, recall = iou.TP_check(predict_list, answer_list)
-                
-
-            
-
-    )
+                print("precision: {}, recall: {}".format(precision, recall))

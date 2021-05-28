@@ -1,17 +1,45 @@
-import pickle
+from model.detection import detection
+from model.detection.lossFuntion import loss_region
+from tests.detection import load_data
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+
 import cv2
+import os
+import tensorflow as tf
+import tensorflow.keras.backend as K
 import numpy as np
-from tests.detection import decoding
-from tests.detection import iou
 
-with open("./data/pickle/heatmap_0", "rb") as file:  # james.p 파일을 바이너리 읽기 모드(rb)로 열기
-    data = pickle.load(file)
+# 훈련 데이터 불러오기
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
-a = decoding.fun_decoding(data)
-print(a)
 
-list = a
+print("model 생성시작...")
+# model
+model = detection.Detection_model()
+model.summary()
+print("model 생성완료")
 
-precision, recall = iou.TP_check(list,list)
-print("precision : {}, recall : {}".format(precision, recall))
+# callback
+callbacks_list = [
+    EarlyStopping(
+        monitor="val_acc",
+        patience=1,
+    ),
+    ModelCheckpoint(
+        filepath="model.hr",  # 모델파일 경로,
+        monitor="val_loss",
+        save_best_only=True,
+    ),
+]
 
+# compile
+model.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
+
+print("model 학습 시작...")
+
+# fit
+model.fit(
+    train_x, train_y, batch_size=1, epochs=1, verbose=True, callbacks=callbacks_list
+)
+
+print("model 학습 종료")

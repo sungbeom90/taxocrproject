@@ -4,10 +4,10 @@ import cv2
 import numpy as np
 
 
-def fun_decoding(resion_score_map):
+def fun_decoding(region_score_map):
 
     resion_score_map = resion_score_map.astype("uint8")
-    resion_score_map = cv2.cvtColor(resion_score_map, cv2.COLOR_BGR2GRAY)
+    # resion_score_map = cv2.cvtColor(resion_score_map, cv2.COLOR_BGR2GRAY)
     # image = cv2.imread("after(1024)/after_0.jpg")
     _, result = cv2.threshold(
         resion_score_map, 100, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU
