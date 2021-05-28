@@ -44,7 +44,7 @@ print("model 학습 시작...")
 
 # fit
 model.fit(
-    train_x, train_y, batch_size=1, epochs=1, verbose=True, callbacks=callbacks_list
+    train_x, train_y, batch_size=1, epochs=100, verbose=True, callbacks=callbacks_list
 )
 
 print("model 학습 종료")
