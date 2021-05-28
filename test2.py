@@ -2,6 +2,7 @@ from model.detection import detection
 from model.detection.lossFuntion import loss_region
 from model.detection import load_data
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from tests.detection import detection_tests
 
 import cv2
 import os
@@ -30,7 +31,9 @@ callbacks_list = [
         monitor="val_loss",
         save_best_only=True,
     ),
-    Detection_callback(train_x=train_x, val_x=val_x, train_y=train_y, val_y=val_y),
+    detection_tests.Detection_callback(
+        train_x=train_x, val_x=val_x, train_y=train_y, val_y=val_y
+    ),
 ]
 
 # compile
