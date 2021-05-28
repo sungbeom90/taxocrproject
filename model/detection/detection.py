@@ -183,3 +183,33 @@ class Detection_model(Model):
         inputs = Input(shape=[1024, 1024, 3])
         outputs = self.call(inputs)
         super(Detection_model, self).__init__(inputs=inputs, outputs=outputs, **kwargs)
+
+
+class Detection_callback(Callback):
+    def __init__(self, train_x, val_x, test_x, val_y):
+        super(Detection_callback, self).__init__()
+        self.train_x = train_x
+        self.val_x = val_x
+        self.train_y = train_y
+        self.val_y = val_y
+
+    def on_train_begin(self, log):
+        self.losses = []
+
+    def on_epoch_end(self, epoch, log):
+        self.model.save_weights("data/train_weights/" + weight_name + "_last")
+        self.losses.append(logs.get("loss"))
+        if (epoch + 1) % 1 == 0:
+            print("epoch : {}".format(epoch + 1))
+            print(
+                "loss : {}, val_loss : {}".format(
+                    logs.get("loss"), logs.get("val_loss")
+                )
+            )
+        if (epoch + 1) % 5 == 0:
+            for i in range(len(self.val_y)):
+                pred_y = model.predict(train_x[i])
+                predict_list = decoding_tests.fun_decoding(pred_y)
+                answer_list = decoding_tests.fun_decoding(val_y[i])
+                precision, recall = iou.TP_check(predict_list, answer_list)
+                print("precision: {}, recall: {}".format(precision, recall))
