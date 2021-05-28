@@ -12,6 +12,7 @@ from tensorflow.keras.layers import Conv2DTranspose
 from tensorflow.keras.layers import Layer
 from tensorflow.keras.layers import Dropout
 from tensorflow.keras.layers import Concatenate
+from tensorflow.keras.callbacks import Callback
 
 import tensorflow.keras.backend as K
 import numpy as np
@@ -193,7 +194,7 @@ class Detection_callback(Callback):
         self.train_y = train_y
         self.val_y = val_y
 
-    def on_train_begin(self, log):
+    def on_train_begin(self, logs):
         self.losses = []
 
     def on_epoch_end(self, epoch, logs):
