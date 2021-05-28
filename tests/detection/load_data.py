@@ -8,11 +8,11 @@ from sklearn.model_selection import train_test_split
 
 def load_data():
 
-    enco_path = "/data/image/resized"
+    enco_path = "../../data/image/resized"
     original_file_list = os.listdir(enco_path)
     num_enco_files = len(original_file_list)
 
-    deco_path = "/data/image/hitmap"
+    deco_path = "../../data/image/hitmap"
     heatmap_file_list = os.listdir(deco_path)
     num_deco_f = len(heatmap_file_list)
 
