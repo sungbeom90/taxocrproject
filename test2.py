@@ -17,7 +17,7 @@ train_x, val_x, train_y, val_y = load_data.load_data()
 
 print("model 생성시작...")
 # model
-model = detection.Detection_model()
+model = detection_tests.Detection_model()
 model.summary()
 print("model 생성완료")
 
