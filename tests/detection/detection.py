@@ -231,6 +231,27 @@ class Detection_callback(Callback):
                         len(predict_list), len(answer_list)
                     )
                 )
+                for a in range(len(predict_list)):
+                    xmin = int(predict_list[a].get("xmin"))
+                    xmax = int(predict_list[a].get("xmax"))
+                    ymin = int(predict_list[a].get("ymin"))
+                    ymax = int(predict_list[a].get("ymax"))
+                    predict_img = cv2.rectangle(
+                        self.train_x[i], (xmin, ymin), (xmax, ymax), (255, 0, 0), 1
+                    )
+                for a in range(len(answer_list)):
+                    xmin = int(answer_list[a].get("xmin"))
+                    xmax = int(answer_list[a].get("xmax"))
+                    ymin = int(answer_list[a].get("ymin"))
+                    ymax = int(answer_list[a].get("ymax"))
+                    answer_img = cv2.rectangle(
+                        self.val_y[i], (xmin, ymin), (xmax, ymax), (0, 255, 0), 1
+                    )
+                cv2.imshow("predict_img", predict_img)
+                cv2.imshow("answer_img", answer_img)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
+
                 precision, recall = iou.TP_check(predict_list, answer_list)
                 precision_total += precision
                 recall_total += recall
