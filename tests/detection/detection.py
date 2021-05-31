@@ -16,7 +16,7 @@ from tensorflow.keras.callbacks import Callback
 import tensorflow.keras.backend as K
 import numpy as np
 import tensorflow as tf
-from tests.detection_t import decoding_tests, iou
+from tests.detection import decoding, iou
 
 
 # Concatenate 클래스 선언
