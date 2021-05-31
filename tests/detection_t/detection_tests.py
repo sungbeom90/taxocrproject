@@ -208,7 +208,7 @@ class Detection_callback(Callback):
                 )
             )
         if (epoch + 1) % 3 == 0:
-            pred_y = self.model.predict(train_x)
+            pred_y = self.model.predict(self.train_x)
             predict_list = decoding_tests.fun_decoding(pred_y)
             answer_list = decoding_tests.fun_decoding(self.val_y)
             precision, recall = iou.TP_check(predict_list, answer_list)
