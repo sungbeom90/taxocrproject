@@ -8,6 +8,10 @@ def fun_decoding(region_score_map):
     cv2.imshow("img", region_score_map)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+    region_score_map = region_score_map * 255
+    cv2.imshow("img*255", region_score_map)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     region_score_map = np.around(region_score_map)
     cv2.imshow("img(around)", region_score_map)
     cv2.waitKey(0)
@@ -176,6 +180,18 @@ def fun_decoding(region_score_map):
                 break
         # print("bounding_box_dict : {}".format(bounding_box_dict))
         bounding_box_list.append(bounding_box_dict)
+
+    for a in range(len(bounding_box_list)):
+        xmin = int(bounding_box_list[a].get("xmin"))
+        xmax = int(bounding_box_list[a].get("xmax"))
+        ymin = int(bounding_box_list[a].get("ymin"))
+        ymax = int(bounding_box_list[a].get("ymax"))
+        region_score_map = cv2.rectangle(
+            region_score_map, (xmin, ymin), (xmax, ymax), (255, 0, 0), 1
+        )
+    cv2.imshow("img(complite)", region_score_map)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     return bounding_box_list
 
