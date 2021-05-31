@@ -1,6 +1,6 @@
-from tests.detection_t import detection_tests as detection
-from model.detection.lossFuntion import loss_region
-from model.detection import load_data
+from tests.detection import detection
+from tests.detection.lossFuntion import loss_region
+from tests.detection import load_data
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.callbacks import Callback
 
@@ -37,7 +37,9 @@ callbacks_list = [
 ]
 
 # compile
-model.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
+model.compile(
+    optimizer="adam", loss=loss_region, metrics=["accuracy", "val_accuracy"]
+)  # acc
 
 print("model 학습 시작...")
 
