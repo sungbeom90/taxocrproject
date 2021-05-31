@@ -132,4 +132,3 @@ model.fit(
     callbacks=[cp_callback],
 )  # Pass callback to training# This may generate warnings related to saving the state of the optimizer.
 # These warnings (and similar warnings throughout this notebook)
-# are in place to discourage outdated usage, and can be ignored.

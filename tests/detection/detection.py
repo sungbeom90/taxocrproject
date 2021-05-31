@@ -217,8 +217,15 @@ class Detection_callback(Callback):
                 print("add axis train_x[{}].shape : {}".format(i, train_temp.shape))
                 pred_y = self.model.predict(train_temp)
                 print("pred_y.shape : {}".format(pred_y.shape))
+                pred_y = pred_y.reshape(pred_y.shape[1], pred_y.shape[2])
+                print("change pred_y.shape : {}".format(pred_y.shape))
                 predict_list = decoding.fun_decoding(pred_y)
-                answer_list = decoding.fun_decoding(self.val_y[i])
+                print("val_y[{}].shape : {}".format(i, self.val_y[i].shape))
+                true_y = self.val_y[i].reshape(
+                    self.val_y[i].shape[0], self.val_y[i].shape[1]
+                )
+                print("change true_y.shape : {}".format(true_y.shape))
+                answer_list = decoding.fun_decoding(true_y)
                 precision, recall = iou.TP_check(predict_list, answer_list)
                 precision_total += precision
                 recall_total += recall
