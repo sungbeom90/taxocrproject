@@ -219,14 +219,14 @@ class Detection_callback(Callback):
                 pred_y = self.model.predict(train_temp)
                 print("pred_y.shape : {}".format(pred_y.shape))
                 pred_y = pred_y.reshape(pred_y.shape[1], pred_y.shape[2])
+                pred_y = pred_y * 255
                 print("change pred_y.shape : {}".format(pred_y.shape))
                 print("val_y[{}].shape : {}".format(i, self.val_y[i].shape))
                 true_y = self.val_y[i].reshape(
                     self.val_y[i].shape[0], self.val_y[i].shape[1]
                 )
-                print("change true_y.shape : {}".format(true_y.shape))
-                pred_y = pred_y * 255
                 true_y = true_y * 255
+                print("change true_y.shape : {}".format(true_y.shape))
                 predict_list = decoding.fun_decoding(pred_y)
                 answer_list = decoding.fun_decoding(true_y)
                 print(
