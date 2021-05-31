@@ -209,8 +209,8 @@ class Detection_callback(Callback):
             )
         if (epoch + 1) % 5 == 0:
             for i in range(len(self.val_y)):
-                pred_y = self.model.predict(train_x[i])
+                pred_y = self.model.predict(self.train_x[i])
                 predict_list = decoding_tests.fun_decoding(pred_y)
-                answer_list = decoding_tests.fun_decoding(val_y[i])
+                answer_list = decoding_tests.fun_decoding(self.val_y[i])
                 precision, recall = iou.TP_check(predict_list, answer_list)
                 print("precision: {}, recall: {}".format(precision, recall))
