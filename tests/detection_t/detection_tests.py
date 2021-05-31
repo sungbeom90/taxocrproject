@@ -171,7 +171,7 @@ class Detection_model(Model):
         self.encoding = Encoding_layer()
         self.middle = Middle_layer()
         self.decoding = Decoding_layer()
-        self.fin_conv = Conv2D(3, 3, padding="same")
+        self.fin_conv = Conv2D(3, 1, padding="same")
         self._build(**kwargs)
 
     def call(self, inputs, training=False):
@@ -207,10 +207,18 @@ class Detection_callback(Callback):
                     logs.get("loss"), logs.get("val_loss")
                 )
             )
-        if (epoch + 1) % 5 == 0:
-            for i in range(len(self.val_y)):
-                pred_y = self.model.predict(self.train_x[i])
+        if (epoch + 1) % 3 == 0:
+            precision_total = 0
+            recall_total = 0
+            val_num = len(self.val_y)
+            for i in range(val_num):
+                train_temp = np.reshape(img, ((1,) + train_x[i].shape))
+                pred_y = self.model.predict(train_temp)
                 predict_list = decoding_tests.fun_decoding(pred_y)
                 answer_list = decoding_tests.fun_decoding(self.val_y[i])
                 precision, recall = iou.TP_check(predict_list, answer_list)
-                print("precision: {}, recall: {}".format(precision, recall))
+                precision_total += precision
+                recall_total += recall
+            precision_mean = precision_total / val_num
+            recall_mean = recall_total / val_num
+            print("precision: {}, recall: {}".format(precision_mean, recall_mean))

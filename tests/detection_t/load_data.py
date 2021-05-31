@@ -33,7 +33,7 @@ def load_data():
     for i in range(num_deco_f):
         img_path = deco_path + "/heatmap_" + str(i) + ".jpg"
         print(img_path)
-        img = cv2.imread(img_path)
+        img = cv2.imread(img_path, 0)
         img = tf.image.convert_image_dtype(img, tf.float32)
         img = np.reshape(img, ((1,) + img.shape))  # 차원추가
         if i == 0:
