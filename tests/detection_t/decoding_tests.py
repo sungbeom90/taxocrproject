@@ -5,12 +5,11 @@ import numpy as np
 
 
 def fun_decoding(region_score_map):
-
-    resion_score_map = resion_score_map.astype("uint8")
-    # resion_score_map = cv2.cvtColor(resion_score_map, cv2.COLOR_BGR2GRAY)
+    region_score_map = region_score_map.astype("uint8")
+    # region_score_map = cv2.cvtColor(region_score_map, cv2.COLOR_BGR2GRAY)
     # image = cv2.imread("after(1024)/after_0.jpg")
     _, result = cv2.threshold(
-        resion_score_map, 100, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU
+        region_score_map, 100, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU
     )
     # grouped object의 좌표 (x, y, w, h) 및 CENTROID(무게중심) 산출
     ret, labels, stats, centriods = cv2.connectedComponentsWithStats(
@@ -33,7 +32,7 @@ def fun_decoding(region_score_map):
         x, y, w, h, cnt = temp
         # 잡음을 제거한 이미지에서
         # 텍스트 상자의 좌표 값을 구함.
-        box = resion_score_map[y : y + h, x : x + w]
+        box = region_score_map[y : y + h, x : x + w]
         box_shape = (h, w)  # h행 w열
         print(box)
         print(box_shape)
@@ -56,18 +55,18 @@ def fun_decoding(region_score_map):
         # width_left : 왼쪽
         while True:
             if (
-                resion_score_map[y1][x1 - width_left]
-                <= resion_score_map[y1][x1 - width_left + 1]
-            ) and (resion_score_map[y1][x1 - width_left + 1] > 60):
+                region_score_map[y1][x1 - width_left]
+                <= region_score_map[y1][x1 - width_left + 1]
+            ) and (region_score_map[y1][x1 - width_left + 1] > 60):
                 width_left += 1
                 print(
                     "왼쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
                         x1 - width_left,
                         y1,
-                        (resion_score_map[y1][x1 - width_left]),
+                        (region_score_map[y1][x1 - width_left]),
                         x1 - width_left + 1,
                         y1,
-                        (resion_score_map[y1][x1 - width_left + 1]),
+                        (region_score_map[y1][x1 - width_left + 1]),
                     )
                 )
             else:
@@ -78,18 +77,18 @@ def fun_decoding(region_score_map):
         # width_right : 오른쪽
         while True:
             if (
-                resion_score_map[y2][x2 + width_right]
-                <= resion_score_map[y2][x2 + width_right - 1]
-            ) and (resion_score_map[y2][x2 + width_right - 1] > 60):
+                region_score_map[y2][x2 + width_right]
+                <= region_score_map[y2][x2 + width_right - 1]
+            ) and (region_score_map[y2][x2 + width_right - 1] > 60):
                 width_right += 1
                 print(
                     "오른쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
                         x2 + width_right,
                         y2,
-                        (resion_score_map[y2][x2 + width_right]),
+                        (region_score_map[y2][x2 + width_right]),
                         x2 + width_right + 1,
                         y2,
-                        (resion_score_map[y2][x2 + width_right - 1]),
+                        (region_score_map[y2][x2 + width_right - 1]),
                     )
                 )
             else:
@@ -100,18 +99,18 @@ def fun_decoding(region_score_map):
         # height_top : 위
         while True:
             if (
-                resion_score_map[y3 - height_top][x3]
-                <= resion_score_map[y3 - height_top + 1][x3]
-            ) and (resion_score_map[y3 - height_top + 1][x3] > 60):
+                region_score_map[y3 - height_top][x3]
+                <= region_score_map[y3 - height_top + 1][x3]
+            ) and (region_score_map[y3 - height_top + 1][x3] > 60):
                 height_top += 1
                 print(
                     "위쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
                         x3,
                         y3 - height_top,
-                        (resion_score_map[y3 - height_top][x3]),
+                        (region_score_map[y3 - height_top][x3]),
                         x3,
                         y3 - height_top + 1,
-                        (resion_score_map[y3 - height_top + 1][x3]),
+                        (region_score_map[y3 - height_top + 1][x3]),
                     )
                 )
             else:
@@ -122,18 +121,18 @@ def fun_decoding(region_score_map):
         # height_bottem : 아래
         while True:
             if (
-                resion_score_map[y4 + height_bottem][x4]
-                <= resion_score_map[y4 + height_bottem - 1][x4]
-            ) and (resion_score_map[y4 + height_bottem - 1][x4] > 60):
+                region_score_map[y4 + height_bottem][x4]
+                <= region_score_map[y4 + height_bottem - 1][x4]
+            ) and (region_score_map[y4 + height_bottem - 1][x4] > 60):
                 height_bottem += 1
                 print(
                     "아래쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
                         x4,
                         y4 + height_bottem,
-                        (resion_score_map[y4 + height_bottem][x4]),
+                        (region_score_map[y4 + height_bottem][x4]),
                         x4,
                         y4 + height_bottem - 1,
-                        (resion_score_map[y4 + height_bottem - 1][x4]),
+                        (region_score_map[y4 + height_bottem - 1][x4]),
                     )
                 )
             else:
