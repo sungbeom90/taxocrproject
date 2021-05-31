@@ -5,11 +5,15 @@ import numpy as np
 
 
 def fun_decoding(region_score_map):
-    # region_score_map = np.around(region_score_map)
-    # region_score_map = region_score_map.astype("uint8")
-    print(type(region_score_map))
-    print(region_score_map[200:220, 200:220])
     cv2.imshow("img", region_score_map)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    region_score_map = np.around(region_score_map)
+    cv2.imshow("img(around)", region_score_map)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    region_score_map = region_score_map.astype("uint8")
+    cv2.imshow("img(astype)", region_score_map)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     # region_score_map = cv2.cvtColor(region_score_map, cv2.COLOR_BGR2GRAY)
