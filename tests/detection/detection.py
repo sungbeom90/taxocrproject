@@ -234,6 +234,7 @@ class Detection_callback(Callback):
                         len(predict_list), len(answer_list)
                     )
                 )
+                predict_img = None
                 for a in range(len(predict_list)):
                     xmin = int(predict_list[a].get("xmin"))
                     xmax = int(predict_list[a].get("xmax"))
@@ -242,6 +243,7 @@ class Detection_callback(Callback):
                     predict_img = cv2.rectangle(
                         pred_y, (xmin, ymin), (xmax, ymax), (255, 0, 0), 1
                     )
+                answer_img = None
                 for a in range(len(answer_list)):
                     xmin = int(answer_list[a].get("xmin"))
                     xmax = int(answer_list[a].get("xmax"))
