@@ -208,7 +208,7 @@ class Detection_callback(Callback):
                     logs.get("loss"), logs.get("val_loss")
                 )
             )
-        if (epoch + 1) % 3 == 0:
+        if (epoch + 1) % 1 == 0:
             precision_total = 0
             recall_total = 0
             val_num = len(self.val_y)
