@@ -37,9 +37,7 @@ callbacks_list = [
 ]
 
 # compile
-model.compile(
-    optimizer="adam", loss=loss_region, metrics=["accuracy", "val_accuracy"]
-)  # acc
+model.compile(optimizer="adam", loss=loss_region, metrics=["accuracy"])  # acc
 
 print("model 학습 시작...")
 

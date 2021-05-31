@@ -171,7 +171,7 @@ class Detection_model(Model):
         self.encoding = Encoding_layer()
         self.middle = Middle_layer()
         self.decoding = Decoding_layer()
-        self.fin_conv = Conv2D(3, 1, padding="same")
+        self.fin_conv = Conv2D(1, 1, padding="same")
         self._build(**kwargs)
 
     def call(self, inputs, training=False):
