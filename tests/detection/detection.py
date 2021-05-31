@@ -212,7 +212,7 @@ class Detection_callback(Callback):
             recall_total = 0
             val_num = len(self.val_y)
             for i in range(val_num):
-                train_temp = np.reshape(img, ((1,) + train_x[i].shape))
+                train_temp = np.reshape(train_x[i], ((1,) + train_x[i].shape))
                 pred_y = self.model.predict(train_temp)
                 predict_list = decoding_tests.fun_decoding(pred_y)
                 answer_list = decoding_tests.fun_decoding(self.val_y[i])
