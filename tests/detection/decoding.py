@@ -20,7 +20,11 @@ def fun_decoding(region_score_map):
     #     print("x:{}, y:{}, w:{}, h:{},".format(x, y, w, h))
 
     bounding_box_list = []
-    for i, temp in enumerate(stats[1:-1]):
+    for i, temp in enumerate(stats):
+        if i == 0:
+            continue
+        else:
+            pass
         bounding_box_dict = {}
         # 4방향 1로 초기화
         # 글자가 총 몇 개인지 알기. 히트맵_0은 0~291개
@@ -77,6 +81,7 @@ def fun_decoding(region_score_map):
                 break
         # width_right : 오른쪽
         while True:
+            print("y2 :{}, x2 :{}, width_right : {}".format(y2, x2, width_right))
             if (
                 region_score_map[y2][x2 + width_right]
                 <= region_score_map[y2][x2 + width_right - 1]
