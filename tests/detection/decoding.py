@@ -68,7 +68,12 @@ def fun_decoding(region_score_map):
         # 중심점은 가장 큰 값이며, 멀어질수록 값이 작아짐
         # width_left : 왼쪽
         while True:
-            if (
+            if x1 - width_left <= 0:
+                xmin = 0
+                # print("xmin 선택 {} ".format(xmin))
+                bounding_box_dict["xmin"] = xmin
+                break
+            elif (
                 region_score_map[y1][x1 - width_left]
                 <= region_score_map[y1][x1 - width_left + 1]
             ) and (region_score_map[y1][x1 - width_left + 1] > 60):
@@ -90,8 +95,12 @@ def fun_decoding(region_score_map):
                 break
         # width_right : 오른쪽
         while True:
-            print("y2 :{}, x2 :{}, width_right : {}".format(y2, x2, width_right))
-            if (
+            if x2 + width_right >= 1024:
+                xmax = 1024
+                # print("xmax 선택 {} ".format(xmax))
+                bounding_box_dict["xmax"] = xmax
+                break
+            elif (
                 region_score_map[y2][x2 + width_right]
                 <= region_score_map[y2][x2 + width_right - 1]
             ) and (region_score_map[y2][x2 + width_right - 1] > 60):
@@ -113,7 +122,12 @@ def fun_decoding(region_score_map):
                 break
         # height_top : 위
         while True:
-            if (
+            if y3 - height_top <= 0:
+                ymin = 0
+                # print("ymin 선택 {} ".format(ymin))
+                bounding_box_dict["ymin"] = ymin
+                break
+            elif (
                 region_score_map[y3 - height_top][x3]
                 <= region_score_map[y3 - height_top + 1][x3]
             ) and (region_score_map[y3 - height_top + 1][x3] > 60):
@@ -135,7 +149,12 @@ def fun_decoding(region_score_map):
                 break
         # height_bottem : 아래
         while True:
-            if (
+            if y4 + height_bottem >= 1024:
+                ymax = 1024
+                # print("ymax 선택 {} ".format(ymax))
+                bounding_box_dict["ymax"] = ymax
+                break
+            elif (
                 region_score_map[y4 + height_bottem][x4]
                 <= region_score_map[y4 + height_bottem - 1][x4]
             ) and (region_score_map[y4 + height_bottem - 1][x4] > 60):
