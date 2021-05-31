@@ -13,7 +13,11 @@ def fun_decoding(region_score_map):
     # region_score_map = cv2.cvtColor(region_score_map, cv2.COLOR_BGR2GRAY)
     # image = cv2.imread("after(1024)/after_0.jpg")
     _, result = cv2.threshold(
-        region_score_map, 100, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU
+        region_score_map,
+        100,
+        255,
+        cv2.THRESH_BINARY
+        # | cv2.THRESH_OTSU
     )
     # grouped object의 좌표 (x, y, w, h) 및 CENTROID(무게중심) 산출
     ret, labels, stats, centriods = cv2.connectedComponentsWithStats(
