@@ -16,8 +16,8 @@ def fun_decoding(region_score_map):
     ret, labels, stats, centriods = cv2.connectedComponentsWithStats(
         result, connectivity=4, ltype=cv2.CV_32S
     )
-    for x, y, w, h, cnt in stats:
-        print("x:{}, y:{}, w:{}, h:{},".format(x, y, w, h))
+    # for x, y, w, h, cnt in stats:
+    #     print("x:{}, y:{}, w:{}, h:{},".format(x, y, w, h))
 
     bounding_box_list = []
     for i, temp in enumerate(stats):
@@ -28,21 +28,21 @@ def fun_decoding(region_score_map):
         width_right = 1
         height_top = 1
         height_bottem = 1
-        print("{}번째 텍스트 박스".format(i))
+        # print("{}번째 텍스트 박스".format(i))
         # 실제 사용하는 것은 x, y, w, h이며,
         x, y, w, h, cnt = temp
         # 잡음을 제거한 이미지에서
         # 텍스트 상자의 좌표 값을 구함.
         box = region_score_map[y : y + h, x : x + w]
         box_shape = (h, w)  # h행 w열
-        print(box)
-        print(box_shape)
+        # print(box)
+        # print(box_shape)
         # 텍스트의 중심점
         # np.argmax()함수가 h행w열에서 가장 큰 인덱스 값을 찾을것이다.
         # 그럼, np.unravel_index()함수가 튜플로 반환할 것임.
         x_center = np.unravel_index(np.argmax(box, axis=None), box.shape)[1]
         y_center = np.unravel_index(np.argmax(box, axis=None), box.shape)[0]
-        print("x_center:{}, y_center:{}".format(x_center, y_center))
+        # print("x_center:{}, y_center:{}".format(x_center, y_center))
         x1 = x + x_center
         y1 = y + y_center
         x2 = x + x_center
@@ -60,19 +60,19 @@ def fun_decoding(region_score_map):
                 <= region_score_map[y1][x1 - width_left + 1]
             ) and (region_score_map[y1][x1 - width_left + 1] > 60):
                 width_left += 1
-                print(
-                    "왼쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
-                        x1 - width_left,
-                        y1,
-                        (region_score_map[y1][x1 - width_left]),
-                        x1 - width_left + 1,
-                        y1,
-                        (region_score_map[y1][x1 - width_left + 1]),
-                    )
-                )
+                # print(
+                #     "왼쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
+                #         x1 - width_left,
+                #         y1,
+                #         (region_score_map[y1][x1 - width_left]),
+                #         x1 - width_left + 1,
+                #         y1,
+                #         (region_score_map[y1][x1 - width_left + 1]),
+                #     )
+                # )
             else:
                 xmin = x1 - width_left + 1
-                print("xmin 선택 {} ".format(xmin))
+                # print("xmin 선택 {} ".format(xmin))
                 bounding_box_dict["xmin"] = xmin
                 break
         # width_right : 오른쪽
@@ -82,19 +82,19 @@ def fun_decoding(region_score_map):
                 <= region_score_map[y2][x2 + width_right - 1]
             ) and (region_score_map[y2][x2 + width_right - 1] > 60):
                 width_right += 1
-                print(
-                    "오른쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
-                        x2 + width_right,
-                        y2,
-                        (region_score_map[y2][x2 + width_right]),
-                        x2 + width_right + 1,
-                        y2,
-                        (region_score_map[y2][x2 + width_right - 1]),
-                    )
-                )
+                # print(
+                #     "오른쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
+                #         x2 + width_right,
+                #         y2,
+                #         (region_score_map[y2][x2 + width_right]),
+                #         x2 + width_right + 1,
+                #         y2,
+                #         (region_score_map[y2][x2 + width_right - 1]),
+                #     )
+                # )
             else:
                 xmax = x2 + width_right - 1
-                print("xmax 선택 {} ".format(xmax))
+                # print("xmax 선택 {} ".format(xmax))
                 bounding_box_dict["xmax"] = xmax
                 break
         # height_top : 위
@@ -104,19 +104,19 @@ def fun_decoding(region_score_map):
                 <= region_score_map[y3 - height_top + 1][x3]
             ) and (region_score_map[y3 - height_top + 1][x3] > 60):
                 height_top += 1
-                print(
-                    "위쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
-                        x3,
-                        y3 - height_top,
-                        (region_score_map[y3 - height_top][x3]),
-                        x3,
-                        y3 - height_top + 1,
-                        (region_score_map[y3 - height_top + 1][x3]),
-                    )
-                )
+                # print(
+                #     "위쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
+                #         x3,
+                #         y3 - height_top,
+                #         (region_score_map[y3 - height_top][x3]),
+                #         x3,
+                #         y3 - height_top + 1,
+                #         (region_score_map[y3 - height_top + 1][x3]),
+                #     )
+                # )
             else:
                 ymin = y3 - height_top
-                print("ymin 선택 {} ".format(ymin))
+                # print("ymin 선택 {} ".format(ymin))
                 bounding_box_dict["ymin"] = ymin
                 break
         # height_bottem : 아래
@@ -126,22 +126,22 @@ def fun_decoding(region_score_map):
                 <= region_score_map[y4 + height_bottem - 1][x4]
             ) and (region_score_map[y4 + height_bottem - 1][x4] > 60):
                 height_bottem += 1
-                print(
-                    "아래쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
-                        x4,
-                        y4 + height_bottem,
-                        (region_score_map[y4 + height_bottem][x4]),
-                        x4,
-                        y4 + height_bottem - 1,
-                        (region_score_map[y4 + height_bottem - 1][x4]),
-                    )
-                )
+                # print(
+                #     "아래쪽 좌표[x:{}][y:{}]:화소값{}, 좌표[y:{}][x:{}]:화소값:{}".format(
+                #         x4,
+                #         y4 + height_bottem,
+                #         (region_score_map[y4 + height_bottem][x4]),
+                #         x4,
+                #         y4 + height_bottem - 1,
+                #         (region_score_map[y4 + height_bottem - 1][x4]),
+                #     )
+                # )
             else:
                 ymax = y4 + height_bottem
-                print("ymax 선택 {} ".format(ymax))
+                # print("ymax 선택 {} ".format(ymax))
                 bounding_box_dict["ymax"] = ymax
                 break
-        print("bounding_box_dict : {}".format(bounding_box_dict))
+        # print("bounding_box_dict : {}".format(bounding_box_dict))
         bounding_box_list.append(bounding_box_dict)
 
     return bounding_box_list
