@@ -5,6 +5,9 @@ import numpy as np
 
 
 def fun_decoding(region_score_map):
+    cv2.imshow("img", region_score_map)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     region_score_map = region_score_map.astype("uint8")
     # region_score_map = cv2.cvtColor(region_score_map, cv2.COLOR_BGR2GRAY)
