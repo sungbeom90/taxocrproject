@@ -198,7 +198,7 @@ class Detection_callback(Callback):
         self.losses = []
 
     def on_epoch_end(self, epoch, logs):
-        #self.model.save_weights("data/train_weights/" + weight_name + "_last")
+        # self.model.save_weights("data/train_weights/" + weight_name + "_last")
         self.losses.append(logs.get("loss"))
         if (epoch + 1) % 1 == 0:
             print("epoch : {}".format(epoch + 1))
@@ -209,7 +209,7 @@ class Detection_callback(Callback):
             )
         if (epoch + 1) % 5 == 0:
             for i in range(len(self.val_y)):
-                pred_y = model.predict(train_x[i])
+                pred_y = self.model.predict(train_x[i])
                 predict_list = decoding_tests.fun_decoding(pred_y)
                 answer_list = decoding_tests.fun_decoding(val_y[i])
                 precision, recall = iou.TP_check(predict_list, answer_list)
