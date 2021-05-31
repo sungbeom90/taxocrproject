@@ -20,7 +20,7 @@ def fun_decoding(region_score_map):
     #     print("x:{}, y:{}, w:{}, h:{},".format(x, y, w, h))
 
     bounding_box_list = []
-    for i, temp in enumerate(stats):
+    for i, temp in enumerate(stats[1:-1]):
         bounding_box_dict = {}
         # 4방향 1로 초기화
         # 글자가 총 몇 개인지 알기. 히트맵_0은 0~291개
