@@ -1,8 +1,9 @@
-from tests.detection_t import detection_tests as detection
+from tests.detection_t.detection_tests import detection
 from model.detection.lossFuntion import loss_region
-from model.detection import load_data
+from tests.detection_t import load_data
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.callbacks import Callback
+from tests.detection_t.detection_tests import Detection_callback
 
 import cv2
 import os
@@ -31,9 +32,9 @@ callbacks_list = [
         monitor="val_loss",
         save_best_only=True,
     ),
-    detection.Detection_callback(
+    Detection_callback(
         train_x=train_x, val_x=val_x, train_y=train_y, val_y=val_y
-    ),
+    )
 ]
 
 # compile
@@ -43,7 +44,7 @@ print("model 학습 시작...")
 
 # fit
 model.fit(
-    train_x, train_y, batch_size=1, epochs=1, verbose=True, callbacks=callbacks_list
+    train_x, train_y, batch_size=1, epochs=100, verbose=True, callbacks=callbacks_list
 )
 
 print("model 학습 종료")

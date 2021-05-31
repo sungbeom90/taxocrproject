@@ -33,14 +33,12 @@ def load_data():
     for i in range(num_deco_f):
         img_path = deco_path + "/heatmap_" + str(i) + ".jpg"
         print(img_path)
-        img = cv2.imread(img_path, 0)
+        img = cv2.imread(img_path)
         img = tf.image.convert_image_dtype(img, tf.float32)
         img = np.reshape(img, ((1,) + img.shape))  # 차원추가
         if i == 0:
             Y = img
         else:
             Y = np.concatenate((Y, img), axis=0)  # 추가된 차원(4차원) 방향으로 이미지 연결
-
-    train_x, val_x, train_y, val_y = train_test_split(X, Y, test_size=0.3)
 
     return X, X, Y, Y
