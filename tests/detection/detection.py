@@ -214,8 +214,8 @@ class Detection_callback(Callback):
             for i in range(val_num):
                 train_temp = np.reshape(self.train_x[i], ((1,) + self.train_x[i].shape))
                 pred_y = self.model.predict(train_temp)
-                predict_list = decoding_tests.fun_decoding(pred_y)
-                answer_list = decoding_tests.fun_decoding(self.val_y[i])
+                predict_list = decoding.fun_decoding(pred_y)
+                answer_list = decoding.fun_decoding(self.val_y[i])
                 precision, recall = iou.TP_check(predict_list, answer_list)
                 precision_total += precision
                 recall_total += recall
