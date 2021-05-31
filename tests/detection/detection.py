@@ -16,6 +16,7 @@ from tensorflow.keras.callbacks import Callback
 import tensorflow.keras.backend as K
 import numpy as np
 import tensorflow as tf
+import cv2
 from tests.detection import decoding, iou
 
 
@@ -237,7 +238,7 @@ class Detection_callback(Callback):
                     ymin = int(predict_list[a].get("ymin"))
                     ymax = int(predict_list[a].get("ymax"))
                     predict_img = cv2.rectangle(
-                        self.train_x[i], (xmin, ymin), (xmax, ymax), (255, 0, 0), 1
+                        pred_y, (xmin, ymin), (xmax, ymax), (255, 0, 0), 1
                     )
                 for a in range(len(answer_list)):
                     xmin = int(answer_list[a].get("xmin"))
@@ -245,7 +246,7 @@ class Detection_callback(Callback):
                     ymin = int(answer_list[a].get("ymin"))
                     ymax = int(answer_list[a].get("ymax"))
                     answer_img = cv2.rectangle(
-                        self.val_y[i], (xmin, ymin), (xmax, ymax), (0, 255, 0), 1
+                        true_y, (xmin, ymin), (xmax, ymax), (0, 255, 0), 1
                     )
                 cv2.imshow("predict_img", predict_img)
                 cv2.imshow("answer_img", answer_img)
