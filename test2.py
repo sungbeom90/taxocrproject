@@ -1,4 +1,4 @@
-from tests.detection_t.detection_tests import detection
+from tests.detection_t import detection_tests
 from model.detection.lossFuntion import loss_region
 from tests.detection_t import load_data
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
