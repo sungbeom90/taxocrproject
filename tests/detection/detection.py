@@ -212,8 +212,11 @@ class Detection_callback(Callback):
             recall_total = 0
             val_num = len(self.val_y)
             for i in range(val_num):
+                print("train_x[{}].shape : {}".format(i, self.train_x[i].shape))
                 train_temp = np.reshape(self.train_x[i], ((1,) + self.train_x[i].shape))
+                print("add axis train_x[{}].shape : {}".format(i, train_temp))
                 pred_y = self.model.predict(train_temp)
+                print("pred_y.shape : {}".format(pred_y.shape))
                 predict_list = decoding.fun_decoding(pred_y)
                 answer_list = decoding.fun_decoding(self.val_y[i])
                 precision, recall = iou.TP_check(predict_list, answer_list)
