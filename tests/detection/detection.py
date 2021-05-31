@@ -214,7 +214,7 @@ class Detection_callback(Callback):
             for i in range(val_num):
                 print("train_x[{}].shape : {}".format(i, self.train_x[i].shape))
                 train_temp = np.reshape(self.train_x[i], ((1,) + self.train_x[i].shape))
-                print("add axis train_x[{}].shape : {}".format(i, train_temp))
+                print("add axis train_x[{}].shape : {}".format(i, train_temp.shape))
                 pred_y = self.model.predict(train_temp)
                 print("pred_y.shape : {}".format(pred_y.shape))
                 predict_list = decoding.fun_decoding(pred_y)
