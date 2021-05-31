@@ -24,6 +24,7 @@ def load_data():
         print(img_path)
         img = cv2.imread(img_path, 0)
         img = tf.image.convert_image_dtype(img, tf.float32)
+        img = img / 255
         img = np.reshape(img, ((1,) + img.shape + (1,)))  # 차원추가
         if i == 0:
             X = img
@@ -35,6 +36,7 @@ def load_data():
         print(img_path)
         img = cv2.imread(img_path, 0)
         img = tf.image.convert_image_dtype(img, tf.float32)
+        img = img / 255
         img = np.reshape(img, ((1,) + img.shape + (1,)))  # 차원추가
         if i == 0:
             Y = img

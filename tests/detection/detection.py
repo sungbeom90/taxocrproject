@@ -225,6 +225,8 @@ class Detection_callback(Callback):
                     self.val_y[i].shape[0], self.val_y[i].shape[1]
                 )
                 print("change true_y.shape : {}".format(true_y.shape))
+                pred_y = pred_y * 255
+                true_y = true_y * 255
                 predict_list = decoding.fun_decoding(pred_y)
                 answer_list = decoding.fun_decoding(true_y)
                 print(
