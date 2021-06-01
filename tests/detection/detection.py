@@ -16,7 +16,8 @@ from tensorflow.keras.callbacks import Callback
 import tensorflow.keras.backend as K
 import numpy as np
 import tensorflow as tf
-from tests.detection_t import decoding_tests, iou
+import cv2
+from tests.detection import decoding, iou
 
 
 # Concatenate 클래스 선언
@@ -171,7 +172,7 @@ class Detection_model(Model):
         self.encoding = Encoding_layer()
         self.middle = Middle_layer()
         self.decoding = Decoding_layer()
-        self.fin_conv = Conv2D(3, 1, padding="same")
+        self.fin_conv = Conv2D(1, 1, padding="same")
         self._build(**kwargs)
 
     def call(self, inputs, training=False):
@@ -181,7 +182,7 @@ class Detection_model(Model):
         return self.fin_conv(x)
 
     def _build(self, **kwargs):
-        inputs = Input(shape=[1024, 1024])
+        inputs = Input(shape=[1024, 1024, 1])
         outputs = self.call(inputs)
         super(Detection_model, self).__init__(inputs=inputs, outputs=outputs, **kwargs)
 
@@ -207,15 +208,30 @@ class Detection_callback(Callback):
                     logs.get("loss"), logs.get("val_loss")
                 )
             )
-        if (epoch + 1) % 3 == 0:
+        if (epoch + 1) % 1 == 0:
             precision_total = 0
             recall_total = 0
             val_num = len(self.val_y)
             for i in range(val_num):
-                train_temp = np.reshape(img, ((1,) + train_x[i].shape))
+                print("train_x[{}].shape : {}".format(i, self.train_x[i].shape))
+                train_temp = np.reshape(self.train_x[i], ((1,) + self.train_x[i].shape))
+                print("add axis train_x[{}].shape : {}".format(i, train_temp.shape))
                 pred_y = self.model.predict(train_temp)
-                predict_list = decoding_tests.fun_decoding(pred_y)
-                answer_list = decoding_tests.fun_decoding(self.val_y[i])
+                print("pred_y.shape : {}".format(pred_y.shape))
+                pred_y = pred_y.reshape(pred_y.shape[1], pred_y.shape[2])
+                print("change pred_y.shape : {}".format(pred_y.shape))
+                print("val_y[{}].shape : {}".format(i, self.val_y[i].shape))
+                true_y = self.val_y[i].reshape(
+                    self.val_y[i].shape[0], self.val_y[i].shape[1]
+                )
+                print("change true_y.shape : {}".format(true_y.shape))
+                answer_list = decoding.fun_decoding(true_y)
+                predict_list = decoding.fun_decoding(pred_y)
+                print(
+                    "pred_list_num : {}, answer_list_num : {}".format(
+                        len(predict_list), len(answer_list)
+                    )
+                )
                 precision, recall = iou.TP_check(predict_list, answer_list)
                 precision_total += precision
                 recall_total += recall
