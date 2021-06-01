@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>서비스페이지</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    function getThumbnailPrivew(html, $target) {
+        if (html.files && html.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $target.css('display', '');
+                //$target.css('background-image', 'url(\"' + e.target.result + '\")'); // 배경으로 지정시
+                $target.html('<img src="' + e.target.result + '" border="0" alt="" />');
+            }
+            reader.readAsDataURL(html.files[0]);
+        }
+    }
+    </script>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/image_preview.css') }}"></link>
+  
+ </head>
+
+  <body>
+
+    <!-- <form action = "http://192.168.187.1:80/uploader" method = "POST" enctype = "multipart/form-data">
+      <input type = "file" name = "file" />
+      <input type = "submit"/>
+    </form> -->
+    
+ 
+    <form name="form" id="form" action="http://192.168.187.1:80/uploader" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <div class="filebox">
+            <label for="cma_file">사진 인증샷 업로드</label>
+            <input type="file" name="cma_file" id="cma_file" accept="image/*" capture="camera" onchange="getThumbnailPrivew(this,$('#cma_image'))" />
+            <br /><br />
+            <div id="cma_image" style="width:30%;max-width:30%;border:1px solid #000;display:none;"></div>
+        </div>
+        <input type = "submit"/>
+    </form>
+
+    <p>선택한 이미지가 <p>
+    <p>여기에도 이미지가 들어간다면 완성일텐데</p>
+  </body>
+</html>
