@@ -33,11 +33,13 @@ def file_print():
 def upload_file():
    if request.method == 'POST':
        # 파일 저장
-      f = request.files['cma_file']
-      f.save("./static/image/" + secure_filename(f.filename))
+      f_list = request.files.getlist('cma_file[]')
+      for fil in f_list :
+          fil.save("./static/image/" + secure_filename(fil.filename))
+          upfile_address = "image/"+ secure_filename(fil.filename)
+          upload_file_list.append(upfile_address)
+          print(upfile_address)
         # 업로드된 파일명
-      upfile_address = "image/"+ secure_filename(f.filename)
-      upload_file_list.append(upfile_address)
       return redirect(url_for('file_print'))
    elif request.method =='GET':
       return '404'
