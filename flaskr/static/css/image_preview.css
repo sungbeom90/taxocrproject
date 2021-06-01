@@ -10,8 +10,8 @@
     border: 1px solid #ebebeb;
     border-bottom-color: #e2e2e2;
     border-radius: .25em;
-    width:100%;
-    max-width:100%;
+    width:50%;
+    max-width:50%;
 }
 
 .filebox input[type="file"] {  /* 파일 필드 숨기기 */

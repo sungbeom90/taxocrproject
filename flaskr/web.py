@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, jsonify
+from flask import Flask, json, render_template, redirect, url_for, request, jsonify
 import ocr_manage as om
 import os
 from werkzeug.utils import secure_filename
@@ -31,18 +31,31 @@ def file_print():
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
-   if request.method == 'POST':
+    print("파일업로드 요청 접수됨")
+    if request.method == 'POST':
        # 파일 저장
-      f_list = request.files.getlist('cma_file[]')
-      for fil in f_list :
-          fil.save("./static/image/" + secure_filename(fil.filename))
-          upfile_address = "image/"+ secure_filename(fil.filename)
-          upload_file_list.append(upfile_address)
-          print(upfile_address)
-        # 업로드된 파일명
-      return redirect(url_for('file_print'))
-   elif request.method =='GET':
-      return '404'
+        f = request.files['cma_file']
+        if f.content_length == 0 :  
+            priint("전달된 파일이 없어서 원래 페이지로 리다이렉트")
+            return redirect(url_for('image_input'))
+        else :
+            print("file storage 내부 : ", f)
+            f.save("./static/image/" + secure_filename(f.filename))
+            upfile_address = "image/"+ secure_filename(f.filename)
+            upload_file_list.append(upfile_address)
+            print(upfile_address)
+            # 업로드된 파일명
+            return redirect(url_for('file_print'))
+
+@app.route('/predicted_img', methods=['POST'])
+def Predict_img():
+    # 예측된 이미지에서 text를 출력해서 보내왔습니다.
+    jsonData = request.get_json()
+    
+    data1 = str(jsonData['testkey'])
+    return jsonData
+    
+   
 
 
 
