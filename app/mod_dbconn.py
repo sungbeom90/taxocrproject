@@ -4,9 +4,9 @@ import pymysql
 class Database:
     def __init__(self):
         self.db = pymysql.connect(
-            host="localhost",
             user="kosa1",
             password="kosa1",
+            host="localhost",
             db="taxocr",
             charset="utf8",
         )
