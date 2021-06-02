@@ -2,9 +2,20 @@
 <html>
   <head>
     <title>서비스페이지</title>
+    <link rel="stylesheet" href="../static/css/home.css">
   </head>
 
   <body>
+
+    <header>
+      <div class="title">
+          <a href=""><img  src="../static/dev_img/logo.PNG" class="logo"></a>
+          <!-- <a href=""><h3 class="info">사용설명서</h3></a> -->
+          <a href=""><img src="../static/dev_img/info.PNG" class="info"></a>
+      </div>
+    </header>
+
+
     <div>
         <img src="{{url_for('static', filename=image_file)}}">
         <img src="{{url_for('static', filename=image_file2)}}">
