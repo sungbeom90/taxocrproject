@@ -12,7 +12,7 @@ def home():
 @app.route("/db")
 def select():
     db_class = mod_dbconn.Database()
-    sql = "SELECT b_id \
+    sql = "SELECT *\
                 FROM taxocr.t_provider"
     row = db_class.executeAll(sql)
     print(row)
