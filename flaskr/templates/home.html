@@ -3,6 +3,7 @@
 
 <head>
   <title>홈페이지</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/css/home.css">
 </head>
 
@@ -21,7 +22,7 @@
         <p class="contents2">세금계산서를 바로 그래프로!</p>
         <img src="../static/dev_img/sample.PNG" class="main_image"> 
         <div>
-          <form name="form" id="form" action="http://192.168.187.1:80/uploader" method="POST" enctype="multipart/form-data">
+          <form name="form" id="form" action="http://192.168.55.215:80/uploader" method="POST" enctype="multipart/form-data">
             <div class="filebox">
                 <label for="file">Click to upload</label>
                 <input type=file name=file id="file" accept="image/*"/>
@@ -29,8 +30,35 @@
             <input type = "submit"/>
           </form>
         </div>
+      <div>
+        <form name="form" id="form" action="http://192.168.55.215:80/uploader" method="POST" enctype="multipart/form-data">
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile02">
+              <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+            </div>
+            <div class="input-group-append">
+              <span class="input-group-text" id="">Upload</span>
+            </div>
+          </div>
+        </form>
+
+        <form action="http://192.168.55.215:80/uploader" method="POST" enctype="multipart/form-data">
+          <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile">파일선택</label>
+              <input type="submit"/>
+          </div>
+      </form>
+
+      </div>
     </div>
 
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   </body>
 </html>
