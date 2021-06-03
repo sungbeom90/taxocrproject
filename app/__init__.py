@@ -61,6 +61,7 @@ def insert_bill():
             int(args_dict["b_cost_credit"].replace(",", "")),
             args_dict["FK_p_id"],
         )
+        print(args)
         db_class.execute(query=sql, args=args)
         db_class.commit()
         return render_template("home.html")
