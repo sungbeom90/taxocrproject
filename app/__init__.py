@@ -95,7 +95,9 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
     print("fetchall rowtype:{}".format(type(row)))
     print("fetchall rowlength:{}".format(len(row)))
     for i in row:
+        print(type(i["p_corp_name"]))
         temp.append(i["p_corp_name"])
+        print(type(i["b_cost_total_sum"]))
         temp2.append(i["b_cost_total_sum"])
     print(temp)
     print(temp2)
