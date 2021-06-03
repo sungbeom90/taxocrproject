@@ -23,7 +23,7 @@ def select():
 def insert_provider():
     print("공급자 등록 요청 접수됨")
     if request.method == "GET":
-        return redirect(render_template("insert.html"))
+        return render_template("insert.html")
 
     if request.method == "POST":
         db_class = mod_dbconn.Database()
