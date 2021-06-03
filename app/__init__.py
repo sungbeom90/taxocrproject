@@ -82,14 +82,14 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
     temp2 = []
     temptuple = []
     db_class = mod_dbconn.Database()
-    sql = """SELECT @rownum:=@rownum+1, p_corp_name, b_cost_total_sum 
-            FROM (SELECT t_provider.p_corp_name as p_corp_name, 
-                    SUM(t_bill.b_cost_total) as b_cost_total_sum
-                    FROM t_provider, t_bill AND YEAR(t_bill.b_date) = '2010' 
-                    WHERE t_provider.p_id = t_bill.FK_p_id  
+    sql = """SELECT @rownum:=@rownum+1, p_corp_name, b_cost_total_sum
+                FROM (SELECT t_provider.p_corp_name as p_corp_name,
+                SUM(t_bill.b_cost_total) as b_cost_total_sum
+                    FROM t_provider, t_bill
+                    WHERE t_provider.p_id = t_bill.FK_p_id AND YEAR(t_bill.b_date) = '2010'
                     GROUP BY FK_p_id
                     ORDER BY SUM(t_bill.b_cost_total) DESC) inlineview
-            WHERE (@rownum:=0)=0 AND @rownum <=5;"""
+                WHERE (@rownum:=0)=0 AND @rownum <=5"""
     row = db_class.executeAll(sql)
     print(
         "fetchall row:".format(row)
