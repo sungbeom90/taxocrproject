@@ -19,8 +19,8 @@ def select():
     return render_template("db.html", resultData=row[0])
 
 
-@app.route("/insert_provider", methods=["GET", "POST"])
-def select():
+@app.route("/insert_provider", methods=("GET", "POST"))
+def insert_provider():
     print("공급자 등록 요청 접수됨")
     if request.method == "GET":
         return redirect(render_template("insert.html"))
