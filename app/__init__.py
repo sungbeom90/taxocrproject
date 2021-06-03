@@ -60,29 +60,41 @@ def printHello():
 @app.route("/bargraph")
 def barGraph():  # 받아오려면 매개변수 필요하겠지
     title = "bargraph"
-    labels = []
+    labels = [] # 도넛그래프 x축 : 회사명
     data = []
     data2 = []
     # 미수금 데이터
     misoo = 60000000
 
     # db 테스트
+    # Doughnut graph
     temp = []
+    temptuple=[]
     db_class = mod_dbconn.Database()
     sql = "SELECT p_corp_name\
                 FROM taxocr.t_provider"
     row = db_class.executeAll(sql)
     print(row)  # [{'p_corp_name':'주식회사 아이피스'},{'p_corp_name':'(주)타라그래픽스 동여의도점'}, ...]
 
-    for i in range(len(row)):
-        temp.append(row[i])
+    # 회사명, 거래금액         
+    for i in range(len(temp)):
+        a = (temp[i], '200')
+        temptuple.append(a)    
+    print(temptuple)
+    
+    # 회사명 뽑아오기
+    for i in range(len(temptuple)):
+        labels.append(temptuple[i][0])
 
-    for i in temp:
-        a = (temp[i][0], "200")
-        temp.append(a)
-    print(temp)
+    print(labels)
 
-    # Doughnut graph
+    #거래 금액
+    for i in range(len(temptuple)):
+        data.append(temptuple[i][1])
+
+    print(data)
+
+    
     # fetchall()로 넘어올 것
     tupledata = (
         ("A회사", "300"),
@@ -127,35 +139,8 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
         misoo=misoo,
         labels=labels,
         data=data,
-        data2=data2,
-        temp=temp,
+        data2=data2
     )
-
-
-@app.route("/linegraph")
-def lineGraph():
-    title = "linegraph"
-    data = []
-    # DB에서 받아올 월별 거래량 데이터
-    monthlydata = (
-        "200",
-        "300",
-        "600",
-        "100",
-        "500",
-        "100",
-        "150",
-        "750",
-        "412",
-        "861",
-        "40",
-        "577",
-    )
-    for i in range(len(monthlydata)):
-        data.append(monthlydata[i])
-    print(data)
-    return render_template("linegraph.html", title=title, data=data)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
