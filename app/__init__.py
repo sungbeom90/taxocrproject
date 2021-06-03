@@ -65,6 +65,23 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
     data2 = []
     # 미수금 데이터
     misoo = 60000000
+
+    # db 테스트
+    temp = []
+    db_class = mod_dbconn.Database()
+    sql = "SELECT p_corp_name\
+                FROM taxocr.t_provider"
+    row = db_class.executeAll(sql)
+    print(row)  # [{'p_corp_name':'주식회사 아이피스'},{'p_corp_name':'(주)타라그래픽스 동여의도점'}, ...]
+
+    for i in range(len(row)):
+        temp.append(row[i])
+
+    for i in temp:
+        a = (temp[i][0], "200")
+        temp.append(a)
+    print(temp)
+
     # Doughnut graph
     # fetchall()로 넘어올 것
     tupledata = (
@@ -102,9 +119,16 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
     for i in range(len(monthlydata)):
         data2.append(monthlydata[i])
     print(data2)
-    # Scatter graph
+
+    # Bubble graph
     return render_template(
-        "bargraph.html", title=title, misoo=misoo, labels=labels, data=data, data2=data2
+        "bargraph.html",
+        title=title,
+        misoo=misoo,
+        labels=labels,
+        data=data,
+        data2=data2,
+        temp=temp,
     )
 
 
