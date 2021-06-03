@@ -14,9 +14,6 @@ def home():
     return render_template("home.html")
 
 
-
-
-
 @app.route("/done")
 def file_print():
     # 이미지 경로 설정
@@ -40,6 +37,7 @@ def upload_file():
         # 업로드된 파일명
         return redirect(url_for("file_print"))
 
+
 @app.route("/guide", methods=["GET"])
 def guide():
     return render_template("guide.html")
@@ -49,7 +47,6 @@ def guide():
 def Predict_img():
     # 예측된 이미지에서 text를 출력해서 보내왔습니다.
     jsonData = request.get_json()
-
     data1 = str(jsonData["testkey"])
     return jsonData
 
@@ -57,4 +54,4 @@ def Predict_img():
 if __name__ == "__main__":
     app.debug = True
     #app.run(port=80)
-    app.run(host="192.168.55.215", port=80, debug=True)
+    app.run(host="192.168.187.1", port=80, debug=True)
