@@ -42,11 +42,25 @@ def insert_bill():
         return render_template("insert.html")
     if request.method == "POST":
         db_class = mod_dbconn.Database()
-        args = tuple(request.form.values())
+        args_dict = request.form.to_dict()
         print(args)
         sql = """INSERT into taxocr.t_bill (b_id, b_date, b_mr, b_etc, b_cost_total, b_cost_sup, b_cost_tax, *\
                                             b_cost_cash, b_cost_check, b_cost_note, b_cost_credit, FK_p_id)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+        args = (
+            args_dict["b_id"],
+            args_dict["b_date"],
+            args_dict["b_mr"],
+            args_dict["b_etc"],
+            int(args_dict["b_cost_total"].replace(",", "")),
+            int(args_dict["b_cost_sup"].replace(",", "")),
+            int(args_dict["b_cost_tax"].replace(",", "")),
+            int(args_dict["b_cost_cash"].replace(",", "")),
+            int(args_dict["b_cost_check"].replace(",", "")),
+            int(args_dict["b_cost_note"].replace(",", "")),
+            int(args_dict["b_cost_credit"].replace(",", "")),
+            args_dict["FK_p_id"],
+        )
         db_class.execute(query=sql, args=args)
         db_class.commit()
         return render_template("home.html")
