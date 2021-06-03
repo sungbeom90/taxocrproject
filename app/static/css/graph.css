@@ -1,0 +1,32 @@
+.outbox{
+    display:flex;
+    flex-direction: row;
+
+}
+.container1{
+    width:500;
+    padding:10px;
+}
+
+.line > div{
+    margin:10px;
+}
+
+.bubble > div{
+    margin:10px;
+}
+
+.container2{
+    width:500;
+    padding:10px;
+}
+
+.companyname{
+    background-color: gray;
+}
+
+.misoo > p{ 
+    font-size: 50px;
+    margin:10px;
+}
+
