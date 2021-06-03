@@ -76,4 +76,4 @@ def test():
 if __name__ == "__main__":
     app.debug = True
     #app.run(port=80)
-    app.run(host="192.168.187.1", port=80, debug=True)
+    app.run(host="192.168.2.23", port=80, debug=True)
