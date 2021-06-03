@@ -98,7 +98,9 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
         print(type(i["p_corp_name"]))
         temp.append(i["p_corp_name"])
         print(type(i["b_cost_total_sum"]))
-        temp2.append(i["b_cost_total_sum"])
+        print(int(i["b_cost_total_sum"]))
+        print(type(int(i["b_cost_total_sum"])))
+        temp2.append(int(i["b_cost_total_sum"]))
     print(temp)
     print(temp2)
 
