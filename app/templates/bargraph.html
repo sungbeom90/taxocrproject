@@ -111,33 +111,44 @@
                 </div>
             </div>
 
-            <div class='bubble'>
+            <div class='Bar'>
                 <!-- 산점도 그래프를 그릴 것이다. -->
                 <div class="shadow-lg p-4 mb-4 bg-white rounded">
-                    <h5>회사·월별 거래 횟수 *보류임*</h5>
-                    <canvas id="myBubbleChart" width="400" height="250"></canvas>
+                    <h5>거래 수단</h5>
+                    <canvas id="myBarChart" width="400" height="250"></canvas>
                     <script>
-                         var ctx = document.getElementById('myBubbleChart');
-                         const bubbledata = {
+                         var ctx = document.getElementById('myBarChart');
+                         const bardata = {
+                            labels: labels,
                             datasets: [{
-                                label: 'First Dataset',
-                                data: [{
-                                x: 20,
-                                y: 30,
-                                r: 15
-                                }, {
-                                x: 40,
-                                y: 10,
-                                r: 10
-                                }],
-                                backgroundColor: 'rgb(255, 99, 132)'
+                                label: 'My First Dataset',
+                                data: [65, 59, 80, 81],
+                                backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)'
+                                ],
+                                borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                                ],
+                                borderWidth: 1
                             }]
-                        };
+                            };
 
                         var myBubbleChart = new Chart(ctx, {
-                            type: 'bubble',
-                            data: bubbledata,
-                            options: {}
+                            type: 'bar',
+                            data: bardata,
+                            options: {
+                                scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                                }
+                            }
                         });
 
                     </script>
