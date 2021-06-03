@@ -76,6 +76,10 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
     row = db_class.executeAll(sql)
     print(row)  # [{'p_corp_name':'주식회사 아이피스'},{'p_corp_name':'(주)타라그래픽스 동여의도점'}, ...]
 
+    for i in row:
+        temp.append(i['p_corp_name'])
+    print(temp)
+
     # 회사명, 거래금액         
     for i in range(len(temp)):
         a = (temp[i], '200')
