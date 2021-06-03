@@ -44,7 +44,7 @@ def insert_bill():
         db_class = mod_dbconn.Database()
         args_dict = request.form.to_dict()
         print(args_dict)
-        sql = """INSERT into taxocr.t_bill (b_id, b_date, b_mr, b_etc, b_cost_total, b_cost_sup, b_cost_tax, *\
+        sql = """INSERT into taxocr.t_bill (b_id, b_date, b_mr, b_etc, b_cost_total, b_cost_sup, b_cost_tax,
                                             b_cost_cash, b_cost_check, b_cost_note, b_cost_credit, FK_p_id)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
         args = (
