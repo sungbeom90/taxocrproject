@@ -3,7 +3,7 @@
 
 /*main css*/
 
-.contents{height:100%; display: flex; justify-content: space-around;}
+.contents{height:100%; display: flex; justify-content: space-around; margin-top: 50px;}
 
 .hidden_upload_box{width: 33%; display: flex; flex-direction: column-reverse;}
 
