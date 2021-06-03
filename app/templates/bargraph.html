@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="static/css/graph.css">
-  <title>Expenditure DashBoard</title>
+    <meta charset="utf-8" />
+    <title>Expenditure DashBoard</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -20,9 +19,13 @@
     <!-- chart.js -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+    <!-- .css 적용 -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}?ver=1">
 </head>
 
 <body>
+    {{temp}}
     <center>
     <div class='outbox'>
         <div class='container2'>
