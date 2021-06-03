@@ -90,10 +90,10 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
             ORDER BY SUM(t_bill.b_cost_total) DESC"""
     row = db_class.executeAll(sql)
     print(
-        "fetchall row:".format(row)
+        "fetchall row:{}".format(row)
     )  # [{'rownum':'1','p_corp_name':'주식회사 아이피스','b_cost_total_sum':'Decimal(~~~)'},{'p_corp_name':'(주)타라그래픽스 동여의도점'}, ...]
-    print("fetchall rowtype:".format(type(row)))
-    print("fetchall rowlength:".format(len(row)))
+    print("fetchall rowtype:{}".format(type(row)))
+    print("fetchall rowlength:{}".format(len(row)))
     for i in row:
         temp.append(i["p_corp_name"])
         temp2.append(i["b_cost_total_sum"])
