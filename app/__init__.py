@@ -27,18 +27,19 @@ def insert_provider():
 
     if request.method == "POST":
         db_class = mod_dbconn.Database()
+        args = request.args.to_dict()
         sql = "INSERT into taxocr.t_provider (p_id, p_crop_num, p_corp_name, p_ceo_name, p_add, p_stat, p_type, p_email) *\
                 VALUES (:p_id, :p_crop_num, :p_corp_name, :p_ceo_name, :p_add, :p_stat, :p_type, :p_email)"
-        args = {
-            "p_id": p_id,
-            "p_crop_num": p_corp_num,
-            "p_corp_name": p_corp_name,
-            "p_ceo_name": p_ceo_name,
-            "p_add": p_add,
-            "p_stat": p_stat,
-            "p_type": p_type,
-            "p_email": p_email,
-        }
+        # args = {
+        #     "p_id": p_id,
+        #     "p_crop_num": p_corp_num,
+        #     "p_corp_name": p_corp_name,
+        #     "p_ceo_name": p_ceo_name,
+        #     "p_add": p_add,
+        #     "p_stat": p_stat,
+        #     "p_type": p_type,
+        #     "p_email": p_email,
+        # }
         db_class.execute(sql, args)
         return render_template("home.html")
 
