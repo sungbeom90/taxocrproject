@@ -43,7 +43,7 @@ def insert_bill():
     if request.method == "POST":
         db_class = mod_dbconn.Database()
         args_dict = request.form.to_dict()
-        print(args)
+        print(args_dict)
         sql = """INSERT into taxocr.t_bill (b_id, b_date, b_mr, b_etc, b_cost_total, b_cost_sup, b_cost_tax, *\
                                             b_cost_cash, b_cost_check, b_cost_note, b_cost_credit, FK_p_id)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
@@ -74,7 +74,7 @@ def printHello():
 @app.route("/bargraph")
 def barGraph():  # 받아오려면 매개변수 필요하겠지
     title = "bargraph"
-    labels = [] # 도넛그래프 x축 : 회사명
+    labels = []  # 도넛그래프 x축 : 회사명
     data = []
     data2 = []
     # 미수금 데이터
@@ -83,7 +83,7 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
     # db 테스트
     # Doughnut graph
     temp = []
-    temptuple=[]
+    temptuple = []
     db_class = mod_dbconn.Database()
     sql = "SELECT p_corp_name\
                 FROM taxocr.t_provider"
@@ -91,28 +91,27 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
     print(row)  # [{'p_corp_name':'주식회사 아이피스'},{'p_corp_name':'(주)타라그래픽스 동여의도점'}, ...]
 
     for i in row:
-        temp.append(i['p_corp_name'])
+        temp.append(i["p_corp_name"])
     print(temp)
 
-    # 회사명, 거래금액         
+    # 회사명, 거래금액
     for i in range(len(temp)):
-        a = (temp[i], '200')
-        temptuple.append(a)    
+        a = (temp[i], "200")
+        temptuple.append(a)
     print(temptuple)
-    
+
     # 회사명 뽑아오기
     for i in range(len(temptuple)):
         labels.append(temptuple[i][0])
 
     print(labels)
 
-    #거래 금액
+    # 거래 금액
     for i in range(len(temptuple)):
         data.append(temptuple[i][1])
 
     print(data)
 
-    
     # fetchall()로 넘어올 것
     tupledata = (
         ("A회사", "300"),
@@ -152,13 +151,9 @@ def barGraph():  # 받아오려면 매개변수 필요하겠지
 
     # Bubble graph
     return render_template(
-        "bargraph.html",
-        title=title,
-        misoo=misoo,
-        labels=labels,
-        data=data,
-        data2=data2
+        "bargraph.html", title=title, misoo=misoo, labels=labels, data=data, data2=data2
     )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
