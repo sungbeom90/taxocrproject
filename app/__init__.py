@@ -67,11 +67,6 @@ def insert_bill():
         return render_template("home.html")
 
 
-@app.route("/")
-def printHello():
-    return "Hello World - Flask"
-
-
 @app.route("/bargraph")
 def barGraph():  # 받아오려면 매개변수 필요하겠지
     title = "bargraph"
