@@ -3,32 +3,32 @@
 <div class="jumbo">
     <h2>insert provider</h2>
     <form method="POST" , action="/insert_provider">
-        <input type="text" , name='p_id' , placeholder="p_id"> <br><br>
-        <input type="text" , name='p_corp_num' , placeholder="p_corp_num"> <br><br>
-        <input type="text" , name='p_corp_name' , placeholder="p_corp_name"> <br><br>
-        <input type="text" , name='p_ceo_name' , placeholder="p_ceo_name"> <br><br>
-        <input type="text" , name='p_add' , placeholder="p_add"> <br><br>
-        <input type="text" , name='p_stat' , placeholder="p_stat"> <br><br>
-        <input type="text" , name='p_type' , placeholder="p_type"> <br><br>
-        <input type="text" , name='p_email' , placeholder="p_email"> <br><br>
+        등록번호 : <input type="text" , name='p_id' , placeholder="$$$-$$-$$$$$"> <br><br>
+        종사업장 번호: <input type="text" , name='p_corp_num' , value=""> <br><br>
+        상호(법인명) :<input type="text" , name='p_corp_name' , value="엠로"> <br><br>
+        성명 :<input type="text" , name='p_ceo_name' , value="홍길동"> <br><br>
+        사업장 주소 : <input type="text" , name='p_add' , value=""> <br><br>
+        업태 : <input type="text" , name='p_stat' , value=""> <br><br>
+        종목 :<input type="text" , name='p_type' , value=""> <br><br>
+        이메일 : <input type="text" , name='p_email' value="xxx@mail.com"> <br><br>
         <input type="submit" , value='등록하기'>
     </form>
 </div>
 <div class="jumbo">
     <h2>insert bill</h2>
     <form method="POST" , action="/insert_bill">
-        <input type="text" , name='b_id' , placeholder="b_id"> <br><br>
-        <input type="date" , name='b_date'> <br><br>
-        <input type="text" , name='b_mr' , placeholder="b_mr"> <br><br>
-        <input type="text" , name='b_etc' , placeholder="b_etc"> <br><br>
-        <input type="text" , name='b_cost_total' , placeholder="b_cost_total"> <br><br>
-        <input type="text" , name='b_cost_sup' , placeholder="b_cost_sup"> <br><br>
-        <input type="text" , name='b_cost_tax' , placeholder="b_cost_tax"> <br><br>
-        <input type="text" , name='b_cost_cash' , placeholder="b_cost_cash"> <br><br>
-        <input type="text" , name='b_cost_check' , placeholder="b_cost_check"> <br><br>
-        <input type="text" , name='b_cost_note' , placeholder="b_cost_note"> <br><br>
-        <input type="text" , name='b_cost_credit' , placeholder="b_cost_credit"> <br><br>
-        <input type="text" , name='FK_p_id' , placeholder="FK_p_id"> <br><br>
+        승인번호 : <input type="text" , name='b_id' , placeholder="$$$$$$$$-$$$$$$$$-$$$$$$$$"> <br><br>
+        작성일자 : <input type="date" , name='b_date'> <br><br>
+        수정사유 : <input type="text" , name='b_mr' , value=""> <br><br>
+        비고 : <input type="text" , name='b_etc' , value=""> <br><br>
+        합계금액 : <input type="text" , name='b_cost_total' , value="0"> <br><br>
+        공급가액 : <input type="text" , name='b_cost_sup' , value="0"> <br><br>
+        세액 : <input type="text" , name='b_cost_tax' , value="0"> <br><br>
+        현금 : <input type="text" , name='b_cost_cash' , value="0"> <br><br>
+        수표 : <input type="text" , name='b_cost_check' , value="0"> <br><br>
+        어음 : <input type="text" , name='b_cost_note' , value="0"> <br><br>
+        외상미수금 : <input type="text" , name='b_cost_credit' , value="0"> <br><br>
+        등록번호 : <input type="text" , name='FK_p_id' , placeholder="$$$-$$-$$$$$"> <br><br>
         <input type="submit" , value='등록하기'>
     </form>
 </div>
