@@ -6,7 +6,7 @@ class Database:
         self.db = pymysql.connect(
             user="kosa1",
             password="kosa1",
-            host="3.35.53.198",
+            host="3.36.198.151",
             db="taxocr",
             charset="utf8",
         )
