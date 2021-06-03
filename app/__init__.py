@@ -27,7 +27,7 @@ def insert_provider():
 
     if request.method == "POST":
         db_class = mod_dbconn.Database()
-        args = request.args.to_dict()
+        args = request.form.to_dict()
         print(args)
         sql = "INSERT into taxocr.t_provider (p_id, p_crop_num, p_corp_name, p_ceo_name, p_add, p_stat, p_type, p_email) *\
                 VALUES (:p_id, :p_crop_num, :p_corp_name, :p_ceo_name, :p_add, :p_stat, :p_type, :p_email)"
