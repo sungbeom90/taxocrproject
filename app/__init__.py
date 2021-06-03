@@ -26,7 +26,7 @@ def insert_provider():
         return render_template("insert.html")
     if request.method == "POST":
         db_class = mod_dbconn.Database()
-        args = request.form.to_dict()
+        args = request.form.lists
         print(args)
         args = list(args)
         print(args)
