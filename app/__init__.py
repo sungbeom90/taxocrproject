@@ -36,7 +36,7 @@ def insert_provider():
 
 
 @app.route("/insert_bill", methods=("GET", "POST"))
-def insert_provider():
+def insert_bill():
     print("계산서 등록 요청 접수됨")
     if request.method == "GET":
         return render_template("insert.html")
@@ -44,7 +44,7 @@ def insert_provider():
         db_class = mod_dbconn.Database()
         args = tuple(request.form.values())
         print(args)
-        sql = """INSERT into taxocr.t_bill (b_id, b_date, b_mr, b_etc, b_cost_total, b_cost_sup, b_cost_tax,
+        sql = """INSERT into taxocr.t_bill (b_id, b_date, b_mr, b_etc, b_cost_total, b_cost_sup, b_cost_tax, *\
                                             b_cost_cash, b_cost_check, b_cost_note, b_cost_credit, FK_p_id)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
         db_class.execute(query=sql, args=args)
