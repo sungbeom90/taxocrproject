@@ -27,15 +27,15 @@ def insert_provider():
     if request.method == "POST":
         db_class = mod_dbconn.Database()
         args = request.form.items()
-        print(args)
+        print(list(args))
         args = request.form.values()
-        print(args)
+        print(list(args))
         args = request.form.lists()
-        print(args)
+        print(list(args))
         args = request.form.keys()
-        print(args)
+        print(list(args))
         args = request.form.listvalues()
-        print(args)
+        print(list(args))
         sql = """INSERT into taxocr.t_provider (p_id, p_corp_num, p_corp_name, p_ceo_name, p_add, p_stat, p_type, p_email)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"""
         # args = {
