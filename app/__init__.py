@@ -30,7 +30,7 @@ def insert_provider():
         print(args)
         args = list(args)
         print(args)
-        sql = """INSERT into taxocr.t_provider (p_id, p_crop_num, p_corp_name, p_ceo_name, p_add, p_stat, p_type, p_email)
+        sql = """INSERT into taxocr.t_provider (p_id, p_corp_num, p_corp_name, p_ceo_name, p_add, p_stat, p_type, p_email)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"""
         # args = {
         #     "p_id": form_dict['p_id'],
