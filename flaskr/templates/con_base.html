@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/con_base.css') }}">
+<link rel="stylesheet" href="../static/css/header.css">
+<html>
+  <head>
+    <title>홈페이지</title>
+  </head>
+
+
+  <body>
+    <form>
+      <div class="title">
+        <a href="http://192.168.187.1:80/"><img  src="../static/dev_img/logo.PNG" class="logo"></a>
+        <!-- <a href=""><h3 class="info">사용설명서</h3></a> -->
+        <a href="http://192.168.187.1:80/guide"><img src="../static/dev_img/info.PNG" class="info"></a>
+      </div>
+      <div class='container-main'>
+        <div class="container-fluid">
+          <div class="flex-container">
+            <img src="{{url_for('static', filename=image_file)}}">
+          </div>
+          <div class="flex-container">
+            <!-- 공급자 -->
+            <table class="type1">
+              <thead>
+                <tr>
+                  <th scope="row">등록번호</th>
+                  <th scope="row">종사업장번호</th>
+                  <th scope="row">상호</th>
+                  <th scope="row">성명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                </tr>
+              </tbody>
+              <thead>
+                <tr>
+                  <th scope="row">사업장 주소</th>
+                  <th scope="row">업태</th>
+                  <th scope="row">종목</th>
+                  <th scope="row">이메일</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- 작성일자 -->
+            <table class="type2">
+              <thead>
+                <tr>
+                  <th scope="row">작성일자</th>
+                  <th scope="row">공급가액</th>
+                  <th scope="row">세액</th>
+                  <th scope="row">비고</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- 가격 -->
+            <table class="type1">
+              <thead>
+                <tr>
+                  <th scope="row">월</th>
+                  <th scope="row">일</th>
+                  <th scope="row">품목</th>
+                  <th scope="row">규격</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                </tr>
+              </tbody>
+              <thead>
+                  <th scope="row">수량</th>
+                  <th scope="row">단가</th>
+                  <th scope="row">공급가액</th>
+                  <th scope="row">세액</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- 영수증 -->
+            <table class="type2">
+              <thead>
+                <tr>
+                  <th scope="row">합계금액</th>
+                  <th scope="row">현금</th>
+                  <th scope="row">수표</th>
+                  <th scope="row">어음</th>
+                  <th scope="row">외상미수금</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                  <td><input name="b" type="text" placeholder='ex'/></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <button type="submit">전송</button>
+    </form>
+    </body>
+</html>

@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="../static/css/home.css">
   <link rel="stylesheet" href="../static/css/header.css">  
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
   <script type="text/javascript">
   var bDisplay = true;
   function doDisplay() {
@@ -17,6 +20,29 @@
           con.style.display = 'none';
       }
   }
+
+  function readImage(input) {
+    // 인풋 태그에 파일이 있는 경우
+    if(input.files && input.files[0]) {
+        // 이미지 파일인지 검사 (생략)
+        // FileReader 인스턴스 생성
+        const reader = new FileReader()
+        // 이미지가 로드가 된 경우
+        reader.onload = e => {
+            const previewImage = document.getElementById("preview-image")
+            previewImage.src = e.target.result
+        }
+        // reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0])
+      }
+    }
+    // input file에 change 이벤트 부여
+    const inputImage = document.getElementById("inputGroupFile04")
+    inputImage.addEventListener("change", e => {
+        readImage(e.target)
+    })
+
+
   </script>
 
 
@@ -31,32 +57,43 @@
             <a href="http://192.168.187.1:80/guide"><img src="../static/dev_img/info.PNG" class="info"></a>
         </div>
     </header>
-    
-    <div class="main_contents">
-        <p class="contents1">PSB</p>
-        <p class="contents2">세금계산서를 바로 그래프로!</p>
-        <img src="../static/dev_img/sample.PNG" class="main_image"> 
-      <div class="button_box">
-        <div class="main_buttons" id="file_upload">
-          <button type="button" class = "btn btn-primary btn-lg" onclick="doDisplay()">이미지 업로드</button>
-        </div>
-        <div class="main_buttons" id="dashboard_direct">
-          <button type="button" class = "btn btn-primary btn-lg"  onclick="location.href='http://192.168.187.1:80/done'">대시보드 조회</button>
+    <div class="contents">
+
+      <div class="hidden_upload_box">
+
+
+        <div class="hidden_form">
+          <div id="myDIV" style="display: none;">
+            <form name="form" class= "real_hidden" id="form" action="http://192.168.187.1:80/uploader" method="POST" enctype="multipart/form-data">
+              <div class="input-group">
+                <img id="preview-image">
+                <input type="file" name='file' class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*">
+                <input class="btn btn-outline-secondary" type="submit"  value="최종 제출"></input>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
 
-
-        <div id="myDIV" style="display: none;">
-          <form name="form" id="form" action="http://192.168.187.1:80/uploader" method="POST" enctype="multipart/form-data">
-            <div class="filebox">
-                <label for="file">Click to upload</label>
-                <input type=file name=file id="file" accept="image/*"/>
+      <div class="center_box">
+        <div class="main_contents">
+            <p class="contents1">PSB</p>
+            <p class="contents2">세금계산서를 바로 그래프로!</p>
+            <img src="../static/dev_img/sample.PNG" class="main_image"> 
+          <div class="button_box">
+            <div class="main_buttons" id="file_upload">
+              <button type="button" class = "btn btn-primary btn-lg" onclick="doDisplay()">이미지 업로드</button>
             </div>
-            <input type = "submit"/>
-          </form>
+            <div class="main_buttons" id="dashboard_direct">
+              <button type="button" class = "btn btn-primary btn-lg"  onclick="location.href='http://192.168.187.1:80/dashboard'">대시보드 조회</button>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
 
+      <div class="right_box">
+      </div>
+    </div>
 
 
   

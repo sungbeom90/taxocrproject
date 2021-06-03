@@ -13,6 +13,12 @@ app.config['UPLOAD_DIR'] = "./static/image/"
 def home():
     return render_template("home.html")
 
+@app.route("/dashboard")
+def dashboard():
+    # 대시보드로 이동합니다.
+    # 대시보드를 조회할 수 있는 함수는 이곳에 구현하시면 됩니다.
+    return render_template("dashboard.html")
+
 
 @app.route("/done")
 def file_print():
@@ -35,7 +41,7 @@ def upload_file():
         upload_file_list.append(upfile_address)
         print(upfile_address)
         # 업로드된 파일명
-        return redirect(url_for("file_print"))
+        return redirect(url_for("con_base"))
 
 
 @app.route("/guide", methods=["GET"])
@@ -50,6 +56,22 @@ def Predict_img():
     data1 = str(jsonData["testkey"])
     return jsonData
 
+@app.route('/con_base', methods=['GET'])
+def con_base():
+    #업로드된 사진 출력 
+    image_upload = upload_file_list.pop()
+    return render_template("con_base.html", image_file=image_upload)
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    if request.method =='GET':
+        return render_template('home.html')
+    elif request.method =='POST':
+        Data = request.get_json()
+        print(Data)
+        Data1 = str(Data['test1'])
+        print(Data1)
+        return render_template('test1.html', Data1=Data1)
 
 if __name__ == "__main__":
     app.debug = True
