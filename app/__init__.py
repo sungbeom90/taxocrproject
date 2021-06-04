@@ -177,7 +177,10 @@ def barGraph():
 
 
 # ===================flaskr=========================
-
+from flask import Flask, json, render_template, redirect, url_for, request, jsonify
+import ocr_manage as om
+import os
+from werkzeug.utils import secure_filename
 
 # 업로드된 파일주소가 저장되는 리스트
 upload_file_list = []
@@ -208,11 +211,11 @@ def upload_file():
         f = request.files["file"]
         print("file storage 내부 : ", f)
         f.save("./static/image/" + secure_filename(f.filename))
-        upfile_address = "image/" + secure_filename(f.filename)
+        upfile_address = "./static/image/" + secure_filename(f.filename)
         upload_file_list.append(upfile_address)
         print(upfile_address)
         # 업로드된 파일명
-        return redirect(url_for("con_base"))
+        return redirect(url_for("predict"))
 
 
 @app.route("/guide", methods=["GET"])
@@ -247,6 +250,226 @@ def test():
         return render_template("test1.html", Data1=Data1)
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
-# from app import app
+# ========================model==========================
+from m_model.craft_model import Craft
+from m_model.helpers import (
+    box_from_map,
+    box_on_image,
+    tax_serialization,
+    detection_preprocess,
+)
+from m_model.helpers import recog_pre_process
+from PIL import Image
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+import copy
+import tensorflow as tf
+import m_model.Define_Class as Define_Class
+import m_model.recog_model as recog_model
+from tensorflow.keras.layers import Input
+import statistics
+
+# 이미지 리사이즈 함수
+def load_single_img_resize(image_route, width: int, height: int):
+    image_data = []
+    im = Image.open(image_route)
+    im = im.convert("L")
+    im = detection_preprocess(im)  # 이미지 전처리
+
+    img_width, img_height = im.size  # 실제 이미지 사이즈 저장
+
+    read = np.array(im.resize((width, height)), np.float32) / 255  # 이미지 1600으로 리사이즈
+
+    ratio = (float(width / 2 / img_width), float(height / 2 / img_height))
+
+    size_data = ratio  # 비율 저장
+
+    img_arr = np.ndarray((width, height, 1), np.float32)
+
+    pads = ((0, 0), (0, 0))
+
+    for i in [0]:
+        x = read[:, :]
+        pad = np.pad(x, pads, "constant", constant_values=1)
+        pad = np.resize(pad, (width, height))
+        img_arr[:, :, 0] = pad
+
+    image_data.append(img_arr)
+
+    return img_arr, size_data
+
+
+# 이미지 디텍션 모델 실행 함수
+def pred_test(img_route, model_weight, size):
+    model = Craft()  # 디텍션 모델 생성
+    model.load(model_weight)  # 디테션 가중치 주입
+
+    test_data, _ = load_single_img_resize(img_route, size, size)  # 입력이미지 리사이즈
+    orig_image = copy.deepcopy(test_data)  # 원본이미지 저장
+
+    pred_map = model.predict(np.array([test_data], np.float32))  # 모델 예측
+
+    boxes = box_from_map(pred_map[0] * 255)  # 화소값 적용
+    word_box = tax_serialization(test_data, boxes)  # 텍스트 디코딩(박스처리)
+
+    print("=====================")
+
+    img = test_data
+
+    # 파라미터 딕셔너리 선언
+    dump_params = {
+        "image": np.array(np.resize(img, (size, size)) * 255, np.uint8),
+        "width": size,
+        "height": size,
+    }
+    _, image = box_on_image(dump_params, word_box)  # 이미지 위 박스 및 순서 그리기
+
+    or_image = np.array(orig_image * 255, np.uint8)  # 원본 이미지 화소 적용
+
+    return or_image, image, word_box
+
+
+@app.route("/predict")
+def predict():
+    # tensorflow version (1.0 -> 2.0)
+    tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
+    config = tf.compat.v1.ConfigProto()
+    config.gpu_options.allow_growth = True
+
+    tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))
+
+    char_list = Define_Class.definition_class()  # 텍스트 클래스 종합 파일 로드
+
+    # Text Class 확인
+    print("Class num = ", len(char_list))
+    print("Model CLASS")
+
+    # 텍스트 클래스 35개씩 프린트
+    for temp_index in range(len(char_list)):
+        if temp_index % 35 == 0:
+            print(char_list[temp_index : temp_index + 35])
+            print("\n")
+
+    model = "../data/trained_weights/1600_pdfdata_origin_d05_decay1000_1600to1600_20210213-2203_last"  # 디텍션 모델 가중치 로드
+    model_recog = "../data/trained_weights/tax_save_model_0309.hdf5"  # 리코그니션 모델 가중치 로드
+
+    jpg_file_name = upload_file_list[-1]  # 입력 이미지 경로 로드
+
+    print("Detecting...")
+    or_image, boxed_image, word_box = pred_test(jpg_file_name, model, size=1600)
+
+    print(len(word_box))
+    print(word_box)
+
+    # plt.imshow(boxed_image, 'Greys_r')
+    # plt.show()
+    # plt.xticks([]), plt.yticks([])
+    # plt.axis('off')
+    # plt.tight_layout()
+    # fig = plt.gcf()
+
+    crop_image = []
+
+    for index in range(len(word_box)):
+        crop_image.append(
+            or_image[
+                word_box[index][1] : word_box[index][3],
+                word_box[index][0] : word_box[index][2],
+            ]
+        )
+
+    print("Recognizing...")
+    test_image = recog_pre_process(crop_image)
+    print(test_image.shape)
+
+    model_input = Input(shape=(32, 256, 1))
+
+    inputs, outputs, act_model = recog_model.act_model_load_LSTM(char_list, model_input)
+
+    act_model.load_weights(model_recog)
+
+    prediction = act_model.predict([test_image])
+
+    word_list = word_box
+    text_list = []
+    score_list = []
+    score_index = []
+
+    for index in range(len(test_image)):
+        temp_loc = []
+        temp_score = []
+        text_temp = []
+
+        temp = prediction[index]
+
+        for temp_index in range(len(temp)):
+            if np.argmax(temp[temp_index]) == len(char_list):
+                pass
+            else:
+                if (temp_index > 0) and (np.argmax(temp[temp_index])) == (
+                    np.argmax(temp[temp_index - 1])
+                ):
+                    pass
+                else:
+                    temp_loc.append(np.argmax(temp[temp_index]))
+                    temp_score.append(temp[temp_index][np.argmax(temp[temp_index])])
+
+        score_index.append(temp_loc)
+
+        if temp_score == []:
+            temp_score = [0.5]
+            temp_loc = [len(temp)]
+
+        score_list.append(statistics.mean(temp_score))
+
+        for text_index in range(len(temp_loc)):
+            text_temp.append(char_list[temp_loc[text_index]])
+
+        string_text_temp = "".join(text_temp)
+        text_list.append(string_text_temp)
+        print(text_list[index], score_list[index])
+
+    print(
+        "len(test_list) : {} len(score_list) : {} len(word_list) : {}".format(
+            len(test_list), len(score_list), len(word_list)
+        )
+    )
+
+    return redirect(
+        url_for(
+            "logic", test_list=test_list, score_list=score_list, word_list=word_list
+        )
+    )
+
+
+@app.route("/logic", methods=["GET"])
+def logic():
+    test_list = request.args.get("test_list")  # 워드 텍스트 리스트
+    score_list = request.args.get("score_list")  # 워드 확률 리스트
+    word_list = request.args.get("word_list")  # 워드 좌표 리스트
+
+    t_bill_b_id
+    for index in range(len(test_list)):
+
+        if find_position(t_bill_b_id_location, word_list[index]):
+            t_bill_b_id.append((test_list[index], score_list[index]))
+
+    return redirect(url_for("con_base"))
+
+
+def find_position(target_location, word_location):
+    target_xmin, target_xman, target_ymin, target_ymax = tartget_location
+    word_xmin, word_xmax, word_ymin, word_ymax = word_location
+
+    if (
+        target_xmin <= word_xmin
+        and target_xmax >= word_xmax
+        and target_ymin <= word_ymin
+        and target_ymax >= word_ymax
+    ):
+        return True
+
+    else:
+        return False

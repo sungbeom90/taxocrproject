@@ -1,0 +1,2 @@
+model_checkpoint_path: "1600_pdfdata_origin_d05_decay1000_1600to1600_20210413-1115_last"
+all_model_checkpoint_paths: "1600_pdfdata_origin_d05_decay1000_1600to1600_20210413-1115_last"
