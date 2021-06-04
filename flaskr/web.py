@@ -88,8 +88,23 @@ def select_sup():
     dataNum = len(all_sup_dict)
     return render_template("supply.html", resultData=all_sup_dict, dataNum=dataNum)
 
+@app.route("/supply_desc", methods=['GET'])
+def select_sup_desc():
+    p_id = request.args.get('p_id')
+    print(p_id)
+    db_class = mod_dbconn.Database()
+    sql = """SELECT *
+                FROM taxocr.t_provider
+                WHERE p_id = %s"""
+    desc_dict = db_class.executeAll(sql, args=p_id)
+    print(desc_dict)
+    return render_template("supply_desc.html", desc_dict=desc_dict[0])
 
-
+@app.route("/supply_desc_update")
+# 아직 미완임 sql 작성관련으로 보여 일단 stop
+def update_sup():
+   om.supply_update_sql(request)
+   return render_template("")
 
 
 if __name__ == "__main__":
