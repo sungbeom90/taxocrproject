@@ -7,8 +7,8 @@
             <h1>선택된 공급자 정보의 상세정보를 출력해봅시다.</h1>
           <div class="jumbo">
             <h2>insert provider</h2>
-            <form method="POST" , action="/insert_provider">
-                등록번호 : <input type="text" , name='p_id' , value="{{ desc_dict.p_id }}"> <br><br>
+            <form method="POST" , action="/update_provider">
+                등록번호 : <input type="text" , name='p_id' , value="{{ desc_dict.p_id }}", readonly> <br><br>
                 종사업장 번호: <input type="text" , name='p_corp_num' , value="{{ desc_dict.p_corp_num }}"> <br><br>
                 상호(법인명) :<input type="text" , name='p_corp_name' , value="{{ desc_dict.p_corp_name }}"> <br><br>
                 성명 :<input type="text" , name='p_ceo_name' , value="{{ desc_dict.p_ceo_name }}"> <br><br>
@@ -16,6 +16,7 @@
                 업태 : <input type="text" , name='p_stat' , value="{{ desc_dict.p_stat}}"> <br><br>
                 종목 :<input type="text" , name='p_type' , value="{{ desc_dict.p_type }}"> <br><br>
                 이메일 : <input type="text" , name='p_email' value="{{ desc_dict.p_email}}"> <br><br>
+                <input type='hidden' value="{{ desc_dict.p_id }}" >
                 <input type="submit" , value='등록하기'>
             </form>
           </div>

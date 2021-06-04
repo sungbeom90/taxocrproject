@@ -91,13 +91,7 @@ def select_sup():
 @app.route("/supply_desc", methods=['GET'])
 def select_sup_desc():
     p_id = request.args.get('p_id')
-    print(p_id)
-    db_class = mod_dbconn.Database()
-    sql = """SELECT *
-                FROM taxocr.t_provider
-                WHERE p_id = %s"""
-    desc_dict = db_class.executeAll(sql, args=p_id)
-    print(desc_dict)
+    desc_dict = om.supply_desc(p_id)
     return render_template("supply_desc.html", desc_dict=desc_dict[0])
 
 @app.route("/supply_desc_update")
@@ -105,6 +99,24 @@ def select_sup_desc():
 def update_sup():
    om.supply_update_sql(request)
    return render_template("")
+
+@app.route("/update_provider", methods=("GET", "POST"))
+def update_provider():
+    db_class = mod_dbconn.Database()
+    
+    print("수정요청 접수됨")
+    if request.method == "POST":
+        args_dict = request.form.to_dict()
+        args = tuple(request.form.values())
+        print(args_dict)
+        sql = """UPDATE taxocr.t_provider
+                 SET p_id = %s, p_corp_num = %s,
+                 p_corp_name = %s, p_ceo_name = %s, p_add = %s, p_stat=%s,
+                 p_type = %s, p_email = %s
+                 WHERE p_id = %s """
+        db_class.execute(query=sql, args=args)
+        db_class.commit()
+        return render_template("supply.html")
 
 
 if __name__ == "__main__":

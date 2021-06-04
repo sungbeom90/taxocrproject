@@ -1,4 +1,7 @@
-
+from flask import Flask, json, render_template, redirect, url_for, request, jsonify
+import os
+from werkzeug.utils import secure_filename
+import mod_dbconn
 
 # def image_upload():
 #     # 사용자가 이미지를 업로드 한뒤, 해당 내용을 확인할 수 있는 함수
@@ -13,9 +16,14 @@
 #     # 이미지의 크기는 사용자가 업로드한 이미지와 동일한 크기로 업로드 되어야 합니다.
 #     return None
 
-# def supply_desc():
-#     # 새로운 상세페이지 열어달라고 시작
-#     return None
+def supply_desc(p_id):
+    db_class = mod_dbconn.Database()
+    sql = """SELECT *
+                FROM taxocr.t_provider
+                WHERE p_id = %s"""
+    desc_dict = db_class.executeAll(sql, args=p_id)
+    # 새로운 상세페이지 열어달라고 시작
+    return desc_dict
 
 # def supply_update():
 #     #이렇게 업데이트 해달라고 요청 발송??
