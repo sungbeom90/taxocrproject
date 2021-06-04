@@ -85,6 +85,7 @@ def barGraph():
                 FROM t_bill
                 WHERE YEAR(t_bill.b_date) = '2010'""" 
     taxdata = db_class.executeOne(taxsql)
+    print(taxdata)
 
     # Doughnut graph------------------------------------
     temp = []
