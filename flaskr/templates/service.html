@@ -8,14 +8,8 @@
 
   <body>
     
-    <header>
-      <div class="title">
-          <a href="http://192.168.2.23:80/"><img  src="../static/dev_img/logo.PNG" class="logo"></a>
-          <!-- <a href=""><h3 class="info">사용설명서</h3></a> -->
-          <a href="http://192.168.2.23:80/guide"><img src="../static/dev_img/info.PNG" class="info"></a>
-      </div>
-    </header>
-
+    {% include 'header.html' %}
+    
     <!-- <form action = "http://192.168.187.1:80/uploader" method = "POST" enctype = "multipart/form-data">
       <input type = "file" name = "file" />
       <input type = "submit"/>

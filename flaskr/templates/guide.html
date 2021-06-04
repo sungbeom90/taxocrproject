@@ -2,21 +2,68 @@
 <html>
   <head>
     <title>사용설명서</title>
-    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/info.css">
     <link rel="stylesheet" href="../static/css/header.css">  
   </head>
 
   <body>
 
-    <header>
-      <div class="title">
-          <a href="http://192.168.2.23:80/"><img  src="../static/dev_img/logo.PNG" class="logo"></a>
-          <!-- <a href=""><h3 class="info">사용설명서</h3></a> -->
-          <a href="http://192.168.2.23:80/guide"><img src="../static/dev_img/info.PNG" class="info"></a>
-      </div>
-    </header>
+    {% include 'header.html' %}
 
-    <p>사용 설명서</p>
-    <h1></h1>
+    <table> 
+      <tr class="info_header">
+          <td colspan="2" class="info_title">
+              사용설명서
+          </td>
+      </tr>
+      
+      <!--내용-->
+      <!--1.메인 화면의 목록 설명-->
+      <tr class="info_detail">
+          <td><img src="../static/dev_img/home1.png" class="info_image1"></td>
+          <td class="info_contents">
+              <p><strong>(1)목록</strong></p>
+              <p>a.공급자조회 : 공급자 관련 목록 리스트로 <strong class="point">조회, 수정, 삭제 신규 등록</strong>을 할 수 있습니다.  </p>
+              <p>b. Dashboard : DB에 저장된 데이터들의 아래 종목별 그래프들을 보실 수 있습니다.</br>
+                -->연도별 회사 별 거래 금액 </br>
+                -->월별 총 거래금액</br>
+                -->회사별 월별 거래횟수</br>
+                -->외상미수금 </p>
+              <p>c. 사용설명서 : Web 이용하는 방법에 대해 작성해 놓은 화면을 보실 수 있습니다. </p>
+          </td> 
+      </tr>
+      
+      <!--1-2.메인 화면의 OCR-Service 설명-->
+      <tr class="info_detail">
+          <td><img src="../static/dev_img/home1.png" class="info_image1"></td>
+          <td class="info_contents">
+              <p><strong>(2-1) OCR-Service 이용방법</strong></p>
+              <p> a. 이미지 업로드 버튼 누르세요. </br>
+                  b. 옆에 보시면 파일 선택을 누르시고 업로드할 이미지를 골라주세요.</br> 
+                  c. 파일을 고르시면, 제출 버튼을 누르세요. </p>
+          </td>
+      </tr>
+
+      <!--2.OCR Text한 설명.-->
+      <tr class="info_detail">
+          <td><img src="../static/img/dev_home1.png" class="info_image1"></td>
+          <td class="info_contents">
+              <p><strong>(2-2) OCR-Service 이용방법2.</strong></p>
+              <p> a.업로드한 이미지와 함께 Text한 표를 보실 수 있습니다. </p>
+              <p> b.Text한 정보들을 추가한 Dashboard를 보실 수 있습니다. </p>
+          </td>
+      </tr>
+
+      <!--3. Dashboard화면 설명-->
+      <tr class="info_detail">
+          <td><img src="../static/img/dev_home1.png" class="info_image1"></td>
+          <td class="info_contents">
+              <p><strong>(3) Dashboard화면 </strong></p>
+              <p> a. Text한 정보를 DB데이터와 합하여 종목별 그래프들을 보실 수 있습니다.</p>
+          </td>
+      </tr>
+      </tr>
+  </table>
+
   </body>
 </html>

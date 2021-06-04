@@ -2,6 +2,7 @@ from flask import Flask, json, render_template, redirect, url_for, request, json
 import ocr_manage as om
 import os
 from werkzeug.utils import secure_filename
+import mod_dbconn
 
 app = Flask(__name__)
 
@@ -48,6 +49,10 @@ def upload_file():
 def guide():
     return render_template("guide.html")
 
+@app.route("/supply", methods=["GET"])
+def supply():
+    return render_template("supply.html")
+
 
 @app.route("/predicted_img", methods=["POST"])
 def Predict_img():
@@ -73,7 +78,48 @@ def test():
         print(Data1)
         return render_template('test1.html', Data1=Data1)
 
+@app.route("/supply_db")
+def select_sup():
+    db_class = mod_dbconn.Database()
+    sql = "SELECT *\
+                FROM taxocr.t_provider"
+    all_sup_dict = db_class.executeAll(sql)
+    print(all_sup_dict)
+    dataNum = len(all_sup_dict)
+    return render_template("supply.html", resultData=all_sup_dict, dataNum=dataNum)
+
+@app.route("/supply_desc", methods=['GET'])
+def select_sup_desc():
+    p_id = request.args.get('p_id')
+    desc_dict = om.supply_desc(p_id)
+    return render_template("supply_desc.html", desc_dict=desc_dict[0])
+
+@app.route("/supply_desc_update")
+# 아직 미완임 sql 작성관련으로 보여 일단 stop
+def update_sup():
+   om.supply_update_sql(request)
+   return render_template("")
+
+@app.route("/update_provider", methods=("GET", "POST"))
+def update_provider():
+    db_class = mod_dbconn.Database()
+    
+    print("수정요청 접수됨")
+    if request.method == "POST":
+        args_dict = request.form.to_dict()
+        args = tuple(request.form.values())
+        print(args_dict)
+        sql = """UPDATE taxocr.t_provider
+                 SET p_id = %s, p_corp_num = %s,
+                 p_corp_name = %s, p_ceo_name = %s, p_add = %s, p_stat=%s,
+                 p_type = %s, p_email = %s
+                 WHERE p_id = %s """
+        db_class.execute(query=sql, args=args)
+        db_class.commit()
+        return render_template("supply.html")
+
+
 if __name__ == "__main__":
     app.debug = True
     #app.run(port=80)
-    app.run(host="192.168.2.23", port=80, debug=True)
+    app.run(host="192.168.187.1", port=80, debug=True)

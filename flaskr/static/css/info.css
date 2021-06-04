@@ -1,0 +1,31 @@
+/*전체 css*/
+*{background-color: #E6E6E6; box-sizing: border-box;}
+
+/*header css*/
+.title{background-color: white; height: 80px; position: fixed; top:0px; right: 0px; left:0px; display: flex;}
+.logo{background-color: white; width:131px; height: 70px; padding-top: 20px;  margin-left: 20px; padding-top: 5px;}
+a{background-color: white;}
+
+/*메인*/
+table, th, tr, td, p{background-color: white;}
+
+table{margin-top: 200px; width: 1800px;  margin-left: auto; margin-right: auto; box-shadow: rgb(0 0 0 / 30%) 0px 2px 12px;}
+ 
+/*사용설명서*/
+.info_header{height: 200px;}
+.info_title{text-align: center; font-size: 60px; font-weight: 800;}
+
+/*사용설명서 내용*/
+/*tr : 행*/
+.info_detail{width:892px;  height: 455px; }
+
+/*이미지*/
+.info_image1{width:100%; height: 455px; margin-right: auto;  } 
+
+/*td : 열*/
+td{text-align: left; margin:auto; padding-top: 0px; padding-bottom: 0px; width:500px;}
+
+.info_contents{padding-left: 10%;}
+strong{font-size: 30px;}
+p{font-size: 20px; word-break:break-all}
+.point{color:blue; font-size: 20px;}
