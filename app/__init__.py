@@ -137,7 +137,7 @@ def barGraph():
 
     # dict에서 금액 정보만 빼오기
     for i in linerow:
-        data2.append(int(i["b_cost_total"])) 
+        data2.append(int(i["SUM(t_bill.b_cost_total)"])) 
     print(data2)
 
     # Bar graph-----------------------------------------------
@@ -152,12 +152,12 @@ def barGraph():
     barrow = db_class.executeAll(barsql) #[{'b_cost_total':50000,'b_cost_cash':50000,'b_cost_check':50000,'b_cost_note':50000, 'b_cost_credit':50000}, {}, ...]
 
     print(barrow)
-    
+
     for i in barrow:
-        data3.append(int(i["b_cost_cash"]))
-        data3.append(int(i["b_cost_check"]))  
-        data3.append(int(i["b_cost_note"]))  
-        data3.append(int(i["b_cost_credit"]))  
+        data3.append(int(i["SUM(t_bill.b_cost_cash)"]))
+        data3.append(int(i["SUM(t_bill.b_cost_check)"]))  
+        data3.append(int(i["SUM(t_bill.b_cost_note)"]))  
+        data3.append(int(i["SUM(t_bill.b_cost_credit)"]))  
     print(data3)
 
 
