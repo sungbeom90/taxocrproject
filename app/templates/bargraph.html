@@ -112,14 +112,13 @@
             </div>
 
             <div class='Bar'>
-                <!-- 산점도 그래프를 그릴 것이다. -->
                 <div class="shadow-lg p-4 mb-4 bg-white rounded">
-                    <h5>거래 수단</h5>
+                    <h5>수단별 거래 총액</h5>
                     <canvas id="myBarChart" width="400" height="250"></canvas>
                     <script>
                          var ctx = document.getElementById('myBarChart');
                          const bardata = {
-                            labels: labels,
+                            labels: ['현금','수표','어음','외상미수금'],
                             datasets: [{
                                 label: 'My First Dataset',
                                 data: [65, 59, 80, 81],
