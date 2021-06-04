@@ -34,8 +34,8 @@
             </div>
             <div class='misoo'>
                 <div class="shadow-lg p-4 mb-4 bg-white rounded">
-                    <h2 class='text-danger'>{{misoo}}원</h2>
-                    <small>빨리 갚아야해요*.*</small><br>
+                    <h2 class='text-danger'>{{taxdata}}원</h2>
+                    <small>이만큼 썻어요*.*(뿌-듯)</small><br>
                     <small>근데 이거 언제의 미수금임?</small>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                             labels: ['현금','수표','어음','외상미수금'],
                             datasets: [{
                                 label: 'My First Dataset',
-                                data: [65, 59, 80, 81],
+                                data: {{data3|tojson}},
                                 backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(255, 159, 64, 0.2)',
@@ -138,7 +138,7 @@
                             }]
                             };
 
-                        var myBubbleChart = new Chart(ctx, {
+                        var myBarChart = new Chart(ctx, {
                             type: 'bar',
                             data: bardata,
                             options: {

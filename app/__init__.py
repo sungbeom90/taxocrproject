@@ -88,7 +88,7 @@ def barGraph():
 
     taxdata = int(taxrow["SUM(t_bill.b_cost_tax)"])
 
-    print(taxdata)
+    print("taxdata는 -> ",taxdata)
 
     # Doughnut graph------------------------------------
     temp = []
