@@ -83,8 +83,8 @@ def barGraph():
     # 세금 데이터----------------------------------------
     taxsql = """SELECT SUM(t_bill.b_cost_tax)
                 FROM t_bill
-                WHERE YEAR(t_bill.b_date) = ?""" 
-    taxdata = db_class.executeOne(taxsql, year_)
+                WHERE YEAR(t_bill.b_date) = '2010'""" 
+    taxdata = db_class.executeOne(taxsql)
 
     # Doughnut graph------------------------------------
     temp = []
