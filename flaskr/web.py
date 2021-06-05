@@ -89,34 +89,21 @@ def select_sup():
     return render_template("supply.html", resultData=all_sup_dict, dataNum=dataNum)
 
 @app.route("/supply_desc", methods=['GET'])
+#상세 보기
 def select_sup_desc():
     p_id = request.args.get('p_id')
-    desc_dict = om.supply_desc(p_id)
+    desc_dict = om.supply_desc(p_id) #om 참고
     return render_template("supply_desc.html", desc_dict=desc_dict[0])
 
-@app.route("/supply_desc_update")
-# 아직 미완임 sql 작성관련으로 보여 일단 stop
-def update_sup():
-   om.supply_update_sql(request)
-   return render_template("")
 
 @app.route("/update_provider", methods=("GET", "POST"))
+# 공급자 정보 수정버튼
 def update_provider():
     db_class = mod_dbconn.Database()
-    
-    print("수정요청 접수됨")
     if request.method == "POST":
         args_dict = request.form.to_dict()
-        args = tuple(request.form.values())
-        print(args_dict)
-        sql = """UPDATE taxocr.t_provider
-                 SET p_id = %s, p_corp_num = %s,
-                 p_corp_name = %s, p_ceo_name = %s, p_add = %s, p_stat=%s,
-                 p_type = %s, p_email = %s
-                 WHERE p_id = %s """
-        db_class.execute(query=sql, args=args)
-        db_class.commit()
-        return render_template("supply.html")
+        om.supply_update(args_dict, db_class) #om 참고
+        return redirect(url_for('select_sup'))
 
 
 if __name__ == "__main__":

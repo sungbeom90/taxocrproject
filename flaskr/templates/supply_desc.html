@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html>
 
+  <head>
+    <title>공급자 조회 페이지</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/supply.css">
+    <link rel="stylesheet" href="../static/css/header.css">  
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
+
+
+  </head>
+
+  <body>
+  {% include 'header.html' %}
 
     <div class="supply_contents">
         <div class="supply_inner_box">
@@ -17,7 +32,8 @@
                 종목 :<input type="text" , name='p_type' , value="{{ desc_dict.p_type }}"> <br><br>
                 이메일 : <input type="text" , name='p_email' value="{{ desc_dict.p_email}}"> <br><br>
                 <input type='hidden' value="{{ desc_dict.p_id }}" >
-                <input type="submit" , value='등록하기'>
+                <input type="submit" , value='수정'>
+                <input type='button', value='삭제'>
             </form>
           </div>
 

@@ -3,31 +3,27 @@ import os
 from werkzeug.utils import secure_filename
 import mod_dbconn
 
-# def image_upload():
-#     # 사용자가 이미지를 업로드 한뒤, 해당 내용을 확인할 수 있는 함수
-#     # 업로드 된 파일은 제목이 DB에 저장되어야 하며, (불러오기 위함)
-#         # 파일을 저장시에는 중복방지를 위해 파일 제목 + 저장시간이 더해질 예정
-#         # 제목 저장이유 : 이후에 보다 쉽게 출력하기 위함
-#     # 이미지 파일 자체는 host PC에 저장할 예정입니다.
-#     return None
-
-# def decoded_image():
-#     # 업로드된 이미지를 디코딩하여 바운딩박스가 그려진 이미지를 출력해줍니다.
-#     # 이미지의 크기는 사용자가 업로드한 이미지와 동일한 크기로 업로드 되어야 합니다.
-#     return None
-
 def supply_desc(p_id):
+    #상세페이지 조회하는 함수
     db_class = mod_dbconn.Database()
     sql = """SELECT *
                 FROM taxocr.t_provider
                 WHERE p_id = %s"""
     desc_dict = db_class.executeAll(sql, args=p_id)
-    # 새로운 상세페이지 열어달라고 시작
     return desc_dict
 
-# def supply_update():
-#     #이렇게 업데이트 해달라고 요청 발송??
-#     return None
+
+
+def supply_update(args_dict, db_class):
+    #공급자 수정하기
+    sql = """UPDATE taxocr.t_provider
+                 SET p_corp_num = %(p_corp_num)s,
+                 p_corp_name = %(p_corp_name)s, p_ceo_name = %(p_ceo_name)s, p_add = %(p_add)s, p_stat=%(p_stat)s,
+                 p_type = %(p_type)s, p_email = %(p_email)s
+                 WHERE p_id = %(p_id)s """
+    db_class.execute(query=sql, args=args_dict)
+    db_class.commit()
+    return args_dict
 
 # def supply_update_sql(request):
 #     #전달받은걸 DB에 이렇게 업데이트 하자고 DB에 전달
