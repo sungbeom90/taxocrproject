@@ -33,7 +33,9 @@
                 이메일 : <input type="text" , name='p_email' value="{{ desc_dict.p_email}}"> <br><br>
                 <input type='hidden' value="{{ desc_dict.p_id }}" >
                 <input type="submit" , value='수정'>
-                <input type='button', value='삭제'>
+                <button type='button', value='삭제', 
+                        style = "width : auto; height: 25px;"
+                        ><a href="{{ url_for('delete_provider', p_id=desc_dict.p_id) }}">삭제</a></button>
             </form>
           </div>
 

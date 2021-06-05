@@ -1,0 +1,49 @@
+/*전체 css*/
+*{width: 100%; background-color:white; box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif;}
+
+/*main css*/
+
+.supply_contents{height:100%; display: flex; justify-content: space-around; margin-top: 50px;}
+
+
+.supply_inner_box{width: 50%; display : flex; justify-content: left;}
+
+#supply_table{box-shadow: rgb(0 0 0 / 30%) 0px 2px 12px; width: 568px; background-color: white;
+               margin-top: 100px; text-align: center; }
+
+.right_box{width: 17%;}
+
+/* file upload box*/
+.filebox label {
+    display: inline-block;
+    padding-top: 3px;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+    width:50%;
+    max-width:50%;
+}
+
+.filebox input[type="file"] {  /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    /* overflow: hidden; */
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+
+
+#hid_upload_btn { width : 20px;
+    }
+
+/*.contents1{font-weight:bold ; font-size:35px;   background-color: white; text-align: center; 
+           margin:auto; padding-top:80px; width:290px;}*/

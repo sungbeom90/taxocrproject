@@ -25,6 +25,16 @@ def supply_update(args_dict, db_class):
     db_class.commit()
     return args_dict
 
+def supply_delete(p_id, db_class):
+    #공급자 삭제하기하기
+    sql = """DELETE FROM taxocr.t_provider
+                 WHERE p_id = %(p_id)s """
+    args_dict = {'p_id' : p_id}
+    db_class.execute(query=sql, args=args_dict)
+    db_class.commit()
+    return args_dict
+
+
 # def supply_update_sql(request):
 #     #전달받은걸 DB에 이렇게 업데이트 하자고 DB에 전달
 #         args_dict = request.form.to_dict()

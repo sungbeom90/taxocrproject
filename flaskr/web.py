@@ -105,6 +105,15 @@ def update_provider():
         om.supply_update(args_dict, db_class) #om 참고
         return redirect(url_for('select_sup'))
 
+@app.route("/delete_provider", methods=("GET", "POST"))
+# 공급자 정보 삭제버튼
+def delete_provider():
+    db_class = mod_dbconn.Database()
+    p_id = request.args.get('p_id')
+    om.supply_delete(p_id, db_class) #om 참고
+    return redirect(url_for('select_sup'))
+
+
 
 if __name__ == "__main__":
     app.debug = True

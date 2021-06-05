@@ -15,9 +15,6 @@ class Database:
     def execute(self, query, args={}):
         self.cursor.execute(query, args)
 
-    def execute_only(self, query):
-        self.cursor.execute(query)
-
     def executeOne(self, query, args={}):
         self.cursor.execute(query, args)
         row = self.cursor.fetchone()
