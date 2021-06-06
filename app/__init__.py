@@ -340,7 +340,7 @@ def predict():
     jpg_file_name = upload_file_list[-1]  # 입력 이미지 경로 로드
 
     print("Detecting...")
-    or_image, boxed_image, word_box = pred_test(
+    or_image, boxed_image, word_box = pred_detection(
         jpg_file_name, model, size=1600
     )  # 이미지 디텍팅 실행
 
