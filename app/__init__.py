@@ -298,6 +298,7 @@ from m_model.helpers import (
     recog_pre_process,
     load_single_img_resize,
     pred_detection,
+    pred_recognition,
 )
 from PIL import Image
 import matplotlib.pyplot as plt
