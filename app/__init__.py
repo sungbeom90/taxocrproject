@@ -432,29 +432,29 @@ def predict():
         print(text_list[index], score_list[index])
 
     print(
-        "len(test_list) : {} len(score_list) : {} len(word_list) : {}".format(
-            len(test_list), len(score_list), len(word_list)
+        "len(text_list) : {} len(score_list) : {} len(word_list) : {}".format(
+            len(text_list), len(score_list), len(word_list)
         )
     )
 
     return redirect(
         url_for(
-            "logic", test_list=test_list, score_list=score_list, word_list=word_list
+            "logic", text_list=text_list, score_list=score_list, word_list=word_list
         )
     )
 
 
 @app.route("/logic", methods=["GET"])
 def logic():
-    test_list = request.args.get("test_list")  # 워드 텍스트 리스트
+    text_list = request.args.get("text_list")  # 워드 텍스트 리스트
     score_list = request.args.get("score_list")  # 워드 확률 리스트
     word_list = request.args.get("word_list")  # 워드 좌표 리스트
 
     t_bill_b_id
-    for index in range(len(test_list)):
+    for index in range(len(text_list)):
 
         if find_position(t_bill_b_id_location, word_list[index]):
-            t_bill_b_id.append((test_list[index], score_list[index]))
+            t_bill_b_id.append((text_list[index], score_list[index]))
 
     return redirect(url_for("con_base"))
 
