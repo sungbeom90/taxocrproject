@@ -12,10 +12,11 @@
     <header id="navbar">
         <div class="title">
           <div class="menu">
-            <a href="http://192.168.187.1:80/"><img  src="../static/dev_img/logo.PNG" class="logo"></a>
-            <a href="http://192.168.187.1:80/supply_db"><img  src="../static/dev_img/supply_menu.PNG" class="supply_menu"></a>
-            <a href="http://192.168.187.1:80/dashboard"><img  src="../static/dev_img/dashboard_menu.PNG" class="dash_menu"></a>
-            <a href="http://192.168.187.1:80/guide"><img src="../static/dev_img/info.PNG" class="info"></a>
+            <a href="{{ url_for('home')}}"><img  src="../static/dev_img/logo.PNG" class="logo"></a>
+            <!-- 일단은 테스트를 위해 넣었습니다. supply 반영되면 수정필요 -->
+            <a href="{{ url_for('con_base')}}"><img  src="../static/dev_img/supply_menu.PNG" class="supply_menu"></a>
+            <a href="{{ url_for('dashboard')}}"><img  src="../static/dev_img/dashboard_menu.PNG" class="dash_menu"></a>
+            <a href="{{ url_for('guide')}}"><img src="../static/dev_img/info.PNG" class="info"></a>
           </div>    
         </div>
     </header>
