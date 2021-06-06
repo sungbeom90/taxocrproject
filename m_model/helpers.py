@@ -270,7 +270,7 @@ def tax_serialization(test_img, coors):
     return serialized_line
 
 
-def recog_pre_process(word_box):
+def recog_pre_process(or_image, word_box):
 
     crop_images = []
     test_img = []
@@ -362,8 +362,8 @@ def pred_detection(img_route, model_weight, size):
     return or_image, image, word_box
 
 
-def pred_recognition(model_recog, word_box):
-    test_image = recog_pre_process(word_box)  # 단어 크롭 이미지 전처리
+def pred_recognition(model_recog, or_image, word_box):
+    test_image = recog_pre_process(or_image, word_box)  # 단어 크롭 이미지 전처리
     print(test_image.shape)
 
     model_input = Input(shape=(32, 256, 1))
