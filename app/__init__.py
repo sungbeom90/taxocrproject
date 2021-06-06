@@ -295,8 +295,10 @@ from m_model.helpers import (
     box_on_image,
     tax_serialization,
     detection_preprocess,
+    recog_pre_process,
+    load_single_img_resize,
+    pred_test,
 )
-from m_model.helpers import recog_pre_process
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
@@ -311,64 +313,64 @@ import statistics
 import pickle
 
 
-# 이미지 리사이즈 함수
-def load_single_img_resize(image_route, width: int, height: int):
-    image_data = []
-    im = Image.open(image_route)
-    im = im.convert("L")
-    im = detection_preprocess(im)  # 이미지 전처리
+# # 이미지 리사이즈 함수
+# def load_single_img_resize(image_route, width: int, height: int):
+#     image_data = []
+#     im = Image.open(image_route)
+#     im = im.convert("L")
+#     im = detection_preprocess(im)  # 이미지 전처리
 
-    img_width, img_height = im.size  # 실제 이미지 사이즈 저장
+#     img_width, img_height = im.size  # 실제 이미지 사이즈 저장
 
-    read = np.array(im.resize((width, height)), np.float32) / 255  # 이미지 1600으로 리사이즈
+#     read = np.array(im.resize((width, height)), np.float32) / 255  # 이미지 1600으로 리사이즈
 
-    ratio = (float(width / 2 / img_width), float(height / 2 / img_height))  # 비율계산
+#     ratio = (float(width / 2 / img_width), float(height / 2 / img_height))  # 비율계산
 
-    size_data = ratio  # 비율 저장
+#     size_data = ratio  # 비율 저장
 
-    img_arr = np.ndarray((width, height, 1), np.float32)
+#     img_arr = np.ndarray((width, height, 1), np.float32)
 
-    pads = ((0, 0), (0, 0))
+#     pads = ((0, 0), (0, 0))
 
-    for i in [0]:
-        x = read[:, :]
-        pad = np.pad(x, pads, "constant", constant_values=1)
-        pad = np.resize(pad, (width, height))
-        img_arr[:, :, 0] = pad
+#     for i in [0]:
+#         x = read[:, :]
+#         pad = np.pad(x, pads, "constant", constant_values=1)
+#         pad = np.resize(pad, (width, height))
+#         img_arr[:, :, 0] = pad
 
-    image_data.append(img_arr)
+#     image_data.append(img_arr)
 
-    return img_arr, size_data
+#     return img_arr, size_data
 
 
 # 이미지 디텍션 모델 실행 함수
-def pred_test(img_route, model_weight, size):
-    model = Craft()  # 디텍션 모델 생성
-    model.load(model_weight)  # 디테션 가중치 주입
+# def pred_test(img_route, model_weight, size):
+#     model = Craft()  # 디텍션 모델 생성
+#     model.load(model_weight)  # 디테션 가중치 주입
 
-    test_data, _ = load_single_img_resize(img_route, size, size)  # 입력이미지 리사이즈
-    orig_image = copy.deepcopy(test_data)  # 원본이미지 저장
+#     test_data, _ = load_single_img_resize(img_route, size, size)  # 입력이미지 리사이즈
+#     orig_image = copy.deepcopy(test_data)  # 원본이미지 저장
 
-    pred_map = model.predict(np.array([test_data], np.float32))  # 모델 예측
+#     pred_map = model.predict(np.array([test_data], np.float32))  # 모델 예측
 
-    boxes = box_from_map(pred_map[0] * 255)  # 화소값 적용
-    word_box = tax_serialization(test_data, boxes)  # 텍스트 디코딩(박스처리)
+#     boxes = box_from_map(pred_map[0] * 255)  # 화소값 적용
+#     word_box = tax_serialization(test_data, boxes)  # 텍스트 디코딩(박스처리)
 
-    print("=====================")
+#     print("=====================")
 
-    img = test_data
+#     img = test_data
 
-    # 파라미터 딕셔너리 선언
-    dump_params = {
-        "image": np.array(np.resize(img, (size, size)) * 255, np.uint8),
-        "width": size,
-        "height": size,
-    }
-    _, image = box_on_image(dump_params, word_box)  # 이미지 위 박스 및 순서 그리기
+#     # 파라미터 딕셔너리 선언
+#     dump_params = {
+#         "image": np.array(np.resize(img, (size, size)) * 255, np.uint8),
+#         "width": size,
+#         "height": size,
+#     }
+#     _, image = box_on_image(dump_params, word_box)  # 이미지 위 박스 및 순서 그리기
 
-    or_image = np.array(orig_image * 255, np.uint8)  # 원본 이미지 화소 적용
+#     or_image = np.array(orig_image * 255, np.uint8)  # 원본 이미지 화소 적용
 
-    return or_image, image, word_box
+#     return or_image, image, word_box
 
 
 @app.route("/predict")
