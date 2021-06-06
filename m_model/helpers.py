@@ -529,7 +529,7 @@ def test_logic(text_list, score_list, word_list):
 
 
 def find_position(target_location, word_location):
-    target_xmin, target_ymin, target_xmax, target_ymax = tartget_location
+    target_xmin, target_ymin, target_xmax, target_ymax = target_location
     word_xmin, word_ymin, word_xmax, word_ymax = word_location
 
     if (
