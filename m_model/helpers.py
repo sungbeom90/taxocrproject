@@ -433,129 +433,99 @@ def pred_recognition(model_recog, char_list, or_image, word_box):
 
 
 def test_logic(text_list, score_list, word_list):
-    word_dict_list = []
-
-    # "('(1014, 93)', '(1576, 158)')", "('(266, 158)', '(528, 219)')",
-    # "('(640, 159)', '(824, 219)')", "('(266, 220)', '(527, 279)')",
-    # "('(638, 220)', '(826, 281)')", "('(266, 281)', '(824, 343)')",
-    # "('(266, 344)', '(415, 397)')", "('(527, 343)', '(825, 397)')",
-    # "('(265, 399)', '(826, 490)')", "('(80, 539)', '(266, 598)')",
-    # "('(267, 541)', '(547, 599)')", "('(546, 541)', '(828, 599)')",
-    # "('(827, 540)', '(1017, 598)')", "('(1016, 540)', '(1575, 599)')",
-    # "('(80, 645)', '(135, 705)')", "('(134, 646)', '(190, 703)')",
-    # "('(190, 646)', '(567, 705)')", "('(566, 645)', '(697, 705)')",
-    # "('(697, 646)', '(828, 705)')", "('(828, 647)', '(1014, 705)')",
-    # "('(1014, 646)', '(1240, 704)')", "('(1239, 647)', '(1425, 705)')",
-    # "('(1425, 646)', '(1575, 706)')", "('(81, 704)', '(135, 764)')",
-    # "('(134, 705)', '(191, 763)')", "('(191, 706)', '(565, 764)')",
-    #  "('(566, 705)', '(697, 764)')", "('(697, 705)', '(828, 762)')",
-    #   "('(828, 706)', '(1015, 764)')", "('(1015, 704)', '(1238, 765)')",
-    #   "('(1239, 705)', '(1426, 765)')", "('(1425, 705)', '(1575, 763)')",
-    #   "('(81, 763)', '(135, 822)')", "('(134, 764)', '(191, 821)')",
-    #   "('(191, 765)', '(567, 822)')", "('(567, 764)', '(698, 825)')",
-    #   "('(698, 762)', '(829, 821)')", "('(829, 764)', '(1015, 824)')",
-    #   "('(1015, 763)', '(1240, 824)')", "('(1238, 765)', '(1427, 823)')",
-    #   "('(1425, 764)', '(1574, 824)')", "('(79, 824)', '(133, 881)')",
-    #   "('(136, 824)', '(190, 881)')", "('(190, 823)', '(565, 880)')",
-    #   "('(567, 824)', '(699, 879)')", "('(697, 824)', '(828, 879)')",
-    #   "('(828, 824)', '(1015, 882)')", "('(1014, 825)', '(1239, 879)')",
-    #   "('(1241, 824)', '(1426, 882)')", "('(1425, 825)', '(1575, 882)')",
-    #   "('(80, 928)', '(337, 986)')", "('(335, 931)', '(560, 986)')",
-    #   "('(561, 929)', '(784, 988)')", "('(784, 930)', '(1013, 989)')",
-    #   "('(1012, 929)', '(1240, 986)')"
-    t_bill_b_id_location = ()
-    t_bill_b_date = []
-    t_bill_b_date_location = ()
-    t_bill_b_mr = []
-    t_bill_b_mr_location = ()
-    t_bill_b_etc = []
-    t_bill_b_etc_location = ()
-    t_bill_b_cost_total = []
-    t_bill_b_cost_total_location = ()
-    t_bill_b_cost_sup = []
-    t_bill_b_cost_sup_location = ()
-    t_bill_b_cost_tax = []
-    t_bill_b_cost_tax_location = ()
-    t_bill_b_cost_cash = []
-    t_bill_b_cost_cash_location = ()
-    t_bill_b_cost_check = []
-    t_bill_b_cost_check_location = ()
-    t_bill_b_cost_note = []
-    t_bill_b_cost_note_location = ()
-    t_bill_b_cost_credit = []
-    t_bill_b_cost_credit_location = ()
-
-    t_provider_p_id = []
-    t_provider_p_id_location = ()
-    t_provider_p_corp_num = []
-    t_provider_p_corp_num_location = ()
-    t_provider_p_corp_name = []
-    t_provider_p_corp_name_location = ()
-    t_provider_p_ceo_name = []
-    t_provider_p_ceo_name_location = ()
-    t_provider_p_add = []
-    t_provider_p_add_location = ()
-    t_provider_p_stat = []
-    t_provider_p_stat_location = ()
-    t_provider_p_type = []
-    t_provider_p_type_location = ()
-    t_provider_p_email = []
-    t_provider_p_email_location = ()
-
-    t_item_i_id = []
-    t_item_i_id_location = ()
-    t_item_i_name = []
-    t_item_i_name_location = ()
-    t_item_i_stand = []
-    t_item_i_stand_location = ()
-    t_item_i_quan = []
-    t_item_i_quan_location = ()
-    t_item_i_unit = []
-    t_item_i_unit_location = ()
-    t_item_i_sup = []
-    t_item_i_sup_location = ()
-    t_item_i_tax = []
-    t_item_i_tax_location = ()
-    t_item_i_etc = []
-    t_item_i_etc_location = ()
-
+    word_spot_list = {
+        "t_bill": {
+            "b_id": {"text": [], "score": [], "location": (1014, 93, 1576, 158)},
+            "b_date": {"text": [], "score": [], "location": (80, 539, 266, 598)},
+            "b_mr": {"text": [], "score": [], "location": (827, 540, 1017, 598)},
+            "b_etc": {"text": [], "score": [], "location": (1016, 540, 1575, 599)},
+            "b_cost_total": {"text": [], "score": [], "location": (80, 928, 337, 986)},
+            "b_cost_sup": {"text": [], "score": [], "location": (267, 541, 547, 599)},
+            "b_cost_tax": {"text": [], "score": [], "location": (546, 541, 828, 599)},
+            "b_cost_cash": {"text": [], "score": [], "location": (335, 931, 560, 986)},
+            "b_cost_check": {"text": [], "score": [], "location": (561, 929, 784, 988)},
+            "b_cost_note": {"text": [], "score": [], "location": (784, 930, 1013, 989)},
+            "b_cost_credit": {
+                "text": [],
+                "score": [],
+                "location": (1012, 929, 1240, 986),
+            },
+        },
+        "t_provider": {
+            "p_id": {"text": [], "score": [], "location": (266, 158, 528, 219)},
+            "p_corp_num": {"text": [], "score": [], "location": (640, 159, 824, 219)},
+            "p_corp_name": {"text": [], "score": [], "location": (266, 220, 527, 279)},
+            "p_ceo_name": {"text": [], "score": [], "location": (638, 220, 826, 281)},
+            "p_add": {"text": [], "score": [], "location": (266, 281, 824, 343)},
+            "p_stat": {"text": [], "score": [], "location": (266, 344, 415, 397)},
+            "p_type": {"text": [], "score": [], "location": (527, 343, 825, 397)},
+            "p_email": {"text": [], "score": [], "location": (265, 399, 826, 490)},
+        },
+        "t_item_1": {
+            "i_month": {"text": [], "score": [], "location": (80, 645, 135, 705)},
+            "i_day": {"text": [], "score": [], "location": (134, 646, 190, 703)},
+            "i_name": {"text": [], "score": [], "location": (190, 646, 567, 705)},
+            "i_stand": {"text": [], "score": [], "location": (566, 645, 697, 705)},
+            "i_quan": {"text": [], "score": [], "location": (697, 646, 828, 705)},
+            "i_unit": {"text": [], "score": [], "location": (828, 647, 1014, 705)},
+            "i_sup": {"text": [], "score": [], "location": (1014, 646, 1240, 704)},
+            "i_tax": {"text": [], "score": [], "location": (1239, 647, 1425, 705)},
+            "i_etc": {"text": [], "score": [], "location": (1425, 646, 1575, 706)},
+        },
+        "t_item_2": {
+            "i_month": {"text": [], "score": [], "location": (81, 704, 135, 764)},
+            "i_day": {"text": [], "score": [], "location": (134, 705, 191, 763)},
+            "i_name": {"text": [], "score": [], "location": (191, 706, 565, 764)},
+            "i_stand": {"text": [], "score": [], "location": (566, 705, 697, 764)},
+            "i_quan": {"text": [], "score": [], "location": (697, 705, 828, 762)},
+            "i_unit": {"text": [], "score": [], "location": (828, 706, 1015, 764)},
+            "i_sup": {"text": [], "score": [], "location": (1015, 704, 1238, 765)},
+            "i_tax": {"text": [], "score": [], "location": (1239, 705, 1426, 765)},
+            "i_etc": {"text": [], "score": [], "location": (1425, 705, 1575, 763)},
+        },
+        "t_item_3": {
+            "i_month": {"text": [], "score": [], "location": (81, 763, 135, 822)},
+            "i_day": {"text": [], "score": [], "location": (134, 764, 191, 821)},
+            "i_name": {"text": [], "score": [], "location": (191, 765, 567, 822)},
+            "i_stand": {"text": [], "score": [], "location": (567, 764, 698, 825)},
+            "i_quan": {"text": [], "score": [], "location": (698, 762, 829, 821)},
+            "i_unit": {"text": [], "score": [], "location": (829, 764, 1015, 824)},
+            "i_sup": {"text": [], "score": [], "location": (1015, 763, 1240, 824)},
+            "i_tax": {"text": [], "score": [], "location": (1238, 765, 1427, 823)},
+            "i_etc": {"text": [], "score": [], "location": (1425, 764, 1574, 824)},
+        },
+        "t_item_4": {
+            "i_month": {"text": [], "score": [], "location": (79, 824, 133, 881)},
+            "i_day": {"text": [], "score": [], "location": (136, 824, 190, 881)},
+            "i_name": {"text": [], "score": [], "location": (190, 823, 565, 880)},
+            "i_stand": {"text": [], "score": [], "location": (567, 824, 699, 879)},
+            "i_quan": {"text": [], "score": [], "location": (697, 824, 828, 879)},
+            "i_unit": {"text": [], "score": [], "location": (828, 824, 1015, 882)},
+            "i_sup": {"text": [], "score": [], "location": (1014, 825, 1239, 879)},
+            "i_tax": {"text": [], "score": [], "location": (1241, 824, 1426, 882)},
+            "i_etc": {"text": [], "score": [], "location": (1425, 825, 1575, 882)},
+        },
+    }
     for index in range(len(text_list)):
-        if find_position(t_bill_b_id_location, word_list[index]):
-            t_bill_b_id.append((text_list[index], score_list[index]))
+        flag = False
+        for table in word_spot_list.keys():
+            for column in table.keys():
+                if find_position(column["location"], word_list[index]):
+                    word_spot_list[table][column]["text"].append(text_list[index])
+                    word_spot_list[table][column]["score"].append(score_list[index])
+                    flag = True
+                    break
+                if flag:
+                    break
+            if flag:
+                break
 
-        elif find_position(t_bill_b_date_location, word_list[index]):
-            t_bill_b_date.append((text_list[index], score_list[index]))
+    for table in word_spot_list.keys():
+        for column in table.keys():
+            word_spot_list[table][column]["text"] = "".join(column["text"])
+            word_spot_list[table][column]["text"] = statistics.mean(column["score"])
 
-        elif find_position(t_bill_b_mr_location, word_list[index]):
-            t_bill_b_mr.append((text_list[index], score_list[index]))
-
-        elif find_position(t_bill_b_etc_location, word_list[index]):
-            t_bill_b_etc.append((text_list[index], score_list[index]))
-
-        elif find_position(t_bill_b_cost_total_location, word_list[index]):
-            t_bill_b_cost_total.append((text_list[index], score_list[index]))
-
-        elif find_position(t_bill_b_cost_sup_location, word_list[index]):
-            t_bill_b_cost_sup.append((text_list[index], score_list[index]))
-
-        elif find_position(t_bill_b_cost_tax_location, word_list[index]):
-            t_bill_b_cost_tax.append((text_list[index], score_list[index]))
-
-        elif find_position(t_bill_b_cost_cash_location, word_list[index]):
-            t_bill_b_cost_cash.append((text_list[index], score_list[index]))
-
-        elif find_position(t_bill_b_cost_check_location, word_list[index]):
-            t_bill_b_cost_check.append((text_list[index], score_list[index]))
-
-        elif find_position(t_bill_b_cost_note_location, word_list[index]):
-            t_bill_b_cost_note.append((text_list[index], score_list[index]))
-
-        elif find_position(t_bill_b_cost_credit_location, word_list[index]):
-            t_bill_b_cost_credit.append((text_list[index], score_list[index]))
-
-        elif find_position(t_provider_p_id_location, word_list[index]):
-            t_provider_p_id.append((text_list[index], score_list[index]))
-    return word_dict_list
+    return word_spot_list
 
 
 # def find_position(target_location, word_location):

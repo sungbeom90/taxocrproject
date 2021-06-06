@@ -27,6 +27,7 @@ from m_model.helpers import (
     load_single_img_resize,
     pred_detection,
     pred_recognition,
+    test_logic,
 )
 
 
@@ -375,9 +376,11 @@ def predict():
     with open("./data/pickle/word_list.pickle", "wb") as f:
         pickle.dump(word_list, f, pickle.HIGHEST_PROTOCOL)
 
-    row = {"t_bill": {"b_id": "111-1111-1111"}}
+    word_spot_list = test_logic(text_list, score_list, word_list)
 
-    return render_template("con_base.html", jpg_file_name=jpg_file_name, resultData=row)
+    return render_template(
+        "con_base.html", jpg_file_name=jpg_file_name, resultData=word_spot_list
+    )
     # return redirect(
     #     url_for(
     #         "logic", text_list=text_list, score_list=score_list, word_list=word_list
