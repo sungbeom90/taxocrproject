@@ -309,68 +309,7 @@ import m_model.Define_Class as Define_Class
 import m_model.recog_model as recog_model
 from tensorflow.keras.layers import Input
 import statistics
-
 import pickle
-
-
-# # 이미지 리사이즈 함수
-# def load_single_img_resize(image_route, width: int, height: int):
-#     image_data = []
-#     im = Image.open(image_route)
-#     im = im.convert("L")
-#     im = detection_preprocess(im)  # 이미지 전처리
-
-#     img_width, img_height = im.size  # 실제 이미지 사이즈 저장
-
-#     read = np.array(im.resize((width, height)), np.float32) / 255  # 이미지 1600으로 리사이즈
-
-#     ratio = (float(width / 2 / img_width), float(height / 2 / img_height))  # 비율계산
-
-#     size_data = ratio  # 비율 저장
-
-#     img_arr = np.ndarray((width, height, 1), np.float32)
-
-#     pads = ((0, 0), (0, 0))
-
-#     for i in [0]:
-#         x = read[:, :]
-#         pad = np.pad(x, pads, "constant", constant_values=1)
-#         pad = np.resize(pad, (width, height))
-#         img_arr[:, :, 0] = pad
-
-#     image_data.append(img_arr)
-
-#     return img_arr, size_data
-
-
-# 이미지 디텍션 모델 실행 함수
-# def pred_test(img_route, model_weight, size):
-#     model = Craft()  # 디텍션 모델 생성
-#     model.load(model_weight)  # 디테션 가중치 주입
-
-#     test_data, _ = load_single_img_resize(img_route, size, size)  # 입력이미지 리사이즈
-#     orig_image = copy.deepcopy(test_data)  # 원본이미지 저장
-
-#     pred_map = model.predict(np.array([test_data], np.float32))  # 모델 예측
-
-#     boxes = box_from_map(pred_map[0] * 255)  # 화소값 적용
-#     word_box = tax_serialization(test_data, boxes)  # 텍스트 디코딩(박스처리)
-
-#     print("=====================")
-
-#     img = test_data
-
-#     # 파라미터 딕셔너리 선언
-#     dump_params = {
-#         "image": np.array(np.resize(img, (size, size)) * 255, np.uint8),
-#         "width": size,
-#         "height": size,
-#     }
-#     _, image = box_on_image(dump_params, word_box)  # 이미지 위 박스 및 순서 그리기
-
-#     or_image = np.array(orig_image * 255, np.uint8)  # 원본 이미지 화소 적용
-
-#     return or_image, image, word_box
 
 
 @app.route("/predict")
@@ -385,15 +324,15 @@ def predict():
 
     char_list = Define_Class.definition_class()  # 텍스트 클래스 종합 파일 로드
 
-    # Text Class 확인
-    print("Class num = ", len(char_list))
-    print("Model CLASS")
+    # Text Class 확인 (생략함)
+    # print("Class num = ", len(char_list))
+    # print("Model CLASS")
 
-    # 텍스트 클래스 35개씩 프린트
-    for temp_index in range(len(char_list)):
-        if temp_index % 35 == 0:
-            print(char_list[temp_index : temp_index + 35])
-            print("\n")
+    # 텍스트 클래스 35개씩 프린트 (생략함)
+    # for temp_index in range(len(char_list)):
+    #     if temp_index % 35 == 0:
+    #         print(char_list[temp_index : temp_index + 35])
+    #         print("\n")
 
     model = "./data/trained_weights/1600_pdfdata_origin_d05_decay1000_1600to1600_20210213-2203_last"  # 디텍션 모델 가중치 로드
     model_recog = "./data/trained_weights/tax_save_model_0309.hdf5"  # 리코그니션 모델 가중치 로드
@@ -415,19 +354,19 @@ def predict():
     # plt.tight_layout()
     # fig = plt.gcf()
 
-    crop_image = []
+    # crop_image = []
 
-    # 단어 좌표를 이용한 단어 자르기
-    for index in range(len(word_box)):
-        crop_image.append(
-            or_image[
-                word_box[index][1] : word_box[index][3],
-                word_box[index][0] : word_box[index][2],
-            ]
-        )
+    # # 단어 좌표를 이용한 단어 자르기
+    # for index in range(len(word_box)):
+    #     crop_image.append(
+    #         or_image[
+    #             word_box[index][1] : word_box[index][3],
+    #             word_box[index][0] : word_box[index][2],
+    #         ]
+    #     )
 
     print("Recognizing...")
-    test_image = recog_pre_process(crop_image)  # 단어 크롭 이미지 전처리
+    test_image = recog_pre_process(word_box)  # 단어 크롭 이미지 전처리
     print(test_image.shape)
 
     model_input = Input(shape=(32, 256, 1))

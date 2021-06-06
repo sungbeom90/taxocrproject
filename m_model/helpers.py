@@ -288,7 +288,7 @@ def recog_pre_process(crop_images):
     return test_img
 
 
-# ======== move ==========
+# ================[move] test.py -> helpers.py  ======================
 # 이미지 리사이즈 함수
 def load_single_img_resize(image_route, width: int, height: int):
     image_data = []
