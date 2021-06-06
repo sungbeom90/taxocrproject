@@ -524,7 +524,7 @@ def test_logic(text_list, score_list, word_list):
             if flag:
                 break
 
-    for table_key, table_value in word_spot_word_spot_dictlist.items():
+    for table_key, table_value in word_spot_dict.items():
         for column_key, column_value in table_value.items():
             word_spot_dict[table_key][column_key]["text"] = "".join(
                 column_value["text"]
