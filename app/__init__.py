@@ -178,7 +178,7 @@ def barGraph():
 
 # ===================flaskr=========================
 from flask import Flask, json, render_template, redirect, url_for, request, jsonify
-import ocr_manage as om
+import app.ocr_manage as om
 import os
 from werkzeug.utils import secure_filename
 
