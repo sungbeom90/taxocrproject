@@ -510,6 +510,11 @@ def test_logic(text_list, score_list, word_list):
         flag = False
         for table_key, table_value in word_spot_dict.items():
             for column_key, column_value in table_value.items():
+                print(
+                    "{}번째 텍스트 : {} 조건 찾는중".format(
+                        index, text_list[index], table_key, column_key
+                    )
+                )
                 if find_position(column_value["location"], word_list[index]):
                     word_spot_dict[table_key][column_key]["text"].append(
                         text_list[index]
