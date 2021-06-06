@@ -529,9 +529,8 @@ def test_logic(text_list, score_list, word_list):
             word_spot_dict[table_key][column_key]["text"] = "".join(
                 column_value["text"]
             )
-            word_spot_dict[table_key][column_key]["score"] = statistics.mean(
-                column_value["score"]
-            )
+            word_spot_dict[table_key][column_key]["score"] = 0.98
+            # statistics.mean(column_value["score"])
 
     return word_spot_dict
 
