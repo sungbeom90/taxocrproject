@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw
 from PIL import ImageFont
+import copy
+from m_model.craft_model import Craft
 
 
 def box_from_map(heat_map):
