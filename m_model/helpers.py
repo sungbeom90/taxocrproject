@@ -508,11 +508,15 @@ def test_logic(text_list, score_list, word_list):
     }
     for index in range(len(text_list)):
         flag = False
-        for table in word_spot_dict.values():
-            for column in table.values():
-                if find_position(column["location"], word_list[index]):
-                    word_spot_dict[table][column]["text"].append(text_list[index])
-                    word_spot_dict[table][column]["score"].append(score_list[index])
+        for table_key, table_value in word_spot_dict.item():
+            for column_key, column_value in table.item():
+                if find_position(column_value["location"], word_list[index]):
+                    word_spot_dict[table_key][column_key]["text"].append(
+                        text_list[index]
+                    )
+                    word_spot_dict[table_key][column_key]["score"].append(
+                        score_list[index]
+                    )
                     flag = True
                     break
                 if flag:
@@ -520,10 +524,14 @@ def test_logic(text_list, score_list, word_list):
             if flag:
                 break
 
-    for table in word_spot_word_spot_dictlist.values():
-        for column in table.values():
-            word_spot_dict[table][column]["text"] = "".join(column["text"])
-            word_spot_dict[table][column]["text"] = statistics.mean(column["score"])
+    for table_key, table_value in word_spot_word_spot_dictlist.item():
+        for column_key, column_value in table.item():
+            word_spot_dict[table_key][column_key]["text"] = "".join(
+                column_value["text"]
+            )
+            word_spot_dict[table_key][column_key]["score"] = statistics.mean(
+                column_value["score"]
+            )
 
     return word_spot_dict
 
