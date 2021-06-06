@@ -1,0 +1,34 @@
+/*전체 css*/
+/* *{width: 100%; background-color:white; box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif;} */
+
+/*main css*/
+
+.supply_contents{height:130%; display: flex; margin: auto; margin-top: 50px;}
+
+
+.supply_inner_box{width: 80%; display : flex; margin: auto; }
+
+.sup_desc_box {width: 60%; box-shadow: rgb(0 0 0 / 30%) 0px 2px 12px; display : flex; flex-direction: column; margin: auto;}
+
+.subject2 {margin: auto; text-align: center;}
+
+.input_box {width : 80%; margin: auto; padding-top: 50px;}
+
+.button_box {justify-content: center; display: flex; }
+
+.real_but_box {width : 400px ; display:flex; justify-content: space-around; margin: auto;  
+}
+
+#supply_table{box-shadow: rgb(0 0 0 / 30%) 0px 2px 12px; width: 100%; background-color: white;
+               margin-top: 100px; text-align: center; }
+#sup_num {width : 10%; height : }
+
+.right_box{width: 17%;}
+
+.form-label {margin-top : 10px;}
+
+#hid_upload_btn { width : 20px;
+    }
+
+/*.contents1{font-weight:bold ; font-size:35px;   background-color: white; text-align: center; 
+           margin:auto; padding-top:80px; width:290px;}*/

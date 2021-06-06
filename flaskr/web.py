@@ -100,8 +100,10 @@ def select_sup_desc():
 # 공급자 정보 수정버튼
 def update_provider():
     db_class = mod_dbconn.Database()
+    print('수정요청접수')
     if request.method == "POST":
         args_dict = request.form.to_dict()
+        print(args_dict)
         om.supply_update(args_dict, db_class) #om 참고
         return redirect(url_for('select_sup'))
 

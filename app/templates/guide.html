@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/css/guide.css">
+    </head>
+    <body>
+        <header>
+            <div class="title">
+                <a href=""><img  src="../static/img/logo.PNG" class="logo"></a>
+            </div>
+        </header>
+       
+
+        <table> 
+            <tr class="guide_header">
+                <td colspan="2" class="guide_title">
+                    <!-- PSB_OCR 사용설명서 -->
+                    <img src="../static/img/guide.PNG">
+                </td>
+            </tr>
+            
+            <!--내용-->
+            <!--1.메인 화면의 목록 설명-->
+            <tr class="guide_detail">
+                <td><img src="../static/img/guide_img.png" class="guide_image"></td>
+                <td class="guide_contents">
+                    <p><strong>1.Menu 소개</strong></p>
+                     <span>(1)공급자조회 </span>
+                    <p> : 공급자 관련 목록 리스트로 조회, 수정, 삭제, 신규 등록을 할 수 있는 페이지로 이동합니다.</p>
+                    
+                    <span>(2)Dashboard </span>
+                    <p> : DB에 저장된 데이터로 아래의 종목별 그래프들을 보실 수 있는 페이지로 이동합니다.</br>
+                       a. 거래량 top6 회사 그래프  </br>
+                       b. 월별 총 거래금액</br>
+                       c. 회사별 월별 거래횟수</br>
+                       d. 외상미수금 </p>
+                    
+                    <span>(3)사용설명서</span> 
+                    <p>전자세금계산서를 OCR하는 방법 및 Web에서 제공하는 서비스들과 기능들에 작성해 놓은 화면으로 이동하여 확인하실 수 있습니다.</p>
+                </td> 
+            </tr>
+            
+            <!--2.메인 화면의 OCR-Service 설명-->
+            <tr class="guide_detail">
+                <td><img src="../static/img/guide_img.png" class="guide_image"></td>
+                <td class="guide_contents">
+                    <p><strong>2-1. OCR-Service 이용방법</strong></p>
+                    <p>(1) 이미지 업로드 버튼 누르시면 왼쪽에 이미지를 업로드할 수 있는 파일 선택 버튼이 나옵니다.</p>
+                    <p>(2) 파일 선택 버튼을 눌러주세요. </br>
+                           --> 업로드할 전자세금계산서 이미지를 선택해주세요.</br>
+                           --> 이미지를 선택하시고 제출버튼을 눌러주세요.</p>
+                    <p>(3) 전처리한 이미지 및 문자인식을 한 것을 표로 보실 수 있는 화면으로 이동합니다.</p>
+                    <!-- <p>(2) 옆에 보시면 파일 선택을 누르시고 업로드할 이미지를 선택하시고 제출버튼을 눌러주시면 전처리한 이미지 및 문자인식을 한 표를 보실 수 있는 화면으로 이동합니다.</p>  -->
+                </td>
+            </tr>
+
+            <!--2.OCR-Service 설명.-->
+            <tr class="guide_detail">
+                <td><img src="../static/img/guide_img.png" class="guide_image"></td>
+                <td class="guide_contents">
+                    <p><strong>2-2. OCR-Service 이용방법</strong></p>
+                    <p> (1) 왼쪽에서는 전처리한 이미지를, 오른쪽에서는 문자인식을 하여 표로 나타낸 것을 확인하실 수 있습니다.</p>
+                    <p> (2) Dashboard를 누르시면 DB에 저장된 데이터 및 문자인식을 하여 표로 나타낸 데이터를 추가하여 종목별 그래프들로 나타낸 Dashboard화면으로 이동합니다.</p>
+                </td>
+            </tr>
+
+
+            <!--3. Dashboard 설명-->
+            <tr class="guide_detail">
+                <td><img src="../static/img/guide_img.png" class="guide_image"></td>
+                <td class="guide_contents">
+                    <p><strong>3. Dashboard </strong></p>
+                    <p>DB에 저장된 데이터에 OCR-Service로 문자인식을 한 것을 추가하여 Dashboard로 4개의 종목별 그래프들을 보실 수 있습니다.</p>
+                   
+                    <span>(1) 거래량 top6 회사 그래프 </span>
+                    <p>: 거래량이 높은 6개의 회사를 선별하여 도넛그래프로 나타낸 것을 확인하실 수 있습니다.</p>
+                   
+                    <span>(2) 월별 총 거래금액</span> 
+                    <p>: 1월~12월까지의 거래금액을 라인 그래프로 나타낸 것을 확인하실 수 있습니다.</p>
+                   
+                    <span>(3) 회사별 월별 거래횟수</span> 
+                    <p>: 회사마다 1월~12월까지 거래횟수를 막대그래프로 나타낸 것을 확인하실 수 있습니다.</p>
+                    
+                    <span>(4) 외상미수금</span> 
+                    <p>: 회사가 갚아야 할 금액을 확인하실 수 있습니다.</p>
+                </td>
+            </tr>
+
+             <!--4. 공급자조회-->
+            <tr class="guide_detail">
+                <td><img src="../static/img/guide_img.png" class="guide_image"></td>
+                <td class="guide_contents">
+                    <p><strong>4.공급자 조회 </strong></p>
+                    <p>전자세금계산서의 공급자 정보로 종사업장번호, 상호(법인명), 성명, 사업장주소, 업태, 종목, 이메일을 확인하실 수 있습니다.</br>
+                       또한, 상세 정보로 이동하여 공급자의 정보를 조회, 삭제, 수정, 신규등록을 하실 수 있습니다.</p>
+                   
+                    <span>(1)조회 </span>
+                    <p>: 등록번호를 입력하시면 저장된 공급자의 정보를 확인하실 수 있습니다.</p>
+                    
+                    <span>(2)삭제 </span>
+                    <p>: 삭제 버튼을 누르시면 저장된 공급자를 삭제하실 수 있습니다.</p>
+                    
+                    <span>(3)수정 </span>
+                    <p>: 수정 버튼을 누르시면 저장된 공급자의 정보를 수정하실 수 있습니다. </p>
+                    
+                    <span>(4)신규등록 </span>
+                    <p>: 신규등록 버튼을 누르시면 새로운 공급자를 등록하실 수 있습니다.</p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

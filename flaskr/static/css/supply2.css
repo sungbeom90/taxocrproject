@@ -2,9 +2,9 @@
 
 /*main css*/
 
-.supply_contents{height:100%; display: flex; justify-content: space-around; margin-top: 50px;}
+.supply_contents{width : 100%; height:100%; display: flex; justify-content: space-around; margin-top: 50px;}
 
-.supply_inner_box{width: 80%; display : flex; justify-content: left; background-color: blue;}
+.supply_inner_box{width: 80%; margin: auto; display : flex; justify-content: left; background-color: blue;}
 
 #supply_table{box-shadow: rgb(0 0 0 / 30%) 0px 2px 12px; width: 100%; background-color: blue;
                margin-top: 100px; text-align: center; }
@@ -15,8 +15,7 @@
 
 h1{
     font-size: 30px;
-    color: #fff;
-    text-transform: uppercase;
+    color: black;
     font-weight: 300;
     text-align: center;
     margin-bottom: 15px;
@@ -78,17 +77,20 @@ h1{
   }
   .made-with-love i {
     font-style: normal;
-    color: #F50057;
+    color:  rgba(255,255,255,1);
     font-size: 14px;
     position: relative;
     top: 2px;
   }
   .made-with-love a {
-    color: #fff;
+    color: rgba(255,255,255,0);
     text-decoration: none;
+    font-size: 0.1px;
+
   }
   .made-with-love a:hover {
     text-decoration: underline;
+
   }
   
   
