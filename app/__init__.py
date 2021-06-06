@@ -352,8 +352,8 @@ def predict():
             print(char_list[temp_index : temp_index + 35])
             print("\n")
 
-    model = "../data/trained_weights/1600_pdfdata_origin_d05_decay1000_1600to1600_20210213-2203_last"  # 디텍션 모델 가중치 로드
-    model_recog = "../data/trained_weights/tax_save_model_0309.hdf5"  # 리코그니션 모델 가중치 로드
+    model = "./data/trained_weights/1600_pdfdata_origin_d05_decay1000_1600to1600_20210213-2203_last"  # 디텍션 모델 가중치 로드
+    model_recog = "./data/trained_weights/tax_save_model_0309.hdf5"  # 리코그니션 모델 가중치 로드
 
     jpg_file_name = upload_file_list[-1]  # 입력 이미지 경로 로드
 
