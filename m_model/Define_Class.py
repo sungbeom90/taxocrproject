@@ -1,6 +1,6 @@
 def definition_class():
     char_list = []
-    f = open("../data/trained_weights/defined_class.txt", "r", encoding="utf-8")
+    f = open("./data/trained_weights/defined_class.txt", "r", encoding="utf-8")
     lines = f.readlines()
 
     for line in lines:
