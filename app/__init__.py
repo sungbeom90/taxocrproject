@@ -289,7 +289,6 @@ def delete_provider():
 
 
 # ========================model==========================
-from m_model.craft_model import Craft
 from m_model.helpers import (
     box_from_map,
     box_on_image,
@@ -307,9 +306,6 @@ import os
 import copy
 import tensorflow as tf
 import m_model.Define_Class as Define_Class
-import m_model.recog_model as recog_model
-from tensorflow.keras.layers import Input
-import statistics
 import pickle
 
 

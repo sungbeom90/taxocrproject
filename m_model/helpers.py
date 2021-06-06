@@ -4,8 +4,9 @@ from PIL import Image, ImageDraw
 from PIL import ImageFont
 import copy
 from m_model.craft_model import Craft
+from m_model.recog_model import act_model_load_LSTM
 from tensorflow.keras.layers import Input
-import m_model.recog_model as recog_model
+import statistics
 
 
 def box_from_map(heat_map):
@@ -368,7 +369,7 @@ def pred_recognition(model_recog, char_list, or_image, word_box):
 
     model_input = Input(shape=(32, 256, 1))
 
-    inputs, outputs, act_model = recog_model.act_model_load_LSTM(
+    inputs, outputs, act_model = act_model_load_LSTM(
         char_list, model_input
     )  # 리코그니션 모델 생성 종속변수(클래스)와 입력 사이즈를 매게변수로 제공
 
