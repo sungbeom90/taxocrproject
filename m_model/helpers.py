@@ -4,6 +4,8 @@ from PIL import Image, ImageDraw
 from PIL import ImageFont
 import copy
 from m_model.craft_model import Craft
+from tensorflow.keras.layers import Input
+import m_model.recog_model as recog_model
 
 
 def box_from_map(heat_map):
@@ -282,7 +284,7 @@ def recog_pre_process(word_box):
                 word_box[index][0] : word_box[index][2],
             ]
         )
-    
+
     for crop_image in crop_images:
 
         crop_image_resizing = cv2.resize(
@@ -331,7 +333,7 @@ def load_single_img_resize(image_route, width: int, height: int):
 
 
 # 이미지 디텍션 모델 실행 함수
-def pred_test(img_route, model_weight, size):
+def pred_detection(img_route, model_weight, size):
     model = Craft()  # 디텍션 모델 생성
     model.load(model_weight)  # 디테션 가중치 주입
 
@@ -359,7 +361,22 @@ def pred_test(img_route, model_weight, size):
 
     return or_image, image, word_box
 
-def ():
+
+def pred_recognition(model_recog, word_box):
+    test_image = recog_pre_process(word_box)  # 단어 크롭 이미지 전처리
+    print(test_image.shape)
+
+    model_input = Input(shape=(32, 256, 1))
+
+    inputs, outputs, act_model = recog_model.act_model_load_LSTM(
+        char_list, model_input
+    )  # 리코그니션 모델 생성 종속변수(클래스)와 입력 사이즈를 매게변수로 제공
+
+    act_model.load_weights(model_recog)  # 모델 가중치 적용
+
+    prediction = act_model.predict([test_image])  # 리코그니션 모델 예측
+
+    word_list = word_box
     text_list = []
     score_list = []
     score_index = []
@@ -410,3 +427,4 @@ def ():
             len(text_list), len(score_list), len(word_list)
         )
     )
+    return text_list, score_list, word_list
