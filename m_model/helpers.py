@@ -507,13 +507,17 @@ def test_logic(text_list, score_list, word_list):
         },
     }
     for index in range(len(text_list)):
-        print("{}번째 텍스트 : {} 조건 찾는중".format(index, word_list[index]))
+        print("{}번째 텍스트 : {} 조건 찾는중".format(index, text_list[index]))
         flag = False
         for table_key, table_value in word_spot_dict.items():
             for column_key, column_value in table_value.items():
                 print(
-                    "{} location : {}".format(column_key, column_value["location"]),
-                    end="\r",
+                    "[{} 단어 좌표 : {}] =? [{} 좌표 : {}]".format(
+                        text_list[index],
+                        word_list[index],
+                        column_key,
+                        column_value["location"],
+                    )
                 )
                 if find_position(column_value["location"], word_list[index]):
                     word_spot_dict[table_key][column_key]["text"].append(
