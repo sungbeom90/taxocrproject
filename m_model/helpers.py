@@ -433,7 +433,7 @@ def pred_recognition(model_recog, char_list, or_image, word_box):
 
 
 def test_logic(text_list, score_list, word_list):
-    word_spot_list = {
+    word_spot_dict = {
         "t_bill": {
             "b_id": {"text": [], "score": [], "location": (1014, 93, 1576, 158)},
             "b_date": {"text": [], "score": [], "location": (80, 539, 266, 598)},
@@ -508,11 +508,11 @@ def test_logic(text_list, score_list, word_list):
     }
     for index in range(len(text_list)):
         flag = False
-        for table in word_spot_list.keys():
-            for column in table.keys():
+        for table in word_spot_dict.values():
+            for column in table.values():
                 if find_position(column["location"], word_list[index]):
-                    word_spot_list[table][column]["text"].append(text_list[index])
-                    word_spot_list[table][column]["score"].append(score_list[index])
+                    word_spot_dict[table][column]["text"].append(text_list[index])
+                    word_spot_dict[table][column]["score"].append(score_list[index])
                     flag = True
                     break
                 if flag:
@@ -520,12 +520,12 @@ def test_logic(text_list, score_list, word_list):
             if flag:
                 break
 
-    for table in word_spot_list.keys():
-        for column in table.keys():
-            word_spot_list[table][column]["text"] = "".join(column["text"])
-            word_spot_list[table][column]["text"] = statistics.mean(column["score"])
+    for table in word_spot_word_spot_dictlist.values():
+        for column in table.values():
+            word_spot_dict[table][column]["text"] = "".join(column["text"])
+            word_spot_dict[table][column]["text"] = statistics.mean(column["score"])
 
-    return word_spot_list
+    return word_spot_dict
 
 
 # def find_position(target_location, word_location):

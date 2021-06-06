@@ -376,10 +376,10 @@ def predict():
     with open("./data/pickle/word_list.pickle", "wb") as f:
         pickle.dump(word_list, f, pickle.HIGHEST_PROTOCOL)
 
-    word_spot_list = test_logic(text_list, score_list, word_list)
+    word_spot_dict = test_logic(text_list, score_list, word_list)
 
     return render_template(
-        "con_base.html", jpg_file_name=jpg_file_name, resultData=word_spot_list
+        "con_base.html", jpg_file_name=jpg_file_name, resultData=word_spot_dict
     )
     # return redirect(
     #     url_for(
