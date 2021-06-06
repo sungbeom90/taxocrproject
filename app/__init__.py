@@ -210,7 +210,7 @@ def upload_file():
         # 파일 저장
         f = request.files["file"]
         print("file storage 내부 : ", f)
-        f.save("./static/image/" + secure_filename(f.filename))
+        f.save("./app/static/image/" + secure_filename(f.filename))
         upfile_address = "./static/image/" + secure_filename(f.filename)
         upload_file_list.append(upfile_address)
         print(upfile_address)
