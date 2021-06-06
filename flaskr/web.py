@@ -53,6 +53,9 @@ def guide():
 def supply():
     return render_template("supply.html")
 
+@app.route("/supply_insert", methods=["GET"])
+def supply_insert():
+    return render_template("supply_insert.html")
 
 @app.route("/predicted_img", methods=["POST"])
 def Predict_img():
@@ -115,9 +118,26 @@ def delete_provider():
     om.supply_delete(p_id, db_class) #om 참고
     return redirect(url_for('select_sup'))
 
+db_class = mod_dbconn.Database()
+
+@app.route("/insert_provider", methods=("GET", "POST"))
+def insert_provider():
+    print("공급자 등록 요청 접수됨")
+    if request.method == "GET":
+        return render_template("insert.html")
+    if request.method == "POST":
+
+        args = tuple(request.form.values())
+        print(args)
+        sql = """INSERT into taxocr.t_provider (p_id, p_corp_num, p_corp_name, p_ceo_name, p_add, p_stat, p_type, p_email)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"""
+        db_class.execute(query=sql, args=args)
+        db_class.commit()
+        return render_template("home.html")
+
 
 
 if __name__ == "__main__":
     app.debug = True
     #app.run(port=80)
-    app.run(host="192.168.187.1", port=80, debug=True)
+    app.run(host="192.168.55.215", port=80, debug=True)
