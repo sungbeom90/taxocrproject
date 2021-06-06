@@ -375,7 +375,7 @@ def predict():
     with open("./data/pickle/word_list.pickle", "wb") as f:
         pickle.dump(word_list, f, pickle.HIGHEST_PROTOCOL)
 
-    row = {"b_id": "111-1111-1111"}
+    row = {"t_bill": {"b_id": "111-1111-1111"}}
 
     return render_template("con_base.html", jpg_file_name=jpg_file_name, resultData=row)
     # return redirect(

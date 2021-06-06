@@ -18,7 +18,7 @@
     <div class='container-main'>
       <div class="container-fluid">
         <div class="flex-container">
-          <img src="{{url_for('static', filename=image_file)}}">
+          <img src="{{url_for('app', filename=image_file)}}">
         </div>
         <div class="flex-container">
           <!-- 공급자 -->
@@ -30,7 +30,7 @@
             </thead>
             <tbody>
               <tr>
-                <td><input name="b_id" type="text" value="{{resultData.b_id}}" /></td>
+                <td><input name="b_id" type="text" value="{{resultData.t_bill.b_id}}" /></td>
               </tr>
             </tbody>
             <!-- <thead>
