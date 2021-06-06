@@ -367,7 +367,9 @@ def predict():
     #     )
 
     print("Recognizing...")
-    text_list, score_list, word_list = pred_recognition(model_recog, or_image, word_box)
+    text_list, score_list, word_list = pred_recognition(
+        model_recog, char_list, or_image, word_box
+    )
     # test_image = recog_pre_process(word_box)  # 단어 크롭 이미지 전처리
     # print(test_image.shape)
 

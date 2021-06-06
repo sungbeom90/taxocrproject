@@ -362,7 +362,7 @@ def pred_detection(img_route, model_weight, size):
     return or_image, image, word_box
 
 
-def pred_recognition(model_recog, or_image, word_box):
+def pred_recognition(model_recog, char_list, or_image, word_box):
     test_image = recog_pre_process(or_image, word_box)  # 단어 크롭 이미지 전처리
     print(test_image.shape)
 
