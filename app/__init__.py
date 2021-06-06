@@ -1,5 +1,37 @@
-from flask import Flask, render_template, redirect, request, url_for
+from flask import (
+    Flask,
+    json,
+    render_template,
+    redirect,
+    url_for,
+    request,
+    jsonify,
+)
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+import pickle
+import os
+
 from app import mod_dbconn
+from app import ocr_manage as om
+
+
+from werkzeug.utils import secure_filename
+
+from m_model.helpers import (
+    box_from_map,
+    box_on_image,
+    tax_serialization,
+    detection_preprocess,
+    recog_pre_process,
+    load_single_img_resize,
+    pred_detection,
+    pred_recognition,
+)
+from PIL import Image
+from m_model import Define_Class
+
 
 app = Flask(__name__)
 db_class = mod_dbconn.Database()
@@ -177,10 +209,7 @@ def barGraph():
 
 
 # ===================flaskr=========================
-from flask import Flask, json, render_template, redirect, url_for, request, jsonify
-import app.ocr_manage as om
-import os
-from werkzeug.utils import secure_filename
+
 
 # 업로드된 파일주소가 저장되는 리스트
 upload_file_list = []
@@ -308,7 +337,6 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import copy
 import tensorflow as tf
 import m_model.Define_Class as Define_Class
 import pickle
