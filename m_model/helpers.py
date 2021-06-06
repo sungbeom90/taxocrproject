@@ -517,6 +517,11 @@ def test_logic(text_list, score_list, word_list):
                     word_spot_dict[table_key][column_key]["score"].append(
                         score_list[index]
                     )
+                    print(
+                        "{}번째 텍스트 : {}, {} table, {} column에 입력됨".format(
+                            index, text_list[index], table_key, column_key
+                        )
+                    )
                     flag = True
                     break
                 if flag:
