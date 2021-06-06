@@ -1,3 +1,10 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+import pickle
+import os
+from werkzeug.utils import secure_filename
+from PIL import Image
 from flask import (
     Flask,
     json,
@@ -7,18 +14,10 @@ from flask import (
     request,
     jsonify,
 )
-import matplotlib.pyplot as plt
-import numpy as np
-import tensorflow as tf
-import pickle
-import os
 
 from app import mod_dbconn
 from app import ocr_manage as om
-
-
-from werkzeug.utils import secure_filename
-
+from m_model import Define_Class
 from m_model.helpers import (
     box_from_map,
     box_on_image,
@@ -29,8 +28,6 @@ from m_model.helpers import (
     pred_detection,
     pred_recognition,
 )
-from PIL import Image
-from m_model import Define_Class
 
 
 app = Flask(__name__)
@@ -323,23 +320,6 @@ def supply_insert():
 
 
 # ========================model==========================
-from m_model.helpers import (
-    box_from_map,
-    box_on_image,
-    tax_serialization,
-    detection_preprocess,
-    recog_pre_process,
-    load_single_img_resize,
-    pred_detection,
-    pred_recognition,
-)
-from PIL import Image
-import matplotlib.pyplot as plt
-import numpy as np
-import os
-import tensorflow as tf
-import m_model.Define_Class as Define_Class
-import pickle
 
 
 @app.route("/predict")
@@ -365,7 +345,7 @@ def predict():
     model = "./data/trained_weights/1600_pdfdata_origin_d05_decay1000_1600to1600_20210213-2203_last"  # 디텍션 모델 가중치 로드
     model_recog = "./data/trained_weights/tax_save_model_0309.hdf5"  # 리코그니션 모델 가중치 로드
 
-    jpg_file_name = upload_file_list[-1]  # 입력 이미지 경로 로드
+    jpg_file_name = upload_file_list.pop()  # 입력 이미지 경로 로드
 
     print("Detecting...")  # 이미지 디텍팅 실행
     or_image, boxed_image, word_box = pred_detection(jpg_file_name, model, size=1600)
@@ -395,7 +375,9 @@ def predict():
     with open("./data/pickle/word_list.pickle", "wb") as f:
         pickle.dump(word_list, f, pickle.HIGHEST_PROTOCOL)
 
-    return redirect(url_for("home"))
+    row = {"b_id": "111-1111-1111"}
+
+    return render_template("con_base.html", jpg_file_name=jpg_file_name, resultData=row)
     # return redirect(
     #     url_for(
     #         "logic", text_list=text_list, score_list=score_list, word_list=word_list
