@@ -268,10 +268,21 @@ def tax_serialization(test_img, coors):
     return serialized_line
 
 
-def recog_pre_process(crop_images):
+def recog_pre_process(word_box):
+
+    crop_images = []
     test_img = []
     index = 0
 
+    # 단어 좌표를 이용한 단어 자르기
+    for index in range(len(word_box)):
+        crop_images.append(
+            or_image[
+                word_box[index][1] : word_box[index][3],
+                word_box[index][0] : word_box[index][2],
+            ]
+        )
+    
     for crop_image in crop_images:
 
         crop_image_resizing = cv2.resize(
@@ -347,3 +358,55 @@ def pred_test(img_route, model_weight, size):
     or_image = np.array(orig_image * 255, np.uint8)  # 원본 이미지 화소 적용
 
     return or_image, image, word_box
+
+def ():
+    text_list = []
+    score_list = []
+    score_index = []
+
+    for index in range(len(test_image)):
+        temp_loc = []
+        temp_score = []
+        text_temp = []
+
+        temp = prediction[index]  # 예측값에서 단어 하나 꺼내기
+
+        for temp_index in range(len(temp)):  # 단어에서 활자(케릭터) 꺼내기
+            if np.argmax(temp[temp_index]) == len(char_list):  # 모델 예측시 생성된 '-' 면 제거
+                pass
+            else:
+                if (temp_index > 0) and (np.argmax(temp[temp_index])) == (
+                    np.argmax(temp[temp_index - 1])
+                ):  # 모델 예측 시 생성된 반복된 글자면 제거 (ex : aa)
+                    pass
+                else:  # 위에서 필터링된 활자만 인정하여 단어에 넣음
+                    temp_loc.append(
+                        np.argmax(temp[temp_index])
+                    )  # 종속변수(클래스) 에 명시된 활자(케릭터) 확률중 가장 큰 확률 인덱스 저장
+                    temp_score.append(
+                        temp[temp_index][np.argmax(temp[temp_index])]
+                    )  # 종속변수(클래스) 에 명시된 활자(케릭터) 확률중 가장 큰 확률 값 저장
+
+        score_index.append(temp_loc)
+
+        if temp_score == []:  # 위 조건중 패스된 경우 아래와 같은 값을 저장
+            temp_score = [0.5]
+            temp_loc = [len(temp)]
+
+        score_list.append(
+            statistics.mean(temp_score)
+        )  # 활자(케릭터)에 대한 확률값을 평균내어 단어의 대한 확률값으로 저장
+
+        for text_index in range(len(temp_loc)):  # 각 활자(케릭터) 인덱스로 실제 텍스트 얻어 저장
+            text_temp.append(char_list[temp_loc[text_index]])
+
+        string_text_temp = "".join(text_temp)  # 실제 텍스트를 단어로 묶기
+        text_list.append(string_text_temp)
+        print(text_list[index], score_list[index])
+
+    # 단어 갯수, 단어 확률값 갯수, 단어 좌표값 갯수 보기
+    print(
+        "len(text_list) : {} len(score_list) : {} len(word_list) : {}".format(
+            len(text_list), len(score_list), len(word_list)
+        )
+    )
