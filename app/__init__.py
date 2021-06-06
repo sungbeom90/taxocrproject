@@ -288,6 +288,11 @@ def delete_provider():
     return redirect(url_for("select_sup"))
 
 
+@app.route("/supply_insert", methods=["GET"])
+def supply_insert():
+    return render_template("supply_insert.html")
+
+
 # ========================model==========================
 from m_model.helpers import (
     box_from_map,

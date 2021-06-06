@@ -25,6 +25,16 @@
           <table class="type1">
             <thead>
               <tr>
+                <th scope="row">승인번호</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input name="b_id" type="text" value="{{resultData.b_id}}" /></td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
                 <th scope="row">등록번호</th>
                 <th scope="row">종사업장번호</th>
                 <th scope="row">상호</th>
@@ -33,10 +43,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
+                <td><input type="text" , name="p_id" , value="{{resultData.p_id}}" /></td>
+                <td><input type="text" , name="p_corp_num" , value="{{resultData.p_corp_num}}" /></td>
+                <td><input type="text" , name="p_corp_name" , value="{{resultData.p_corp_name}}" /></td>
+                <td><input type="text" , name="p_ceo_name" , value="{{resultData.p_ceo_name}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -49,10 +59,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
+                <td><input type="text" , name='p_add' , value="{{resultData.p_add}}" /></td>
+                <td><input type="text" , name='p_stat' , value="{{resultData.p_stat}}" /></td>
+                <td><input type="text" , name='p_type' , value="{{resultData.p_type}}" /></td>
+                <td><input type="text" , name='p_email' , value="{{resultData.p_email}}" /></td>
               </tr>
             </tbody>
           </table>
@@ -63,15 +73,17 @@
                 <th scope="row">작성일자</th>
                 <th scope="row">공급가액</th>
                 <th scope="row">세액</th>
+                <th scope="row">수정사유</th>
                 <th scope="row">비고</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
+                <td><input type="date" , name='b_date' , value="{{resultData.b_date}}" /></td>
+                <td><input type="text" , name='b_cost_sup' , value="{{resultData.b_cost_sup}}" /></td>
+                <td><input type="text" , name='b_cost_tax' , value="{{resultData.b_cost_tax}}" /></td>
+                <td><input type="text" , name='b_mr' , value="{{resultData.b_mr}}" /></td>
+                <td><input type="text" , name='b_etc' , value="{{resultData.b_etc}}" /></td>
               </tr>
             </tbody>
           </table>
@@ -87,10 +99,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
+                <td><input type="date" , name='i_month_1' , value="{{resultData.i_month_1}}" /></td>
+                <td><input type="date" , name='i_day_1' , value="{{resultData.i_day_1}}" /></td>
+                <td><input type="text" , name='i_name_1' , value="{{resultData.i_name_1}}" /></td>
+                <td><input type="text" , name='i_stand_1' , value="{{resultData.i_stand_1}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -102,10 +114,103 @@
             </thead>
             <tbody>
               <tr>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
+                <td><input type="text" , name='i_quan_1' , value="{{resultData.i_quan_1}}" /></td>
+                <td><input type="text" , name='i_unit_1' , value="{{resultData.i_unit_1}}" /></td>
+                <td><input type="text" , name='i_sup_1' , value="{{resultData.i_sup_1}}" /></td>
+                <td><input type="text" , name='i_tax_1' , value="{{resultData.i_tax_1}}" /></td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="row">월</th>
+                <th scope="row">일</th>
+                <th scope="row">품목</th>
+                <th scope="row">규격</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="date" , name='i_month_2' , value="{{resultData.i_month_2}}" /></td>
+                <td><input type="date" , name='i_day_2' , value="{{resultData.i_day_2}}" /></td>
+                <td><input type="text" , name='i_name_2' , value="{{resultData.i_name_2}}" /></td>
+                <td><input type="text" , name='i_stand_2' , value="{{resultData.i_stand_2}}" /></td>
+              </tr>
+            </tbody>
+            <thead>
+              <th scope="row">수량</th>
+              <th scope="row">단가</th>
+              <th scope="row">공급가액</th>
+              <th scope="row">세액</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" , name='i_quan_2' , value="{{resultData.i_quan_2}}" /></td>
+                <td><input type="text" , name='i_unit_2' , value="{{resultData.i_unit_2}}" /></td>
+                <td><input type="text" , name='i_sup_2' , value="{{resultData.i_sup_2}}" /></td>
+                <td><input type="text" , name='i_tax_2' , value="{{resultData.i_tax_2}}" /></td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="row">월</th>
+                <th scope="row">일</th>
+                <th scope="row">품목</th>
+                <th scope="row">규격</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="date" , name='i_month_3' , value="{{resultData.i_month_3}}" /></td>
+                <td><input type="date" , name='i_day_3' , value="{{resultData.i_day_3}}" /></td>
+                <td><input type="text" , name='i_name_3' , value="{{resultData.i_name_3}}" /></td>
+                <td><input type="text" , name='i_stand_3' , value="{{resultData.i_stand_3}}" /></td>
+              </tr>
+            </tbody>
+            <thead>
+              <th scope="row">수량</th>
+              <th scope="row">단가</th>
+              <th scope="row">공급가액</th>
+              <th scope="row">세액</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" , name='i_quan_3' , value="{{resultData.i_quan_3}}" /></td>
+                <td><input type="text" , name='i_unit_3' , value="{{resultData.i_unit_3}}" /></td>
+                <td><input type="text" , name='i_sup_3' , value="{{resultData.i_sup_3}}" /></td>
+                <td><input type="text" , name='i_tax_3' , value="{{resultData.i_tax_3}}" /></td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th scope="row">월</th>
+                <th scope="row">일</th>
+                <th scope="row">품목</th>
+                <th scope="row">규격</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="date" , name='i_month_4' , value="{{resultData.i_month_4}}" /></td>
+                <td><input type="date" , name='i_day_4' , value="{{resultData.i_day_4}}" /></td>
+                <td><input type="text" , name='i_name_4' , value="{{resultData.i_name_4}}" /></td>
+                <td><input type="text" , name='i_stand_4' , value="{{resultData.i_stand_4}}" /></td>
+              </tr>
+            </tbody>
+            <thead>
+              <th scope="row">수량</th>
+              <th scope="row">단가</th>
+              <th scope="row">공급가액</th>
+              <th scope="row">세액</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" , name='i_quan_4' , value="{{resultData.i_quan_4}}" /></td>
+                <td><input type="text" , name='i_unit_4' , value="{{resultData.i_unit_4}}" /></td>
+                <td><input type="text" , name='i_sup_4' , value="{{resultData.i_sup_4}}" /></td>
+                <td><input type="text" , name='i_tax_4' , value="{{resultData.i_tax_4}}" /></td>
               </tr>
             </tbody>
           </table>
@@ -122,11 +227,11 @@
             </thead>
             <tbody>
               <tr>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
-                <td><input name="b" type="text" placeholder='ex' /></td>
+                <td><input type="text" , name='b_cost_total' , value="{{resultData.b_cost_total}}" /></td>
+                <td><input type="text" , name='b_cost_cash' , value="{{resultData.b_cost_cash}}" /></td>
+                <td><input type="text" , name='b_cost_check' , value="{{resultData.b_cost_check}}" /></td>
+                <td><input type="text" , name='b_cost_note' , value="{{resultData.b_cost_note}}" /></td>
+                <td><input type="text" , name='b_cost_credit' , value="{{resultData.b_cost_credit}}" /></td>
               </tr>
             </tbody>
           </table>
