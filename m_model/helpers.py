@@ -18,7 +18,7 @@ def box_from_map(heat_map):
     centers = []
 
     for stat, center in zip(stats, centroid):
-        box = heat_map[stat[1]:stat[1] + stat[3], stat[0]:stat[0] + stat[2]]
+        box = heat_map[stat[1] : stat[1] + stat[3], stat[0] : stat[0] + stat[2]]
         x = np.unravel_index(np.argmax(box, axis=None), box.shape)[0] + stat[1]
         y = np.unravel_index(np.argmax(box, axis=None), box.shape)[1] + stat[0]
         if heat_map[x][y] > center_min:
@@ -46,8 +46,11 @@ def make_boxes(centers, heat_map, padding):
 
         while True:
             try:
-                if heat_map[cur_y][cur_x - width_left] <= heat_map[cur_y][cur_x - width_left + 1] \
-                        and heat_map[cur_y][cur_x - width_left + 1] > threshold:
+                if (
+                    heat_map[cur_y][cur_x - width_left]
+                    <= heat_map[cur_y][cur_x - width_left + 1]
+                    and heat_map[cur_y][cur_x - width_left + 1] > threshold
+                ):
                     width_left += 1
                 else:
                     break
@@ -56,8 +59,11 @@ def make_boxes(centers, heat_map, padding):
 
         while True:
             try:
-                if heat_map[cur_y][cur_x + width_right] <= heat_map[cur_y][cur_x + width_right - 1] \
-                        and heat_map[cur_y][cur_x + width_right - 1] > threshold:
+                if (
+                    heat_map[cur_y][cur_x + width_right]
+                    <= heat_map[cur_y][cur_x + width_right - 1]
+                    and heat_map[cur_y][cur_x + width_right - 1] > threshold
+                ):
                     width_right += 1
                 else:
                     break
@@ -66,8 +72,11 @@ def make_boxes(centers, heat_map, padding):
 
         while True:
             try:
-                if heat_map[cur_y - height_up][cur_x] <= heat_map[cur_y - height_up + 1][cur_x] \
-                        and heat_map[cur_y - height_up + 1][cur_x] > threshold:
+                if (
+                    heat_map[cur_y - height_up][cur_x]
+                    <= heat_map[cur_y - height_up + 1][cur_x]
+                    and heat_map[cur_y - height_up + 1][cur_x] > threshold
+                ):
                     height_up += 1
                 else:
                     break
@@ -76,8 +85,11 @@ def make_boxes(centers, heat_map, padding):
 
         while True:
             try:
-                if heat_map[cur_y + height_down][cur_x] <= heat_map[cur_y + height_down - 1][cur_x] \
-                        and heat_map[cur_y + height_down - 1][cur_x] > threshold:
+                if (
+                    heat_map[cur_y + height_down][cur_x]
+                    <= heat_map[cur_y + height_down - 1][cur_x]
+                    and heat_map[cur_y + height_down - 1][cur_x] > threshold
+                ):
                     height_down += 1
                 else:
                     break
@@ -87,24 +99,31 @@ def make_boxes(centers, heat_map, padding):
         height = max(height_down, height_up) + padding
         width = max(width_left, width_right) + padding
         if height > 0 and width > 0:
-            boxes.append([cur_x - width_right, cur_y - height_up, cur_x + width_right, cur_y + height_down])
+            boxes.append(
+                [
+                    cur_x - width_right,
+                    cur_y - height_up,
+                    cur_x + width_right,
+                    cur_y + height_down,
+                ]
+            )
 
     return boxes
 
 
 def box_on_image(parameters, boxes):
-    image = parameters['image']
-    width = parameters['width']
-    height = parameters['height']
+    image = parameters["image"]
+    width = parameters["width"]
+    height = parameters["height"]
 
     image = Image.fromarray(image).resize((int(width), int(height)))
     draw = ImageDraw.Draw(image)
 
-    font = ImageFont.truetype("font/NanumGothic.ttf", 20)
+    font = ImageFont.truetype("./m_model/font/NanumGothic.ttf", 20)
 
     for i, box in enumerate(boxes):
-        draw.rectangle(box, outline='blue')
-        draw.text((box[2]+5, box[1]+5), str(i), font=font)
+        draw.rectangle(box, outline="blue")
+        draw.text((box[2] + 5, box[1] + 5), str(i), font=font)
 
     image = image.resize((width, height))
     return parameters, image
@@ -188,7 +207,9 @@ def tax_serialization(test_img, coors):
         save_ycoors[co_index][1] = min(y_temp_list_min)
         save_ycoors[co_index][3] = max(y_temp_list_max)
 
-    xycoors = sorted(save_ycoors, key=lambda save_ycoors: (save_ycoors[1], save_ycoors[0]))
+    xycoors = sorted(
+        save_ycoors, key=lambda save_ycoors: (save_ycoors[1], save_ycoors[0])
+    )
 
     for i, coor in enumerate(xycoors):
         if i == (len(xycoors) - 1):
@@ -200,15 +221,33 @@ def tax_serialization(test_img, coors):
                 serialized_line.append([x, y, w, h])
             break
 
-        x_thres = int((abs(xycoors[i][2] - xycoors[i][0]) + abs(xycoors[i+1][2] - xycoors[i+1][0]))*0.5) + 1
-        y_thres = int((abs(xycoors[i][3] - xycoors[i][1]) + abs(xycoors[i+1][3] - xycoors[i+1][1]))*0.1) + 1
+        x_thres = (
+            int(
+                (
+                    abs(xycoors[i][2] - xycoors[i][0])
+                    + abs(xycoors[i + 1][2] - xycoors[i + 1][0])
+                )
+                * 0.5
+            )
+            + 1
+        )
+        y_thres = (
+            int(
+                (
+                    abs(xycoors[i][3] - xycoors[i][1])
+                    + abs(xycoors[i + 1][3] - xycoors[i + 1][1])
+                )
+                * 0.1
+            )
+            + 1
+        )
 
         if len(tmp_line) == 0:
             tmp_line.append(xycoors[i])
 
-        if abs(xycoors[i][3] - xycoors[i+1][3]) <= y_thres:
+        if abs(xycoors[i][3] - xycoors[i + 1][3]) <= y_thres:
             if abs(xycoors[i][2] - xycoors[i + 1][0]) <= x_thres:
-                tmp_line.append(xycoors[i+1])
+                tmp_line.append(xycoors[i + 1])
             else:
                 if len(tmp_line) == 0:
                     tmp_line.append(xycoors[i])
@@ -233,14 +272,15 @@ def recog_pre_process(crop_images):
 
     for crop_image in crop_images:
 
-        crop_image_resizing = cv2.resize(crop_image, dsize=(256, 32), interpolation=cv2.INTER_AREA)
+        crop_image_resizing = cv2.resize(
+            crop_image, dsize=(256, 32), interpolation=cv2.INTER_AREA
+        )
         crop_image_dim = np.expand_dims(crop_image_resizing, axis=2)
 
-        crop_image_resizing = crop_image_resizing / 255.
+        crop_image_resizing = crop_image_resizing / 255.0
 
         test_img.append(crop_image_resizing)
 
     test_img = np.array(test_img)
-
 
     return test_img
