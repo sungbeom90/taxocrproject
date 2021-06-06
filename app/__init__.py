@@ -250,6 +250,44 @@ def test():
         return render_template("test1.html", Data1=Data1)
 
 
+# ---
+@app.route("/supply_db")
+def select_sup():
+    sql = "SELECT *\
+                FROM taxocr.t_provider"
+    all_sup_dict = db_class.executeAll(sql)
+    print(all_sup_dict)
+    dataNum = len(all_sup_dict)
+    return render_template("supply.html", resultData=all_sup_dict, dataNum=dataNum)
+
+
+@app.route("/supply_desc", methods=["GET"])
+# 상세 보기
+def select_sup_desc():
+    p_id = request.args.get("p_id")
+    desc_dict = om.supply_desc(p_id)  # om 참고
+    return render_template("supply_desc.html", desc_dict=desc_dict[0])
+
+
+@app.route("/update_provider", methods=("GET", "POST"))
+# 공급자 정보 수정버튼
+def update_provider():
+    print("수정요청접수")
+    if request.method == "POST":
+        args_dict = request.form.to_dict()
+        print(args_dict)
+        om.supply_update(args_dict, db_class)  # om 참고
+        return redirect(url_for("select_sup"))
+
+
+@app.route("/delete_provider", methods=("GET", "POST"))
+# 공급자 정보 삭제버튼
+def delete_provider():
+    p_id = request.args.get("p_id")
+    om.supply_delete(p_id, db_class)  # om 참고
+    return redirect(url_for("select_sup"))
+
+
 # ========================model==========================
 from m_model.craft_model import Craft
 from m_model.helpers import (
