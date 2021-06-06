@@ -508,8 +508,8 @@ def test_logic(text_list, score_list, word_list):
     }
     for index in range(len(text_list)):
         flag = False
-        for table_key, table_value in word_spot_dict.item():
-            for column_key, column_value in table.item():
+        for table_key, table_value in word_spot_dict.items():
+            for column_key, column_value in table.items():
                 if find_position(column_value["location"], word_list[index]):
                     word_spot_dict[table_key][column_key]["text"].append(
                         text_list[index]
@@ -524,8 +524,8 @@ def test_logic(text_list, score_list, word_list):
             if flag:
                 break
 
-    for table_key, table_value in word_spot_word_spot_dictlist.item():
-        for column_key, column_value in table.item():
+    for table_key, table_value in word_spot_word_spot_dictlist.items():
+        for column_key, column_value in table.items():
             word_spot_dict[table_key][column_key]["text"] = "".join(
                 column_value["text"]
             )
