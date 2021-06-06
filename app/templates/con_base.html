@@ -43,10 +43,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" , name="p_id" , value="{{word_spot_dict.p_id}}" /></td>
-                <td><input type="text" , name="p_corp_num" , value="{{word_spot_dict.p_corp_num}}" /></td>
-                <td><input type="text" , name="p_corp_name" , value="{{word_spot_dict.p_corp_name}}" /></td>
-                <td><input type="text" , name="p_ceo_name" , value="{{word_spot_dict.p_ceo_name}}" /></td>
+                <td><input type="text" , name="p_id" , value="{{word_spot_dict.t_provider.p_id.text}}" /></td>
+                <td><input type="text" , name="p_corp_num" , value="{{word_spot_dict.t_provider.p_corp_num.text}}" /></td>
+                <td><input type="text" , name="p_corp_name" , value="{{word_spot_dict.t_provider.p_corp_name.text}}" /></td>
+                <td><input type="text" , name="p_ceo_name" , value="{{word_spot_dict.t_provider.p_ceo_name.text}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -59,10 +59,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" , name='p_add' , value="{{word_spot_dict.p_add}}" /></td>
-                <td><input type="text" , name='p_stat' , value="{{word_spot_dict.p_stat}}" /></td>
-                <td><input type="text" , name='p_type' , value="{{word_spot_dict.p_type}}" /></td>
-                <td><input type="text" , name='p_email' , value="{{word_spot_dict.p_email}}" /></td>
+                <td><input type="text" , name='p_add' , value="{{word_spot_dict.t_provider.p_add.text}}" /></td>
+                <td><input type="text" , name='p_stat' , value="{{word_spot_dict.t_provider.p_stat.text}}" /></td>
+                <td><input type="text" , name='p_type' , value="{{word_spot_dict.t_provider.p_type.text}}" /></td>
+                <td><input type="text" , name='p_email' , value="{{word_spot_dict.t_provider.p_email.text}}" /></td>
               </tr>
             </tbody> -->
           </table>
@@ -79,11 +79,11 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="date" , name='b_date' , value="{{word_spot_dict.b_date}}" /></td>
-                <td><input type="text" , name='b_cost_sup' , value="{{word_spot_dict.b_cost_sup}}" /></td>
-                <td><input type="text" , name='b_cost_tax' , value="{{word_spot_dict.b_cost_tax}}" /></td>
-                <td><input type="text" , name='b_mr' , value="{{word_spot_dict.b_mr}}" /></td>
-                <td><input type="text" , name='b_etc' , value="{{word_spot_dict.b_etc}}" /></td>
+                <td><input type="date" , name='b_date' , value="{{word_spot_dict.t_bill.b_date.text}}" /></td>
+                <td><input type="text" , name='b_cost_sup' , value="{{word_spot_dict.t_bill.b_cost_sup.text}}" /></td>
+                <td><input type="text" , name='b_cost_tax' , value="{{word_spot_dict.t_bill.b_cost_tax.text}}" /></td>
+                <td><input type="text" , name='b_mr' , value="{{word_spot_dict.t_bill.b_mr.text}}" /></td>
+                <td><input type="text" , name='b_etc' , value="{{word_spot_dict.t_bill.b_etc.text}}" /></td>
               </tr>
             </tbody>
           </table> -->
@@ -99,10 +99,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="date" , name='i_month_1' , value="{{word_spot_dict.i_month_1}}" /></td>
-                <td><input type="date" , name='i_day_1' , value="{{word_spot_dict.i_day_1}}" /></td>
-                <td><input type="text" , name='i_name_1' , value="{{word_spot_dict.i_name_1}}" /></td>
-                <td><input type="text" , name='i_stand_1' , value="{{word_spot_dict.i_stand_1}}" /></td>
+                <td><input type="date" , name='i_month_1' , value="{{word_spot_dict.t_item_1.i_month.text}}" /></td>
+                <td><input type="date" , name='i_day_1' , value="{{word_spot_dict.t_item_1.i_day.text}}" /></td>
+                <td><input type="text" , name='i_name_1' , value="{{word_spot_dict.t_item_1.i_name.text}}" /></td>
+                <td><input type="text" , name='i_stand_1' , value="{{word_spot_dict.t_item_1.i_stand.text}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -114,10 +114,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" , name='i_quan_1' , value="{{word_spot_dict.i_quan_1}}" /></td>
-                <td><input type="text" , name='i_unit_1' , value="{{word_spot_dict.i_unit_1}}" /></td>
-                <td><input type="text" , name='i_sup_1' , value="{{word_spot_dict.i_sup_1}}" /></td>
-                <td><input type="text" , name='i_tax_1' , value="{{word_spot_dict.i_tax_1}}" /></td>
+                <td><input type="text" , name='i_quan_1' , value="{{word_spot_dict.t_item_1.i_quan.text}}" /></td>
+                <td><input type="text" , name='i_unit_1' , value="{{word_spot_dict.t_item_1.i_unit.text}}" /></td>
+                <td><input type="text" , name='i_sup_1' , value="{{word_spot_dict.t_item_1.i_sup.text}}" /></td>
+                <td><input type="text" , name='i_tax_1' , value="{{word_spot_dict.t_item_1.i_tax.text}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -130,10 +130,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="date" , name='i_month_2' , value="{{word_spot_dict.i_month_2}}" /></td>
-                <td><input type="date" , name='i_day_2' , value="{{word_spot_dict.i_day_2}}" /></td>
-                <td><input type="text" , name='i_name_2' , value="{{word_spot_dict.i_name_2}}" /></td>
-                <td><input type="text" , name='i_stand_2' , value="{{word_spot_dict.i_stand_2}}" /></td>
+                <td><input type="date" , name='i_month_2' , value="{{word_spot_dict.t_item_2.i_month.text}}" /></td>
+                <td><input type="date" , name='i_day_2' , value="{{word_spot_dict.t_item_2.i_day.text}}" /></td>
+                <td><input type="text" , name='i_name_2' , value="{{word_spot_dict.t_item_2.i_name.text}}" /></td>
+                <td><input type="text" , name='i_stand_2' , value="{{word_spot_dict.t_item_2.i_stand.text}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -145,10 +145,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" , name='i_quan_2' , value="{{word_spot_dict.i_quan_2}}" /></td>
-                <td><input type="text" , name='i_unit_2' , value="{{word_spot_dict.i_unit_2}}" /></td>
-                <td><input type="text" , name='i_sup_2' , value="{{word_spot_dict.i_sup_2}}" /></td>
-                <td><input type="text" , name='i_tax_2' , value="{{word_spot_dict.i_tax_2}}" /></td>
+                <td><input type="text" , name='i_quan_2' , value="{{word_spot_dict.t_item_2.i_quan.text}}" /></td>
+                <td><input type="text" , name='i_unit_2' , value="{{word_spot_dict.t_item_2.i_unit.text}}" /></td>
+                <td><input type="text" , name='i_sup_2' , value="{{word_spot_dict.t_item_2.i_sup.text}}" /></td>
+                <td><input type="text" , name='i_tax_2' , value="{{word_spot_dict.t_item_2.i_tax.text}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -161,10 +161,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="date" , name='i_month_3' , value="{{word_spot_dict.i_month_3}}" /></td>
-                <td><input type="date" , name='i_day_3' , value="{{word_spot_dict.i_day_3}}" /></td>
-                <td><input type="text" , name='i_name_3' , value="{{word_spot_dict.i_name_3}}" /></td>
-                <td><input type="text" , name='i_stand_3' , value="{{word_spot_dict.i_stand_3}}" /></td>
+                <td><input type="date" , name='i_month_3' , value="{{word_spot_dict.t_item_3.i_month.text}}" /></td>
+                <td><input type="date" , name='i_day_3' , value="{{word_spot_dict.t_item_3.i_day.text}}" /></td>
+                <td><input type="text" , name='i_name_3' , value="{{word_spot_dict.t_item_3.i_name.text}}" /></td>
+                <td><input type="text" , name='i_stand_3' , value="{{word_spot_dict.t_item_3.i_stand.text}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -176,10 +176,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" , name='i_quan_3' , value="{{word_spot_dict.i_quan_3}}" /></td>
-                <td><input type="text" , name='i_unit_3' , value="{{word_spot_dict.i_unit_3}}" /></td>
-                <td><input type="text" , name='i_sup_3' , value="{{word_spot_dict.i_sup_3}}" /></td>
-                <td><input type="text" , name='i_tax_3' , value="{{word_spot_dict.i_tax_3}}" /></td>
+                <td><input type="text" , name='i_quan_3' , value="{{word_spot_dict.t_item_3.i_quan.text}}" /></td>
+                <td><input type="text" , name='i_unit_3' , value="{{word_spot_dict.t_item_3.i_unit.text}}" /></td>
+                <td><input type="text" , name='i_sup_3' , value="{{word_spot_dict.t_item_3.i_sup.text}}" /></td>
+                <td><input type="text" , name='i_tax_3' , value="{{word_spot_dict.t_item_3.i_tax.text}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -192,10 +192,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="date" , name='i_month_4' , value="{{word_spot_dict.i_month_4}}" /></td>
-                <td><input type="date" , name='i_day_4' , value="{{word_spot_dict.i_day_4}}" /></td>
-                <td><input type="text" , name='i_name_4' , value="{{word_spot_dict.i_name_4}}" /></td>
-                <td><input type="text" , name='i_stand_4' , value="{{word_spot_dict.i_stand_4}}" /></td>
+                <td><input type="date" , name='i_month_4' , value="{{word_spot_dict.t_item_4.i_month.text}}" /></td>
+                <td><input type="date" , name='i_day_4' , value="{{word_spot_dict.t_item_4.i_day.text}}" /></td>
+                <td><input type="text" , name='i_name_4' , value="{{word_spot_dict.t_item_4.i_name.text}}" /></td>
+                <td><input type="text" , name='i_stand_4' , value="{{word_spot_dict.t_item_4.i_stand.text}}" /></td>
               </tr>
             </tbody>
             <thead>
@@ -207,10 +207,10 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" , name='i_quan_4' , value="{{word_spot_dict.i_quan_4}}" /></td>
-                <td><input type="text" , name='i_unit_4' , value="{{word_spot_dict.i_unit_4}}" /></td>
-                <td><input type="text" , name='i_sup_4' , value="{{word_spot_dict.i_sup_4}}" /></td>
-                <td><input type="text" , name='i_tax_4' , value="{{word_spot_dict.i_tax_4}}" /></td>
+                <td><input type="text" , name='i_quan_4' , value="{{word_spot_dict.t_item_4.i_quan.text}}" /></td>
+                <td><input type="text" , name='i_unit_4' , value="{{word_spot_dict.t_item_4.i_unit.text}}" /></td>
+                <td><input type="text" , name='i_sup_4' , value="{{word_spot_dict.t_item_4.i_sup.text}}" /></td>
+                <td><input type="text" , name='i_tax_4' , value="{{word_spot_dict.t_item_4.i_tax.text}}" /></td>
               </tr>
             </tbody>
           </table> -->
@@ -227,11 +227,11 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" , name='b_cost_total' , value="{{word_spot_dict.b_cost_total}}" /></td>
-                <td><input type="text" , name='b_cost_cash' , value="{{word_spot_dict.b_cost_cash}}" /></td>
-                <td><input type="text" , name='b_cost_check' , value="{{word_spot_dict.b_cost_check}}" /></td>
-                <td><input type="text" , name='b_cost_note' , value="{{word_spot_dict.b_cost_note}}" /></td>
-                <td><input type="text" , name='b_cost_credit' , value="{{word_spot_dict.b_cost_credit}}" /></td>
+                <td><input type="text" , name='b_cost_total' , value="{{word_spot_dict.t_bill.b_cost_total.text}}" /></td>
+                <td><input type="text" , name='b_cost_cash' , value="{{word_spot_dict.t_bill.b_cost_cash.text}}" /></td>
+                <td><input type="text" , name='b_cost_check' , value="{{word_spot_dict.t_bill.b_cost_check.text}}" /></td>
+                <td><input type="text" , name='b_cost_note' , value="{{word_spot_dict.t_bill.b_cost_note.text}}" /></td>
+                <td><input type="text" , name='b_cost_credit' , value="{{word_spot_dict.t_bill.b_cost_credit.text}}" /></td>
               </tr>
             </tbody>
           </table> -->
