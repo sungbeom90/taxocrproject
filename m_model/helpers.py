@@ -528,17 +528,17 @@ def test_logic(text_list, score_list, word_list):
     return word_spot_dict
 
 
-# def find_position(target_location, word_location):
-#     target_xmin, target_ymin, target_xmax, target_ymax = tartget_location
-#     word_xmin, word_ymin, word_xmax, word_ymax = word_location
+def find_position(target_location, word_location):
+    target_xmin, target_ymin, target_xmax, target_ymax = tartget_location
+    word_xmin, word_ymin, word_xmax, word_ymax = word_location
 
-#     if (
-#         target_xmin <= word_xmin
-#         and target_xmax >= word_xmax
-#         and target_ymin <= word_ymin
-#         and target_ymax >= word_ymax
-#     ):
-#         return True
+    if (
+        target_xmin <= word_xmin
+        and target_xmax >= word_xmax
+        and target_ymin <= word_ymin
+        and target_ymax >= word_ymax
+    ):
+        return True
 
-#     else:
-#         return False
+    else:
+        return False
