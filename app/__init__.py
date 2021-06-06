@@ -313,10 +313,8 @@ import pickle
 def predict():
     # tensorflow version (1.0 -> 2.0)
     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
-
     config = tf.compat.v1.ConfigProto()
     config.gpu_options.allow_growth = True
-
     tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))
 
     char_list = Define_Class.definition_class()  # 텍스트 클래스 종합 파일 로드
@@ -336,14 +334,13 @@ def predict():
 
     jpg_file_name = upload_file_list[-1]  # 입력 이미지 경로 로드
 
-    print("Detecting...")
-    or_image, boxed_image, word_box = pred_detection(
-        jpg_file_name, model, size=1600
-    )  # 이미지 디텍팅 실행
+    print("Detecting...")  # 이미지 디텍팅 실행
+    or_image, boxed_image, word_box = pred_detection(jpg_file_name, model, size=1600)
 
     print(len(word_box))  # 단어단위 디텍션 완성 좌표값 저장 갯수보기 (xmin, ymin, xmax, ymax) 구조
     print(word_box)
 
+    # 이미지 시각화 (생략)
     # plt.imshow(boxed_image, 'Greys_r')
     # plt.show()
     # plt.xticks([]), plt.yticks([])
@@ -351,85 +348,11 @@ def predict():
     # plt.tight_layout()
     # fig = plt.gcf()
 
-    # crop_image = []
-
-    # # 단어 좌표를 이용한 단어 자르기
-    # for index in range(len(word_box)):
-    #     crop_image.append(
-    #         or_image[
-    #             word_box[index][1] : word_box[index][3],
-    #             word_box[index][0] : word_box[index][2],
-    #         ]
-    #     )
-
-    print("Recognizing...")
+    print("Recognizing...")  # 이미지 리코그닝 실행
     text_list, score_list, word_list = pred_recognition(
         model_recog, char_list, or_image, word_box
     )
-    # test_image = recog_pre_process(word_box)  # 단어 크롭 이미지 전처리
-    # print(test_image.shape)
 
-    # model_input = Input(shape=(32, 256, 1))
-
-    # inputs, outputs, act_model = recog_model.act_model_load_LSTM(
-    #     char_list, model_input
-    # )  # 리코그니션 모델 생성 종속변수(클래스)와 입력 사이즈를 매게변수로 제공
-
-    # act_model.load_weights(model_recog)  # 모델 가중치 적용
-
-    # prediction = act_model.predict([test_image])  # 리코그니션 모델 예측
-
-    # word_list = word_box
-    # text_list = []
-    # score_list = []
-    # score_index = []
-
-    # for index in range(len(test_image)):
-    #     temp_loc = []
-    #     temp_score = []
-    #     text_temp = []
-
-    #     temp = prediction[index]  # 예측값에서 단어 하나 꺼내기
-
-    #     for temp_index in range(len(temp)):  # 단어에서 활자(케릭터) 꺼내기
-    #         if np.argmax(temp[temp_index]) == len(char_list):  # 모델 예측시 생성된 '-' 면 제거
-    #             pass
-    #         else:
-    #             if (temp_index > 0) and (np.argmax(temp[temp_index])) == (
-    #                 np.argmax(temp[temp_index - 1])
-    #             ):  # 모델 예측 시 생성된 반복된 글자면 제거 (ex : aa)
-    #                 pass
-    #             else:  # 위에서 필터링된 활자만 인정하여 단어에 넣음
-    #                 temp_loc.append(
-    #                     np.argmax(temp[temp_index])
-    #                 )  # 종속변수(클래스) 에 명시된 활자(케릭터) 확률중 가장 큰 확률 인덱스 저장
-    #                 temp_score.append(
-    #                     temp[temp_index][np.argmax(temp[temp_index])]
-    #                 )  # 종속변수(클래스) 에 명시된 활자(케릭터) 확률중 가장 큰 확률 값 저장
-
-    #     score_index.append(temp_loc)
-
-    #     if temp_score == []:  # 위 조건중 패스된 경우 아래와 같은 값을 저장
-    #         temp_score = [0.5]
-    #         temp_loc = [len(temp)]
-
-    #     score_list.append(
-    #         statistics.mean(temp_score)
-    #     )  # 활자(케릭터)에 대한 확률값을 평균내어 단어의 대한 확률값으로 저장
-
-    #     for text_index in range(len(temp_loc)):  # 각 활자(케릭터) 인덱스로 실제 텍스트 얻어 저장
-    #         text_temp.append(char_list[temp_loc[text_index]])
-
-    #     string_text_temp = "".join(text_temp)  # 실제 텍스트를 단어로 묶기
-    #     text_list.append(string_text_temp)
-    #     print(text_list[index], score_list[index])
-
-    # # 단어 갯수, 단어 확률값 갯수, 단어 좌표값 갯수 보기
-    # print(
-    #     "len(text_list) : {} len(score_list) : {} len(word_list) : {}".format(
-    #         len(text_list), len(score_list), len(word_list)
-    #     )
-    # )
     with open("./data/pickle/text_list.pickle", "wb") as f:
         pickle.dump(text_list, f, pickle.HIGHEST_PROTOCOL)
 
@@ -438,100 +361,6 @@ def predict():
 
     with open("./data/pickle/word_list.pickle", "wb") as f:
         pickle.dump(word_list, f, pickle.HIGHEST_PROTOCOL)
-
-    # t_bill_b_id = []
-    # t_bill_b_id_location = ()
-    # t_bill_b_date = []
-    # t_bill_b_date_location = ()
-    # t_bill_b_mr = []
-    # t_bill_b_mr_location = ()
-    # t_bill_b_etc = []
-    # t_bill_b_etc_location = ()
-    # t_bill_b_cost_total = []
-    # t_bill_b_cost_total_location = ()
-    # t_bill_b_cost_sup = []
-    # t_bill_b_cost_sup_location = ()
-    # t_bill_b_cost_tax = []
-    # t_bill_b_cost_tax_location = ()
-    # t_bill_b_cost_cash = []
-    # t_bill_b_cost_cash_location = ()
-    # t_bill_b_cost_check = []
-    # t_bill_b_cost_check_location = ()
-    # t_bill_b_cost_note = []
-    # t_bill_b_cost_note_location = ()
-    # t_bill_b_cost_credit = []
-    # t_bill_b_cost_credit_location = ()
-
-    # t_provider_p_id = []
-    # t_provider_p_id_location = ()
-    # t_provider_p_corp_num = []
-    # t_provider_p_corp_num_location = ()
-    # t_provider_p_corp_name = []
-    # t_provider_p_corp_name_location = ()
-    # t_provider_p_ceo_name = []
-    # t_provider_p_ceo_name_location = ()
-    # t_provider_p_add = []
-    # t_provider_p_add_location = ()
-    # t_provider_p_stat = []
-    # t_provider_p_stat_location = ()
-    # t_provider_p_type = []
-    # t_provider_p_type_location = ()
-    # t_provider_p_email = []
-    # t_provider_p_email_location = ()
-
-    # t_item_i_id = []
-    # t_item_i_id_location = ()
-    # t_item_i_name = []
-    # t_item_i_name_location = ()
-    # t_item_i_stand = []
-    # t_item_i_stand_location = ()
-    # t_item_i_quan = []
-    # t_item_i_quan_location = ()
-    # t_item_i_unit = []
-    # t_item_i_unit_location = ()
-    # t_item_i_sup = []
-    # t_item_i_sup_location = ()
-    # t_item_i_tax = []
-    # t_item_i_tax_location = ()
-    # t_item_i_etc = []
-    # t_item_i_etc_location = ()
-
-    # for index in range(len(text_list)):
-    #     if find_position(t_bill_b_id_location, word_list[index]):
-    #         t_bill_b_id.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_date_location, word_list[index]):
-    #         t_bill_b_date.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_mr_location, word_list[index]):
-    #         t_bill_b_mr.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_etc_location, word_list[index]):
-    #         t_bill_b_etc.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_cost_total_location, word_list[index]):
-    #         t_bill_b_cost_total.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_cost_sup_location, word_list[index]):
-    #         t_bill_b_cost_sup.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_cost_tax_location, word_list[index]):
-    #         t_bill_b_cost_tax.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_cost_cash_location, word_list[index]):
-    #         t_bill_b_cost_cash.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_cost_check_location, word_list[index]):
-    #         t_bill_b_cost_check.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_cost_note_location, word_list[index]):
-    #         t_bill_b_cost_note.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_bill_b_cost_credit_location, word_list[index]):
-    #         t_bill_b_cost_credit.append((text_list[index], score_list[index]))
-
-    #     elif find_position(t_provider_p_id_location, word_list[index]):
-    #         t_provider_p_id.append((text_list[index], score_list[index]))
 
     return redirect(url_for("home"))
     # return redirect(
@@ -555,19 +384,3 @@ def predict():
 
 
 #     return redirect(url_for("con_base"))
-
-
-def find_position(target_location, word_location):
-    target_xmin, target_ymin, target_xmax, target_ymax = tartget_location
-    word_xmin, word_ymin, word_xmax, word_ymax = word_location
-
-    if (
-        target_xmin <= word_xmin
-        and target_xmax >= word_xmax
-        and target_ymin <= word_ymin
-        and target_ymax >= word_ymax
-    ):
-        return True
-
-    else:
-        return False
