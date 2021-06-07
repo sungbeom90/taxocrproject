@@ -244,7 +244,7 @@ def check_done():
         pass
     result = om.bill_insert(t_provider)
 
-    return redirect(url_for("bargraph"))
+    return redirect(url_for("/bargraph"))
 
 
 # ===================flaskr=========================
