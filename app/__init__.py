@@ -226,13 +226,13 @@ def check_done():
         "b_date": args_dict["b_date"],
         "b_mr": args_dict["b_mr"],
         "b_etc": args_dict["b_etc"],
-        "b_cost_total": int(args_dict["b_cost_total"].replace(",", "")),
-        "b_cost_sup": int(args_dict["b_cost_sup"].replace(",", "")),
-        "b_cost_tax": int(args_dict["b_cost_tax"].replace(",", "")),
-        "b_cost_cash": int(args_dict["b_cost_cash"].replace(",", "")),
-        "b_cost_check": int(args_dict["b_cost_check"].replace(",", "")),
-        "b_cost_note": int(args_dict["b_cost_note"].replace(",", "")),
-        "b_cost_credit": int(args_dict["b_cost_credit"].replace(",", "")),
+        "b_cost_total": om.cost_replace(args_dict["b_cost_total"]),
+        "b_cost_sup": om.cost_replace(args_dict["b_cost_sup"]),
+        "b_cost_tax": om.cost_replace(args_dict["b_cost_tax"]),
+        "b_cost_cash": om.cost_replace(args_dict["b_cost_cash"]),
+        "b_cost_check": om.cost_replace(args_dict["b_cost_check"]),
+        "b_cost_note": om.cost_replace(args_dict["b_cost_note"]),
+        "b_cost_credit": om.cost_replace(args_dict["b_cost_credit"]),
         "FK_p_id": args_dict["p_id"],
     }
     success = om.provider_exists(p_id)
@@ -408,14 +408,14 @@ def predict():
         model_recog, char_list, or_image, word_box
     )
 
-    with open("./data/pickle/text_list.pickle", "wb") as f:
-        pickle.dump(text_list, f, pickle.HIGHEST_PROTOCOL)
+    # with open("./data/pickle/text_list.pickle", "wb") as f:
+    #     pickle.dump(text_list, f, pickle.HIGHEST_PROTOCOL)
 
-    with open("./data/pickle/score_list.pickle", "wb") as f:
-        pickle.dump(score_list, f, pickle.HIGHEST_PROTOCOL)
+    # with open("./data/pickle/score_list.pickle", "wb") as f:
+    #     pickle.dump(score_list, f, pickle.HIGHEST_PROTOCOL)
 
-    with open("./data/pickle/word_list.pickle", "wb") as f:
-        pickle.dump(word_list, f, pickle.HIGHEST_PROTOCOL)
+    # with open("./data/pickle/word_list.pickle", "wb") as f:
+    #     pickle.dump(word_list, f, pickle.HIGHEST_PROTOCOL)
 
     word_spot_dict = test_logic(text_list, score_list, word_list)
 

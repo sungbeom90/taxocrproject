@@ -127,3 +127,13 @@ def bill_insert(t_bill):
         return 1  # bill_insert 요청 성공
     except:
         return -1  # bill_insert 요청 실패
+
+
+# 계산서 가격 ',' 제거 함수
+def cost_replace(cost_str):
+    result = 0
+    if cost_str is "":
+        return result
+    else:
+        result = int(cost_str.replace(",", ""))
+        return result
