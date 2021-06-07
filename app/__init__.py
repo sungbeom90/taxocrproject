@@ -236,6 +236,8 @@ def check_done():
         "FK_p_id": args_dict["p_id"],
     }
     success = om.provider_exists(p_id)
+    print(success)
+    print(type(success))
     if success == 1:  # db에 공급자  존재함
         pass
     elif success == 0:  # db에 공급자 없음
