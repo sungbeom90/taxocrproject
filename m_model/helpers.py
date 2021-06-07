@@ -435,7 +435,7 @@ def pred_recognition(model_recog, char_list, or_image, word_box):
 def test_logic(text_list, score_list, word_list):
     word_spot_dict = {
         "t_bill": {
-            "b_id": {"text": [], "score": [], "location": 982, 126, 1524, 216)},
+            "b_id": {"text": [], "score": [], "location": (982, 126, 1524, 216)},
             "b_date": {"text": [], "score": [], "location": (76, 736, 258, 816)},
             "b_mr": {"text": [], "score": [], "location": (802, 738, 982, 820)},
             "b_etc": {"text": [], "score": [], "location": (982, 736, 1526, 818)},
