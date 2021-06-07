@@ -206,10 +206,10 @@ def barGraph():
     )
 
 
-@app.route("/check_db", methods=["POST"])
+@app.route("/check_done", methods=["POST"])
 def select():
-    data = request.form.to_dict()
-
+    data_dict = request.form.to_dict()
+    print(data_dict)
     p_id = {"~~"}
     success = om.provider_exists(p_id)
     t_provider = {"~~"}

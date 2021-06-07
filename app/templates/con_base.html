@@ -14,12 +14,12 @@
 
 <body>
   {% include 'header.html' %}
-  <form>
+  <form method="POST" , action="/check_done">
     <div class='container-main'>
       <div class="container-fluid">
         <div class="flex-container">
           <img src="{{url_for('static', filename=jpg_file_name)}}">
-        </div> 
+        </div>
         <div class="flex-container">
           <!-- 공급자 -->
           <table class="type1">
@@ -44,9 +44,12 @@
             <tbody>
               <tr>
                 <td><input type="text" , name="p_id" , value="{{word_spot_dict.t_provider.p_id.text}}" /></td>
-                <td><input type="text" , name="p_corp_num" , value="{{word_spot_dict.t_provider.p_corp_num.text}}" /></td>
-                <td><input type="text" , name="p_corp_name" , value="{{word_spot_dict.t_provider.p_corp_name.text}}" /></td>
-                <td><input type="text" , name="p_ceo_name" , value="{{word_spot_dict.t_provider.p_ceo_name.text}}" /></td>
+                <td><input type="text" , name="p_corp_num" , value="{{word_spot_dict.t_provider.p_corp_num.text}}" />
+                </td>
+                <td><input type="text" , name="p_corp_name" , value="{{word_spot_dict.t_provider.p_corp_name.text}}" />
+                </td>
+                <td><input type="text" , name="p_ceo_name" , value="{{word_spot_dict.t_provider.p_ceo_name.text}}" />
+                </td>
               </tr>
             </tbody>
             <thead>
@@ -111,7 +114,7 @@
             </thead>
             <tbody>
               <tr>
-               <td><input type="text" , name='i_unit_1' , value="{{word_spot_dict.t_item_1.i_unit.text}}" /></td>
+                <td><input type="text" , name='i_unit_1' , value="{{word_spot_dict.t_item_1.i_unit.text}}" /></td>
                 <td><input type="text" , name='i_sup_1' , value="{{word_spot_dict.t_item_1.i_sup.text}}" /></td>
                 <td><input type="text" , name='i_tax_1' , value="{{word_spot_dict.t_item_1.i_tax.text}}" /></td>
               </tr>
@@ -211,11 +214,16 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="text" , name='b_cost_total' , value="{{word_spot_dict.t_bill.b_cost_total.text}}" /></td>
-                <td><input type="text" , name='b_cost_cash' , value="{{word_spot_dict.t_bill.b_cost_cash.text}}" /></td>
-                <td><input type="text" , name='b_cost_check' , value="{{word_spot_dict.t_bill.b_cost_check.text}}" /></td>
-                <td><input type="text" , name='b_cost_note' , value="{{word_spot_dict.t_bill.b_cost_note.text}}" /></td>
-                <td><input type="text" , name='b_cost_credit' , value="{{word_spot_dict.t_bill.b_cost_credit.text}}" /></td>
+                <td><input type="text" , name='b_cost_total' , value="{{word_spot_dict.t_bill.b_cost_total.text}}" />
+                </td>
+                <td><input type="text" , name='b_cost_cash' , value="{{word_spot_dict.t_bill.b_cost_cash.text}}" />
+                </td>
+                <td><input type="text" , name='b_cost_check' , value="{{word_spot_dict.t_bill.b_cost_check.text}}" />
+                </td>
+                <td><input type="text" , name='b_cost_note' , value="{{word_spot_dict.t_bill.b_cost_note.text}}" />
+                </td>
+                <td><input type="text" , name='b_cost_credit' , value="{{word_spot_dict.t_bill.b_cost_credit.text}}" />
+                </td>
               </tr>
             </tbody>
           </table> -->
