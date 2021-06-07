@@ -119,8 +119,7 @@ def bill_insert(t_bill):
     print(t_bill)
     sql = """INSERT into taxocr.t_bill (b_id, b_date, b_mr, b_etc, b_cost_total, b_cost_sup, b_cost_tax,
                                         b_cost_cash, b_cost_check, b_cost_note, b_cost_credit, FK_p_id)
-            VALUES (%(b_id)s,%(b_date)s,%(b_mr)s,%(b_etc)s,%(b_cost_total)s,%(b_cost_sup)s,
-            %(b_cost_tax)s,%(b_cost_cash)s,%(b_cost_note)s,%(b_cost_credit)s,%(FK_p_id)s)"""
+            VALUES (%(b_id)s,%(b_date)s,%(b_mr)s,%(b_etc)s,%(b_cost_total)s,%(b_cost_sup)s,%(b_cost_tax)s,%(b_cost_cash)s,%(b_cost_note)s,%(b_cost_credit)s,%(FK_p_id)s)"""
     # try:
     db_class.execute(query=sql, args=t_bill)
     db_class.commit()
