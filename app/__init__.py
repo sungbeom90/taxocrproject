@@ -239,10 +239,10 @@ def check_done():
     if success == 1:  # db에 공급자  존재함
         pass
     elif success == 0:  # db에 공급자 없음
-        result = om.provider_insert(t_provider)  # 공급자 생성
+        result = om.provider_insert(t_provider)  # 공급자 입력(생성)
     elif success == -1:  # 조회 요청 실패
         pass
-    result = om.bill_insert(t_bill)
+    result = om.bill_insert(t_bill)  # 계산서 입력
 
     return redirect(url_for("bargraph"))
 

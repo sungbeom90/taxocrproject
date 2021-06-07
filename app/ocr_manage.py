@@ -121,14 +121,14 @@ def bill_insert(t_bill):
                                         b_cost_cash, b_cost_check, b_cost_note, b_cost_credit, FK_p_id)
             VALUES (%(b_id)s,%(b_date)s,%(b_mr)s,%(b_etc)s,%(b_cost_total)s,%(b_cost_sup)s,
             %(b_cost_tax)s,%(b_cost_cash)s,%(b_cost_note)s,%(b_cost_credit)s,%(FK_p_id)s)"""
-    try:
-        db_class.execute(query=sql, args=t_bill)
-        db_class.commit()
-        print("{} 계산서 db 등록 완료".format(t_provider["b_id"]))
-        return 1  # bill_insert 요청 성공
-    except:
-        print("bill_insert 요청 실패")
-        return -1  # bill_insert 요청 실패
+    # try:
+    db_class.execute(query=sql, args=t_bill)
+    db_class.commit()
+    print("{} 계산서 db 등록 완료".format(t_provider["b_id"]))
+    return 1  # bill_insert 요청 성공
+    # except:
+    #     print("bill_insert 요청 실패")
+    #     return -1  # bill_insert 요청 실패
 
 
 # 계산서 가격 ',' 제거 함수
