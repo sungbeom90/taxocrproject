@@ -123,7 +123,7 @@ def bill_insert(t_bill):
     # try:
     db_class.execute(query=sql, args=t_bill)
     db_class.commit()
-    print("{} 계산서 db 등록 완료".format(t_provider["b_id"]))
+    print("{} 계산서 db 등록 완료".format(t_bill["b_id"]))
     return 1  # bill_insert 요청 성공
     # except:
     #     print("bill_insert 요청 실패")
