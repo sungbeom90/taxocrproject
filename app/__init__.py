@@ -207,7 +207,7 @@ def barGraph():
 
 
 @app.route("/check_done", methods=["POST"])
-def select():
+def check_done():
     data_dict = request.form.to_dict()
     print(data_dict)
     p_id = {"~~"}
