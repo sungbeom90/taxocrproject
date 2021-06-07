@@ -208,21 +208,41 @@ def barGraph():
 
 @app.route("/check_done", methods=["POST"])
 def check_done():
-    data_dict = request.form.to_dict()
-    print(data_dict)
-    p_id = {"~~"}
+    args_dict = request.form.to_dict()
+    print(args_dict)
+    p_id = {"p_id": args_dict["p_id"]}
+    t_provider = {
+        "p_id": args_dict["p_id"],
+        "p_corp_num": args_dict["p_corp_num"],
+        "p_corp_name": args_dict["p_corp_name"],
+        "p_ceo_name": args_dict["p_ceo_name"],
+        "p_add": args_dict["p_add"],
+        "p_stat": args_dict["p_stat"],
+        "p_type": args_dict["p_type"],
+        "p_email": args_dict["p_email"],
+    }
+    t_bill = {
+        "b_id": args_dict["b_id"],
+        "b_date": args_dict["b_date"],
+        "b_mr": args_dict["b_mr"],
+        "b_etc": args_dict["b_etc"],
+        "b_cost_total": int(args_dict["b_cost_total"].replace(",", "")),
+        "b_cost_sup": int(args_dict["b_cost_sup"].replace(",", "")),
+        "b_cost_tax": int(args_dict["b_cost_tax"].replace(",", "")),
+        "b_cost_cash": int(args_dict["b_cost_cash"].replace(",", "")),
+        "b_cost_check": int(args_dict["b_cost_check"].replace(",", "")),
+        "b_cost_note": int(args_dict["b_cost_note"].replace(",", "")),
+        "b_cost_credit": int(args_dict["b_cost_credit"].replace(",", "")),
+        "FK_p_id": args_dict["p_id"],
+    }
     success = om.provider_exists(p_id)
-    t_provider = {"~~"}
     if success == 1:  # db에 공급자  존재함
         pass
     elif success == 0:  # db에 공급자 없음
         result = om.provider_insert(t_provider)  # 공급자 생성
     elif success == -1:  # 조회 요청 실패
         pass
-
-    t_bill = {"~~"}
-
-    result = om.bill_insert(t_provider, p_id)
+    result = om.bill_insert(t_provider)
 
     return redirect(url_for("bargraph"))
 
