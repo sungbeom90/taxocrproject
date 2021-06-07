@@ -470,10 +470,10 @@ def test_logic(text_list, score_list, word_list):
         "t_provider": {
             "p_id": {"text": [], "score": [], "location": (258, 216, 510, 300)},
             "p_corp_num": {"text": [], "score": [], "location": (618, 216, 800, 300)},
-            "p_corp_name": {"text": [], "score": [], "location": (258, 300, 512, 280)},
-            "p_ceo_name": {"text": [], "score": [], "location": (620, 302, 800, 384)},
+            "p_corp_name": {"text": [], "score": [], "location": (258, 300, 512, 384)},
+            "p_ceo_name": {"text": [], "score": [], "location": (620, 300, 800, 384)},
             "p_add": {"text": [], "score": [], "location": (258, 382, 800, 466)},
-            "p_stat": {"text": [], "score": [], "location": (266, 468, 404, 540)},
+            "p_stat": {"text": [], "score": [], "location": (266, 460, 404, 560)},
             "p_type": {"text": [], "score": [], "location": (508, 472, 800, 542)},
             "p_email": {"text": [], "score": [], "location": (256, 542, 800, 668)},
         },
