@@ -87,7 +87,7 @@ def supply_delete(p_id, db_class):
 # 공급자 존재여부 조회하는 함수
 def provider_exists(p_id):
     print("{} 가 db에 있는지 확인중.. ".format(p_id["p_id"]))
-    sql = """SELECT EXISTS (select * from t_provider tp where p_id=%(p_id)s) as success)"""
+    sql = """SELECT EXISTS (select * from t_provider where p_id=%(p_id)s) as success"""
     try:
         desc_dict = db_class.executeOne(sql, args=p_id)
         print("{} 가 db에 있는지 결과 : {} ".format(p_id, desc_dict["success"]))
