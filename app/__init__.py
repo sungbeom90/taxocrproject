@@ -221,20 +221,6 @@ def check_done():
         "p_type": args_dict["p_type"],
         "p_email": args_dict["p_email"],
     }
-    # t_bill = {
-    #     "b_id": args_dict["b_id"],
-    #     "b_date": args_dict["b_date"],
-    #     "b_mr": args_dict["b_mr"],
-    #     "b_etc": args_dict["b_etc"],
-    #     "b_cost_total": om.cost_replace(args_dict["b_cost_total"]),
-    #     "b_cost_sup": om.cost_replace(args_dict["b_cost_sup"]),
-    #     "b_cost_tax": om.cost_replace(args_dict["b_cost_tax"]),
-    #     "b_cost_cash": om.cost_replace(args_dict["b_cost_cash"]),
-    #     "b_cost_check": om.cost_replace(args_dict["b_cost_check"]),
-    #     "b_cost_note": om.cost_replace(args_dict["b_cost_note"]),
-    #     "b_cost_credit": om.cost_replace(args_dict["b_cost_credit"]),
-    #     "FK_p_id": args_dict["p_id"],
-    # }
     t_bill = (
         args_dict["b_id"],
         args_dict["b_date"],
