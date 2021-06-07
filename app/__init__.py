@@ -101,7 +101,7 @@ def insert_bill():
 
 
 @app.route("/bargraph")
-def barGraph():
+def bargraph():
     title = "bargraph"
     labels = []  # 도넛그래프 x축 : 회사명
     data = []  # 도넛그래프 y축 : 거래 금액
@@ -242,7 +242,7 @@ def check_done():
         result = om.provider_insert(t_provider)  # 공급자 생성
     elif success == -1:  # 조회 요청 실패
         pass
-    result = om.bill_insert(t_provider)
+    result = om.bill_insert(t_bill)
 
     return redirect(url_for("/bargraph"))
 
