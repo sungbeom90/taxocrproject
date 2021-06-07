@@ -206,6 +206,27 @@ def barGraph():
     )
 
 
+@app.route("/check_db", methods=["POST"])
+def select():
+    data = request.form.to_dict()
+
+    p_id = {"~~"}
+    success = om.provider_exists(p_id)
+    t_provider = {"~~"}
+    if success == 1:  # db에 공급자  존재함
+        pass
+    elif success == 0:  # db에 공급자 없음
+        result = om.provider_insert(t_provider)  # 공급자 생성
+    elif success == -1:  # 조회 요청 실패
+        pass
+
+    t_bill = {"~~"}
+
+    result = om.bill_insert(t_provider, p_id)
+
+    return redirect(url_for("bargraph"))
+
+
 # ===================flaskr=========================
 
 

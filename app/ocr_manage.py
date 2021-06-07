@@ -3,6 +3,8 @@ import os
 from werkzeug.utils import secure_filename
 from app import mod_dbconn
 
+db_class = mod_dbconn.Database()
+
 
 def supply_desc(p_id):
     # 상세페이지 조회하는 함수
@@ -78,3 +80,50 @@ def supply_delete(p_id, db_class):
 #     cursor.execute(sql)
 #     file_list = cursor.fetchall()
 #     return file_list
+
+
+# ==================== 박성범 작성 ===========================
+
+# 공급자 존재여부 조회하는 함수
+def provider_exists(p_id):
+    print("{} 가 db에 있는지 확인중.. ".format(p_id))
+    sql = """SELECT EXISTS (select * from t_provider tp where p_id=%(p_id)s) as success)"""
+    try:
+        desc_dict = db_class.executeOne(sql, args=p_id)
+        print("{} 가 db에 있는지 결과 : {} ".format(p_id, desc_dict["success"]))
+        return desc_dict  # provider_exists 요청 성공
+    except:
+        print("supply_exists 요청 실패")
+        return -1  # provider_exists 요청 실패
+
+
+# 공급자 입력(생성)하는 함수
+def provider_insert(t_provider):
+    print("공급자 등록 요청 접수됨")
+    args = t_provider
+    print(args)
+    sql = """INSERT into taxocr.t_provider (p_id, p_corp_num, p_corp_name, p_ceo_name, p_add, p_stat, p_type, p_email)
+            VALUES (%(p_id)s,%(p_corp_num)s,%(p_corp_name)s,%(p_ceo_name)s,%(p_add)s,%(p_stat)s,%(p_type)s,%(p_email)s)"""
+    try:
+        db_class.execute(query=sql, args=args)
+        db_class.commit()
+        return 1  #  provider_insert 요청 성공
+    except:
+        return -1  # provider_insert 요청 실패
+
+
+# 계산서 입력(생성)하는 함수
+def bill_insert(t_bill, p_id):
+    print("계산서 등록 요청 접수됨")
+    args = t_bill.update(p_id)
+    print(args)
+    sql = """INSERT into taxocr.t_bill (b_id, b_date, b_mr, b_etc, b_cost_total, b_cost_sup, b_cost_tax,
+                                        b_cost_cash, b_cost_check, b_cost_note, b_cost_credit, FK_p_id)
+            VALUES (%(b_id)s,%(b_date)s,%(b_mr)s,%(b_etc)s,%(b_cost_total)s,%(b_cost_sup)s,
+            %(b_cost_tax)s,%(b_cost_cash)s,%(b_cost_note)s,%(b_cost_credit)s,%(FK_p_id)s)"""
+    try:
+        db_class.execute(query=sql, args=args)
+        db_class.commit()
+        return 1  # bill_insert 요청 성공
+    except:
+        return -1  # bill_insert 요청 실패
