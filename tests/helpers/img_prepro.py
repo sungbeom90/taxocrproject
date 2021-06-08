@@ -11,9 +11,9 @@ def imshow(img_name, img):
 
 
 # 어노테이션 파싱 함수
-def xml_parsing(xmlfile):
+def xml_parsing(xml_path):
     result = []
-    doc = ET.parse(xml_file)
+    doc = ET.parse(xml_path)
     root = doc.getroot()
     for i, object in enumerate(root.iter("object")):
         box_dict = {}
