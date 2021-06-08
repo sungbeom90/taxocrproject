@@ -9,6 +9,76 @@ def imshow(img_name, img):
     cv2.destroyAllWindows()
 
 
+# 어노테이션 파싱 함수
+def xml_parsing(xmlfile):
+    result = []
+    doc = ET.parse(xml_file)
+    root = doc.getroot()
+    for i, object in enumerate(root.iter("object")):
+        box_dict = {}
+        xmin = object.find("bndbox").findtext("xmin")
+        xmax = object.find("bndbox").findtext("xmax")
+        ymin = object.find("bndbox").findtext("ymin")
+        ymax = object.find("bndbox").findtext("ymax")
+        box_dict["xmin"] = xmin
+        box_dict["xmax"] = xmax
+        box_dict["ymin"] = ymin
+        box_dict["ymax"] = ymax
+        result.append(box_dict)
+    data = root.find("size")
+    width = data.findtext("width")
+    height = data.findtext("height")
+    filename = root.findtext("filename")
+    data_dict = {}
+    data_dict["width"] = width
+    data_dict["height"] = height
+    data_dict["filename"] = filename
+    result.append(data_dict)
+    return result
+
+
+def make_gausian(image_path, xml_path):
+    img = Image.open(image_path)  # 경로에 있는 이미지 열기
+    img_g = img.convert("L")  # 이미지 회색조로 변환
+    img_g_np = np.array(img_g, dtype=np.uint8)  # 이미지 넘파이 uint8 타입으로 변환
+    xml_data = xml_parsing(xml_path)
+    xml_data.pop()
+    background = np.zeros(img_g_np.shape, np.int8)  # 전체 백그라운드
+    # 이후 내용은 for문으로  바꿔서 모든 텍스트 박스에 대해 적용할것
+    for i in range(len(xml_data)):
+        xmin = int(xml_data[i].get("xmin"))
+        xmax = int(xml_data[i].get("xmax"))
+        ymin = int(xml_data[i].get("ymin"))
+        ymax = int(xml_data[i].get("ymax"))
+        width = xmax - xmin  # 텍스트박스 가로길이
+        height = ymax - ymin  # 텍스트박스 세로 길이
+        textbox = np.zeros((height, width), np.int8)  # 텍스트박스 지정
+        # 히트맵의 중심이 될 부분 필요
+        # width, height는 text박스의 width, height
+        # 중심점으로부터 x좌표 및 y 좌표 상의 거리 산출 (0~1로 정규화)
+        for j in range(height):  # 높이
+            for i in range(width):  # 너비
+                x_diff = 2.5 * (i - width / 2) / (width / 2)  # 중심점과의 거리
+                y_diff = 2.5 * (j - height / 2) / (height / 2)  # 중심점과의 거리
+                data = two_D_gaussian_distribution(x_diff, y_diff)  # 함수 호출
+                data = data * 255  # 화소(gray)값 적용
+                data = int(data * 1.25) - 50  # 255값 추가적용. 선택사항
+                if data > 255:  # 255 넘으면 255로 고정
+                    data = 255
+                elif data <= 0:
+                    data = 0
+                print("[{},{}] = {}".format(j, i, data))
+                textbox[j][i] = data  # 텍스트 박스에 값 적용
+        for j in range(ymin, ymax):  # 백그라운드에서 현재 텍스트박스 시작 높이~ 끝높이
+            for i in range(xmin, xmax):  # 백그라운드에서 현재 텍스트박스 시작너비~ 끝너비
+                background[j][i] = textbox[j - ymin][i - xmin]  # 텍스트박스 값을 백그라운드에 부여
+        isotropicGaussianHeatmapImage = cv2.applyColorMap(
+            np.uint8(background), cv2.COLORMAP_JET
+        )  # 배경 설정에 찾아볼것
+
+    return isotropicGaussianHeatmapImage
+
+
 # 이미지 사이즈 조절 및 정규화 함수
 def load_single_img_resize(img, width: int, height: int):
     image_data = []
@@ -98,45 +168,3 @@ def detection_preprocess(image_path):
     # imshow("THRESH_BINARY_re", re2_img)  # 미리보기
 
     return Image.fromarray(re2_img)
-
-
-def make_gausian(image_path, xml_path):
-    img = Image.open(image_path)  # 경로에 있는 이미지 열기
-    img_g = img.convert("L")  # 이미지 회색조로 변환
-    img_g_np = np.array(img_g, dtype=np.uint8)  # 이미지 넘파이 uint8 타입으로 변환
-    xml_data = xmlParsing(xml_path)
-    xml_data.pop()
-    background = np.zeros(img_g_np.shape, np.int8)  # 전체 백그라운드
-    # 이후 내용은 for문으로  바꿔서 모든 텍스트 박스에 대해 적용할것
-    for i in range(len(xml_data)):
-        xmin = int(xml_data[i].get("xmin"))
-        xmax = int(xml_data[i].get("xmax"))
-        ymin = int(xml_data[i].get("ymin"))
-        ymax = int(xml_data[i].get("ymax"))
-        width = xmax - xmin  # 텍스트박스 가로길이
-        height = ymax - ymin  # 텍스트박스 세로 길이
-        textbox = np.zeros((height, width), np.int8)  # 텍스트박스 지정
-        # 히트맵의 중심이 될 부분 필요
-        # width, height는 text박스의 width, height
-        # 중심점으로부터 x좌표 및 y 좌표 상의 거리 산출 (0~1로 정규화)
-        for j in range(height):  # 높이
-            for i in range(width):  # 너비
-                x_diff = 2.5 * (i - width / 2) / (width / 2)  # 중심점과의 거리
-                y_diff = 2.5 * (j - height / 2) / (height / 2)  # 중심점과의 거리
-                data = two_D_gaussian_distribution(x_diff, y_diff)  # 함수 호출
-                data = data * 255  # 화소(gray)값 적용
-                data = int(data * 1.25) - 50  # 255값 추가적용. 선택사항
-                if data > 255:  # 255 넘으면 255로 고정
-                    data = 255
-                elif data <= 0:
-                    data = 0
-                print("[{},{}] = {}".format(j, i, data))
-                textbox[j][i] = data  # 텍스트 박스에 값 적용
-        for j in range(ymin, ymax):  # 백그라운드에서 현재 텍스트박스 시작 높이~ 끝높이
-            for i in range(xmin, xmax):  # 백그라운드에서 현재 텍스트박스 시작너비~ 끝너비
-                background[j][i] = textbox[j - ymin][i - xmin]  # 텍스트박스 값을 백그라운드에 부여
-        isotropicGaussianHeatmapImage = cv2.applyColorMap(
-            np.uint8(background), cv2.COLORMAP_JET
-        )  # 배경 설정에 찾아볼것
-
-    return isotropicGaussianHeatmapImage
