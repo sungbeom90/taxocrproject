@@ -171,4 +171,4 @@ def detection_preprocess(image_path):
 
     # imshow("THRESH_BINARY_re", re2_img)  # 미리보기
 
-    return Image.fromarray(re2_img)
+    return re2_img
