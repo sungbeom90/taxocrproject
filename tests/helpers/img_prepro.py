@@ -1,6 +1,7 @@
 from PIL import Image
 import numpy as np
 import cv2
+import xml.etree.ElementTree as ET
 
 # 이미지 보기 함수
 def imshow(img_name, img):

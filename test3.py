@@ -23,8 +23,6 @@ for jpg_file in file_list_jpg:
     bw_img, _ = img_prepro.load_single_img_resize(img, 1600, 1600)
 
 
-import os
-
 file_path = "./data/image/original_image/"  # 원본파일 경로
 save_path = "./data/image/region_image/"  # 파일저장 경로
 for file_num in range(52):
