@@ -3,6 +3,7 @@ from tests.helpers import img_prepro
 import os
 import cv2
 import numpy as np
+import pickle
 
 
 # 훈련 데이터 불러오기
