@@ -412,7 +412,7 @@ def predict():
     word_spot_dict = test_logic(text_list, score_list, word_list)
 
     return render_template(
-        "con_base.html", jpg_file_name=jpg_file_name, word_spot_dict=word_spot_dict
+        "con_base.html", jpg_file_name=secure_filename(f.filename), word_spot_dict=word_spot_dict
     )
     # return redirect(
     #     url_for(
