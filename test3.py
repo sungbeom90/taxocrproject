@@ -8,7 +8,9 @@ import pickle
 
 # 훈련 데이터 불러오기
 file_path = "./data/image/original_image/"  # 원본파일 경로
+save_path = "./data/image/prepro_image/"  # 파일저장 경로
 file_list_jpg = load_data.load_images(file_path, ".jpg")  # 원본파일 이름 목록 가져오기
+
 print(file_list_jpg)
 
 
@@ -20,7 +22,7 @@ for jpg_file in file_list_jpg:
     img_prepro.imshow("bw_img", bw_img)  # 이미지 띄우기
 
     cv2.imwrite(save_path + "prepro_" + jpg_file, bw_img)
-    with open(save_path + "heatmap_" + str(file_num), "wb") as fw:
+    with open(save_path + "prepro_" + jpg_file, "wb") as fw:
         pickle.dump(bw_img, fw)
 
     re_no_img, _ = img_prepro.load_single_img_resize(bw_img, 1600, 1600)

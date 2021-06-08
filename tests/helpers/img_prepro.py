@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 # 이미지 보기 함수
 def imshow(img_name, img):
     cv2.imshow(img_name, img)
-    cv2.waitKey(10)
+    cv2.waitKey(400)
     cv2.destroyAllWindows()
 
 
