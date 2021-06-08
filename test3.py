@@ -33,12 +33,14 @@ save_path = "./data/image/region_image/"  # 파일저장 경로
 for file_num in range(52):
     image_path = file_path + str(file_num) + ".jpg"
     xml_path = file_path + str(file_num) + ".xml"
-    isotropicGaussianHeatmapImage = img_prepro.make_gausian(image_path, xml_path)
+    heatmap_np = img_prepro.make_gausian(image_path, xml_path)
 
-    img_prepro.imshow("gaussian_map", isotropicGaussianHeatmapImage)  # 이미지 띄우기
+    # isotropicGaussianHeatmapImage = cv2.applyColorMap(
+    #         np.uint8(background), cv2.COLORMAP_BONE
+    #     )  # 배경 설정에 찾아볼것
 
-    cv2.imwrite(
-        save_path + "heatmap_" + str(file_num) + ".jpg", isotropicGaussianHeatmapImage
-    )
+    img_prepro.imshow("gaussian_map", heatmap_np)  # 이미지 띄우기
+
+    cv2.imwrite(save_path + "heatmap_" + str(file_num) + ".jpg", heatmap_np)
     with open(save_path + "heatmap_" + str(file_num), "wb") as fw:
-        pickle.dump(isotropicGaussianHeatmapImage, fw)
+        pickle.dump(heatmap_np, fw)

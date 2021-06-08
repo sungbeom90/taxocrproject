@@ -77,10 +77,10 @@ def make_gausian(image_path, xml_path):
             for i in range(xmin, xmax):  # 백그라운드에서 현재 텍스트박스 시작너비~ 끝너비
                 background[j][i] = textbox[j - ymin][i - xmin]  # 텍스트박스 값을 백그라운드에 부여
         isotropicGaussianHeatmapImage = cv2.applyColorMap(
-            np.uint8(background), cv2.COLORMAP_JET
+            np.uint8(background), cv2.COLORMAP_BONE
         )  # 배경 설정에 찾아볼것
 
-    return isotropicGaussianHeatmapImage
+    return np.uint8(background)
 
 
 # 이미지 사이즈 조절 및 정규화 함수
