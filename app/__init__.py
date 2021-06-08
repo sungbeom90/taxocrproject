@@ -36,7 +36,6 @@ db_class = mod_dbconn.Database()
 
 # 업로드된 파일주소가 저장되는 리스트
 upload_file_list = []
-upload_name_list = []
 app.config["UPLOAD_DIR"] = "./static/image/"
 
 
@@ -280,8 +279,6 @@ def upload_file():
         f = request.files["file"]
         print("file storage 내부 : ", f)
         f.save("./app/static/image/" + secure_filename(f.filename))
-        upfile_name = secure_filename(f.filename)
-        upload_name_list.append(upfile_name)
         upfile_address = "./app/static/image/" + secure_filename(f.filename)
         upload_file_list.append(upfile_address)
         print(upfile_address)
@@ -390,8 +387,8 @@ def predict():
     model = "./data/trained_weights/1600_pdfdata_origin_d05_decay1000_1600to1600_20210213-2203_last"  # 디텍션 모델 가중치 로드
     model_recog = "./data/trained_weights/tax_save_model_0309.hdf5"  # 리코그니션 모델 가중치 로드
 
-    jpg_file_name = upload_file_list.pop()  # 입력 이미지 경로 로드
-    jpg_file_name2 = upload_name_list.pop()
+    jpg_file_name = upload_file_list.pop  # 입력 이미지 경로 로드
+
     print("Detecting...")  # 이미지 디텍팅 실행
     or_image, boxed_image, word_box = pred_detection(jpg_file_name, model, size=1600)
 
@@ -423,7 +420,7 @@ def predict():
     word_spot_dict = test_logic(text_list, score_list, word_list)
 
     return render_template(
-        "con_base.html", jpg_file_name=jpg_file_name2, word_spot_dict=word_spot_dict
+        "con_base.html", jpg_file_name=jpg_file_name, word_spot_dict=word_spot_dict
     )
     # return redirect(
     #     url_for(
