@@ -1,12 +1,10 @@
 .outbox{
     display:flex;
     flex-direction: row;
+    margin:50px;
 
 }
 
-.graphbax{
-    margin : 50px;
-}
 .container1{
     width:500;
     padding:10px;
