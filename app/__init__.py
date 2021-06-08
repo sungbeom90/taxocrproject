@@ -418,9 +418,6 @@ def predict():
     #     )
     # )
 
-@app.route("loading")
-def loading():
-    return render_template("con_base.html", jpg_file_name=jpg_file_name, word_spot_dict=word_spot_dict)
 # @app.route("/logic", methods=["GET"])
 # def logic():
 #     text_list = request.args.get("text_list")  # 워드 텍스트 리스트
