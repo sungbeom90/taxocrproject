@@ -5,11 +5,20 @@ import tensorflow.keras.backend as K
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+# 변수로 주어진 경로 하위의 .jpg 파일명 가져오는 함수
+def load_images(file_path):
+    file_list = os.listdir(file_path)
+    file_list_jpg = [file for file in file_list if file.endswith(".jpg")]
+    return file_list_jpg
 
-def load_data():
 
-    enco_path = "./data/image/resized"
+def load_data2():
+
+    enco_path = "./data/image/origin_image"
     original_file_list = os.listdir(enco_path)
+    original_file_list_jpg = [
+        file for file in original_file_list if file.endswith(".jpg")
+    ]
     num_enco_files = len(original_file_list)
 
     deco_path = "./data/image/hitmap"
