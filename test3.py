@@ -22,8 +22,8 @@ for file_num in range(52):
 
     img_prepro.imshow("bw_img", bw_img)  # 이미지 띄우기
 
-    cv2.imwrite(save_path + "prepro_" + file_num + ".jpg", bw_img)
-    with open(save_path + "prepro_" + file_num, "wb") as fw:
+    cv2.imwrite(save_path + "prepro_" + str(file_num) + ".jpg", bw_img)
+    with open(save_path + "prepro_" + str(file_num), "wb") as fw:
         pickle.dump(bw_img, fw)
 
     re_no_img, _ = img_prepro.load_single_img_resize(bw_img, 1600, 1600)
@@ -35,6 +35,7 @@ for file_num in range(52):
     image_path = file_path + str(file_num) + ".jpg"
     xml_path = file_path + str(file_num) + ".xml"
     heatmap_np = img_prepro.make_gausian(image_path, xml_path)
+    print(type(heatmap_np))
 
     # isotropicGaussianHeatmapImage = cv2.applyColorMap(
     #         np.uint8(background), cv2.COLORMAP_BONE
