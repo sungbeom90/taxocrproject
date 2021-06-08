@@ -94,4 +94,8 @@ def detection_preprocess(image: Image):
 
     re_img = np.bitwise_or(b_w2, mask_img)
 
+    cv2.imshow("THRESH_BINARY", re_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
     return Image.fromarray(re_img)
