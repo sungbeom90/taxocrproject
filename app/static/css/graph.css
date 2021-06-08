@@ -10,17 +10,17 @@
     padding:10px;
 }
 
+.container2{
+    width:500;
+    padding:10px;
+}
+
 .line > div{
     margin:10px;
 }
 
-.bubble > div{
+.Bar > div{
     margin:10px;
-}
-
-.container2{
-    width:500;
-    padding:10px;
 }
 
 .companyname{
