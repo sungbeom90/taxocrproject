@@ -45,7 +45,7 @@ def detection_preprocess(image_route):
     contours, _ = cv2.findContours(
         img_bw_np, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )  # 경계 단위 묶기 (표그리기)
-    cv2.drawContours(img_bw_np, contours, -1, (255), 3)
+    cv2.drawContours(img_bw_np, contours, -1, (255), 4)
 
     h, w = img_bw_np.shape[:2]
     horizontal_img = img_bw_np
