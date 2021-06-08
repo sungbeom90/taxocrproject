@@ -14,7 +14,12 @@ print(file_list_jpg)
 for jpg_file in file_list_jpg:
     jpg_file_name = file_path + jpg_file  # 파일 경로
     print("preprossing...")
-    test_data, _ = img_prepro.load_single_img_resize(jpg_file_name, 1600, 1600)
+    img = img_prepro.detection_preprocess(jpg_file_name)
+    test_data, _ = img_prepro.load_single_img_resize(img, 1600, 1600)
+    # 파일 저장
+    print("file storage 내부 : ", f)
+    f.save("./app/static/image/" + secure_filename(f.filename))
+    upfile_address = "./app/static/image/" + secure_filename(f.filename)
 
 
 # char_list = Define_Class.definition_class()  # 텍스트 클래스 종합 파일 로드
