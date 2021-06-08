@@ -14,18 +14,18 @@ file_list_jpg = load_data.load_images(file_path, ".jpg")  # 원본파일 이름 
 print(file_list_jpg)
 
 
-for jpg_file in file_list_jpg:
-    jpg_file_name = file_path + jpg_file  # 파일 경로
-    print("preprossing...")
-    bw_img = img_prepro.detection_preprocess(jpg_file_name)
+# for jpg_file in file_list_jpg:
+#     jpg_file_name = file_path + jpg_file  # 파일 경로
+#     print("preprossing...")
+#     bw_img = img_prepro.detection_preprocess(jpg_file_name)
 
-    img_prepro.imshow("bw_img", bw_img)  # 이미지 띄우기
+#     img_prepro.imshow("bw_img", bw_img)  # 이미지 띄우기
 
-    cv2.imwrite(save_path + "prepro_" + jpg_file, bw_img)
-    with open(save_path + "prepro_" + jpg_file, "wb") as fw:
-        pickle.dump(bw_img, fw)
+#     cv2.imwrite(save_path + "prepro_" + jpg_file, bw_img)
+#     with open(save_path + "prepro_" + jpg_file, "wb") as fw:
+#         pickle.dump(bw_img, fw)
 
-    re_no_img, _ = img_prepro.load_single_img_resize(bw_img, 1600, 1600)
+#     re_no_img, _ = img_prepro.load_single_img_resize(bw_img, 1600, 1600)
 
 
 file_path = "./data/image/original_image/"  # 원본파일 경로
