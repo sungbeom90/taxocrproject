@@ -1,4 +1,5 @@
 from PIL import Image
+from math import exp
 import numpy as np
 import cv2
 import xml.etree.ElementTree as ET
@@ -61,7 +62,9 @@ def make_gausian(image_path, xml_path):
             for i in range(width):  # 너비
                 x_diff = 2.5 * (i - width / 2) / (width / 2)  # 중심점과의 거리
                 y_diff = 2.5 * (j - height / 2) / (height / 2)  # 중심점과의 거리
-                data = two_D_gaussian_distribution(x_diff, y_diff)  # 함수 호출
+                data = exp(
+                    -1 * ((x_diff ** 2 + y_diff ** 2) / 2)
+                )  # gaussian_distribution 동심원
                 data = data * 255  # 화소(gray)값 적용
                 data = int(data * 1.25) - 50  # 255값 추가적용. 선택사항
                 if data > 255:  # 255 넘으면 255로 고정
