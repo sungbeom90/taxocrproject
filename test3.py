@@ -15,7 +15,6 @@ for jpg_file in file_list_jpg:
     jpg_file_name = file_path + jpg_file  # 파일 경로
     print("preprossing...")
     test_data, _ = img_prepro.load_single_img_resize(jpg_file_name, 1600, 1600)
-    cv2.imshow("test_data", test_data * 255)
 
 
 # char_list = Define_Class.definition_class()  # 텍스트 클래스 종합 파일 로드
