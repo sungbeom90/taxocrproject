@@ -28,17 +28,17 @@ for jpg_file in file_list_jpg:
     re_no_img, _ = img_prepro.load_single_img_resize(bw_img, 1600, 1600)
 
 
-# file_path = "./data/image/original_image/"  # 원본파일 경로
-# save_path = "./data/image/region_image/"  # 파일저장 경로
-# for file_num in range(52):
-#     image_path = file_path + str(file_num) + ".jpg"
-#     xml_path = file_path + str(file_num) + ".xml"
-#     isotropicGaussianHeatmapImage = img_prepro.make_gausian(image_path, xml_path)
+file_path = "./data/image/original_image/"  # 원본파일 경로
+save_path = "./data/image/region_image/"  # 파일저장 경로
+for file_num in range(52):
+    image_path = file_path + str(file_num) + ".jpg"
+    xml_path = file_path + str(file_num) + ".xml"
+    isotropicGaussianHeatmapImage = img_prepro.make_gausian(image_path, xml_path)
 
-#     img_prepro.imshow("gaussian_map", isotropicGaussianHeatmapImage)  # 이미지 띄우기
+    img_prepro.imshow("gaussian_map", isotropicGaussianHeatmapImage)  # 이미지 띄우기
 
-#     cv2.imwrite(
-#         save_path + "heatmap_" + str(file_num) + ".jpg", isotropicGaussianHeatmapImage
-#     )
-#     with open(save_path + "heatmap_" + str(file_num), "wb") as fw:
-#         pickle.dump(isotropicGaussianHeatmapImage, fw)
+    cv2.imwrite(
+        save_path + "heatmap_" + str(file_num) + ".jpg", isotropicGaussianHeatmapImage
+    )
+    with open(save_path + "heatmap_" + str(file_num), "wb") as fw:
+        pickle.dump(isotropicGaussianHeatmapImage, fw)
