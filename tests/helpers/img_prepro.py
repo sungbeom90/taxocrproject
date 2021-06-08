@@ -38,9 +38,9 @@ def detection_preprocess(image: Image):
 
     gray = bgrImage
 
-    b_w = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    b_w = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
 
-    cv2.imshow("THRESH_BINARY", b_w)
+    cv2.imshow("THRESH_BINARY_INV", b_w)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
@@ -86,9 +86,9 @@ def detection_preprocess(image: Image):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    b_w2 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+    b_w2 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
-    cv2.imshow("THRESH_BINARY_INV", b_w2)
+    cv2.imshow("THRESH_BINARY", b_w2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
@@ -98,4 +98,10 @@ def detection_preprocess(image: Image):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    return Image.fromarray(re_img)
+    re2_img = cv2.threshold(re_img, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+
+    cv2.imshow("THRESH_BINARY_re", re_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+    return Image.fromarray(re2_img)
