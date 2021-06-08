@@ -1,11 +1,8 @@
 /*전체 css */
 *{ box-sizing: border-box;}
 
-/*header css*/
-.title{background-color: white; height: 80px; position: fixed; top:0px; right: 0px; left:0px; display: flex;}
-.logo{background-color: white; width:131px; height: 70px; padding-top: 20px;  margin-left: 20px; padding-top: 5px;}
-a{background-color: white;}
 
+body {background-color: #E6E6E6;}
 
 /* border-spacing: 표 칸의 테두리 간격 지정.*/
 table{margin-top: 200px; width: 1100px;  margin-left: auto; margin-right: auto; box-shadow: rgb(0 0 0 / 30%) 0px 2px 12px;
