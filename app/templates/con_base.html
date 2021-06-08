@@ -3,8 +3,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/con_base.css') }}">
 <link rel="stylesheet" href="../static/css/header.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <html>
 
 <head>
@@ -21,15 +21,12 @@
           <img src="{{url_for('static', filename='/image/'+upfilename)}}">
         </div>
         <div class="flex-container">
-          <!-- 공급자 -->
-          <table class="type1">
-            <thead>
-            </thead>
-            <tbody>
+          <table class="table table-striped"> 
+            <tbody> 
               <tr>
                 <th scope="row">승인번호</th>
                 <td><input name="b_id" type="text" value="{{word_spot_dict.t_bill.b_id.text}}" /></td>
-              </tr>
+              </tr> 
               <tr>
                 <th scope="row">등록번호</th>
                 <td><input type="text" , name="p_id" , value="{{word_spot_dict.t_provider.p_id.text}}" /></td>
@@ -57,30 +54,6 @@
                 <td><input type="text" , name='p_email' , value="{{word_spot_dict.t_provider.p_email.text}}" /></td>
               </tr>
             </tbody>
-          </table>
-          <!-- 작성일자 -->
-          <table class="type2">
-            <thead>
-              <tr>
-                <th scope="row">작성일자</th>
-                <th scope="row">공급가액</th>
-                <th scope="row">세액</th>
-                <th scope="row">수정사유</th>
-                <th scope="row">비고</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><input type="date" , name='b_date' , value="{{word_spot_dict.t_bill.b_date.text}}" /></td>
-                <td><input type="text" , name='b_cost_sup' , value="{{word_spot_dict.t_bill.b_cost_sup.text}}" /></td>
-                <td><input type="text" , name='b_cost_tax' , value="{{word_spot_dict.t_bill.b_cost_tax.text}}" /></td>
-                <td><input type="text" , name='b_mr' , value="{{word_spot_dict.t_bill.b_mr.text}}" /></td>
-                <td><input type="text" , name='b_etc' , value="{{word_spot_dict.t_bill.b_etc.text}}" /></td>
-              </tr>
-            </tbody>
-          </table> 
-          <!-- 가격 -->
-          <table class="type1">
             <thead>
               <tr>
                 <th scope="row">품목</th>
@@ -125,10 +98,7 @@
                 <td><input type="text" , name='i_tax_4' , value="{{word_spot_dict.t_item_4.i_tax.text}}" /></td>
               </tr>
             </tbody>
-          </table> 
-          <!-- 영수증 -->
-          <table class="type2">
-            <thead>
+          <thead>
               <tr>
                 <th scope="row">합계금액</th>
                 <th scope="row">현금</th>
@@ -151,7 +121,30 @@
                 </td>
               </tr>
             </tbody>
-          </table> 
+            <thead>
+              <tr>
+                <th scope="row">합계금액</th>
+                <th scope="row">현금</th>
+                <th scope="row">수표</th>
+                <th scope="row">어음</th>
+                <th scope="row">외상미수금</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" , name='b_cost_total' , value="{{word_spot_dict.t_bill.b_cost_total.text}}" />
+                </td>
+                <td><input type="text" , name='b_cost_cash' , value="{{word_spot_dict.t_bill.b_cost_cash.text}}" />
+                </td>
+                <td><input type="text" , name='b_cost_check' , value="{{word_spot_dict.t_bill.b_cost_check.text}}" />
+                </td>
+                <td><input type="text" , name='b_cost_note' , value="{{word_spot_dict.t_bill.b_cost_note.text}}" />
+                </td>
+                <td><input type="text" , name='b_cost_credit' , value="{{word_spot_dict.t_bill.b_cost_credit.text}}" />
+                </td>
+              </tr>
+            </tbody>           
+          </table>
         </div>
       </div>
     </div>
