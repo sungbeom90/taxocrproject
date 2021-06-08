@@ -28,3 +28,10 @@ button{
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+th{
+    width: 100px;
+}
+tr{
+    width:150px;
+}
