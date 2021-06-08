@@ -100,7 +100,7 @@ def insert_bill():
         return render_template("home.html")
 
 
-@app.route("/bargraph")
+@app.route("/dashboard")
 def bargraph():
     title = "bargraph"
     labels = []  # 도넛그래프 x축 : 회사명
@@ -196,7 +196,7 @@ def bargraph():
     print(data3)
 
     return render_template(
-        "bargraph.html",
+        "dashboard.html",
         title=title,
         taxdata=taxdata,
         labels=labels,

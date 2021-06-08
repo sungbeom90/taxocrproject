@@ -1,19 +1,174 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>서비스페이지</title>
+<head>
+    <meta charset="utf-8" />
+    <title>Expenditure DashBoard</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- chart.js -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+    <!-- .css 적용 -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/graph.css') }}">
     <link rel="stylesheet" href="../static/css/home.css">
-    <link rel="stylesheet" href="../static/css/header.css">  
-  </head>
+    <link rel="stylesheet" href="../static/css/header.css">
+</head>
 
-  <body>
-
+<body>
     {% include 'header.html' %}
-
-
     <div>
         <img src="{{url_for('static', filename=image_file)}}">
         <img src="{{url_for('static', filename=image_file2)}}">
     </div>
-  </body>
+    {{temp}}
+    <center>
+    <div class='outbox'>
+        <div class='container2'>
+            <div class='companyname'>
+                <h1>Expenditure DashBoard</h1>
+            </div>
+            <div class='misoo'>
+                <div class="shadow-lg p-4 mb-4 bg-white rounded">
+                    <h2 class='text-danger'>{{taxdata}}원</h2>
+                    <small>이만큼 썻어요*.*(뿌-듯)</small><br>
+                    <small>근데 이거 언제의 미수금임?</small>
+                </div>
+            </div>
+            <div class='dougnut'>
+                <div class="shadow-lg p-4 mb-4 bg-white rounded">
+                    <h5>거래량 top6 회사 그래프</h5>
+                    <canvas id="myChart" width="400" height="350"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myChart');
+                        const doughnutdata = {
+                                labels: {{labels|tojson}},
+                                datasets: [{
+                                    label: '거래 총액(만원)',
+                                    data: {{data|tojson}},
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    hoverOffset:4
+                                }]
+                            };
+                        var myChart = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: doughnutdata
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class='container1'>
+            <div class='line'>
+                <div class="shadow-lg p-4 mb-4 bg-white rounded" >
+                    <h5>월별 거래금액</h5>
+                    <canvas id="myLineChart" width="400" height="250"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myLineChart');
+                        const labels = ['1월','2월','3월','4월','5월','6월',
+                                        '7월','8월','9월','10월','11월','12월'];
+                        const linedata = {
+                            labels: labels,
+                            datasets: [{
+                                label: '월별 거래 금액',
+                                data: {{data2|tojson}},
+                                fill: false,
+                                borderColor: 'rgb(75, 192, 192)',
+                                tension: 0.1
+                            }]
+                        };
+                        var myLineChart = new Chart(ctx, {
+                            type: 'line',
+                            data: linedata,
+                            options: {
+                                responsive: false,
+                                scales: {
+                                    yAxes:[{
+                                        scaleLabel: {
+                                        display: true,
+                                        labelString: '거래 총액(만원)'
+                                    },
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                },
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <div class='Bar'>
+                <div class="shadow-lg p-4 mb-4 bg-white rounded">
+                    <h5>수단별 거래 총액</h5>
+                    <canvas id="myBarChart" width="400" height="250"></canvas>
+                    <script>
+                         var ctx = document.getElementById('myBarChart');
+                         const bardata = {
+                            labels: ['현금','수표','어음','외상미수금'],
+                            datasets: [{
+                                label: 'My First Dataset',
+                                data: {{data3|tojson}},
+                                backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)'
+                                ],
+                                borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                                ],
+                                borderWidth: 1
+                            }]
+                            };
+
+                        var myBarChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: bardata,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+
+                    </script>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </center>
+    <a href="{{url_for('home')}}" class="btn">돌아가기</a>
+
+
+</body>
 </html>

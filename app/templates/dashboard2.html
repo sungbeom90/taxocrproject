@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>서비스페이지</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/header.css">  
+  </head>
+
+  <body>
+
+    {% include 'header.html' %}
+
+
+    <div>
+        <img src="{{url_for('static', filename=image_file)}}">
+        <img src="{{url_for('static', filename=image_file2)}}">
+    </div>
+  </body>
+</html>
