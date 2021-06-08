@@ -42,8 +42,10 @@ def detection_preprocess(image_route):
     ]  # 텍스트와 표 그리드를 백, 나머지 배경을 흑
     imshow("THRESH_BINARY_INV", img_bw_np)  # 미리보기
 
-    # contours, _ = cv2.findContours(img_bw_np, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE) # 경계 단위 묶기 (표그리기)
-    # cv2.drawContours(img_bw_np, contours, -1, (255), 3)
+    contours, _ = cv2.findContours(
+        img_bw_np, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
+    )  # 경계 단위 묶기 (표그리기)
+    cv2.drawContours(img_bw_np, contours, -1, (255), 3)
 
     h, w = img_bw_np.shape[:2]
     horizontal_img = img_bw_np
