@@ -6,7 +6,7 @@ import numpy as np
 
 
 # 훈련 데이터 불러오기
-file_path = "./data/image/origin_image/"  # 원본파일 경로
+file_path = "./data/image/original_image/"  # 원본파일 경로
 file_list_jpg = load_data.load_images(file_path, ",jpg")  # 원본파일 이름 목록 가져오기
 print(file_list_jpg)
 
