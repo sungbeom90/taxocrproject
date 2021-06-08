@@ -172,4 +172,4 @@ def detection_preprocess(image_path):
 
     # imshow("THRESH_BINARY_re", re2_img)  # 미리보기
 
-    return np.uint8(re2_img)
+    return re2_img
