@@ -6,6 +6,8 @@
 .supply_contents{height:130%; display: flex; margin: auto; margin-top: 50px;}
 
 
+body {background-color: #E6E6E6;}
+
 .supply_inner_box{width: 80%; display : flex; margin: auto; }
 
 .sup_desc_box {width: 60%; box-shadow: rgb(0 0 0 / 30%) 0px 2px 12px; display : flex; flex-direction: column; margin: auto;}
