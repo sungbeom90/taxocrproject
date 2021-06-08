@@ -71,7 +71,7 @@ def make_gausian(image_path, xml_path):
                     data = 255
                 elif data <= 0:
                     data = 0
-                print("[{},{}] = {}".format(j, i, data))
+                # print("[{},{}] = {}".format(j, i, data))
                 textbox[j][i] = data  # 텍스트 박스에 값 적용
         for j in range(ymin, ymax):  # 백그라운드에서 현재 텍스트박스 시작 높이~ 끝높이
             for i in range(xmin, xmax):  # 백그라운드에서 현재 텍스트박스 시작너비~ 끝너비
