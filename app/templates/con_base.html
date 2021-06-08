@@ -14,7 +14,6 @@
 
 <body>
   {% include 'header.html' %}
-  <div class="main">
   <form method="POST" , action="/check_done">
     <div class='container-main'>
       <div class="container-fluid">
@@ -31,14 +30,14 @@
               </tr>
               <tr>
                 <th scope="row">등록번호</th>
-                <th scope="row">종사업장번호</th>
                 <td><input type="text" , name="p_id" , value="{{word_spot_dict.t_provider.p_id.text}}" /></td>
+                <th scope="row">종사업장번호</th>
                 <td><input type="text" , name="p_corp_num" , value="{{word_spot_dict.t_provider.p_corp_num.text}}"/></td>
               </tr>
               <tr>
                 <th scope="row">상호</th>
-                <th scope="row">성명</th>     
                 <td><input type="text" , name="p_corp_name" , value="{{word_spot_dict.t_provider.p_corp_name.text}}" /></td>
+                <th scope="row">성명</th>
                 <td><input type="text" , name="p_ceo_name" , value="{{word_spot_dict.t_provider.p_ceo_name.text}}" /></td>
               </tr>
               <tr>
@@ -47,8 +46,8 @@
               </tr>
               <tr>
                 <th scope="row">업태</th>
-                <th scope="row">종목</th>
                 <td><input type="text" , name='p_stat' , value="{{word_spot_dict.t_provider.p_stat.text}}" /></td>
+                <th scope="row">종목</th>
                 <td><input type="text" , name='p_type' , value="{{word_spot_dict.t_provider.p_type.text}}" /></td>
               </tr>
               <tr>
@@ -156,7 +155,6 @@
     </div>
     <button type="submit">전송</button>
   </form>
-  </div>
 </body>
 
 </html>
