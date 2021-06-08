@@ -3,24 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <title>Expenditure DashBoard</title>
-
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-    <!-- chart.js -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
-    <!-- .css 적용 -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/graph.css') }}">
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="stylesheet" href="../static/css/header.css">
@@ -42,8 +31,7 @@
             <div class='misoo'>
                 <div class="shadow-lg p-4 mb-4 bg-white rounded">
                     <h2 class='text-danger'>{{taxdata}}원</h2>
-                    <small>이만큼 썻어요*.*(뿌-듯)</small><br>
-                    <small>근데 이거 언제의 미수금임?</small>
+                    <small>올해의 세금은 이만큼0.0</small><br>
                 </div>
             </div>
             <div class='dougnut'>
@@ -170,7 +158,6 @@
     <div class='backbtn'></div>
         <a href="{{url_for('home')}}" class="btn">돌아가기</a>
     </div>
-
 
 </body>
 </html>

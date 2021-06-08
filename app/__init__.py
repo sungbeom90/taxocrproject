@@ -101,7 +101,7 @@ def insert_bill():
 
 
 @app.route("/dashboard")
-def bargraph():
+def dashboard():
     title = "bargraph"
     labels = []  # 도넛그래프 x축 : 회사명
     data = []  # 도넛그래프 y축 : 거래 금액
