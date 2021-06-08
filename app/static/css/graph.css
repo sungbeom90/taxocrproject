@@ -3,6 +3,10 @@
     flex-direction: row;
 
 }
+
+.graphbax{
+    margin : 50px;
+}
 .container1{
     width:500;
     padding:10px;
