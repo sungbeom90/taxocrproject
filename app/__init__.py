@@ -279,6 +279,7 @@ def upload_file():
         f = request.files["file"]
         print("file storage 내부 : ", f)
         f.save("./app/static/image/" + secure_filename(f.filename))
+        upfile_name = secure_filename(f.filename)
         upfile_address = "./app/static/image/" + secure_filename(f.filename)
         upload_file_list.append(upfile_address)
         print(upfile_address)
@@ -388,7 +389,7 @@ def predict():
     model_recog = "./data/trained_weights/tax_save_model_0309.hdf5"  # 리코그니션 모델 가중치 로드
 
     jpg_file_name = upload_file_list.pop()  # 입력 이미지 경로 로드
-
+    jpg_file_name2 = upfile_name
     print("Detecting...")  # 이미지 디텍팅 실행
     or_image, boxed_image, word_box = pred_detection(jpg_file_name, model, size=1600)
 
@@ -420,7 +421,7 @@ def predict():
     word_spot_dict = test_logic(text_list, score_list, word_list)
 
     return render_template(
-        "con_base.html", jpg_file_name=secure_filename(f.filename), word_spot_dict=word_spot_dict
+        "con_base.html", jpg_file_name=jpg_file_name2, word_spot_dict=word_spot_dict
     )
     # return redirect(
     #     url_for(
