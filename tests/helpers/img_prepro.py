@@ -86,6 +86,7 @@ def make_gausian(image_path, xml_path):
 # 이미지 사이즈 조절 및 정규화 함수
 def load_single_img_resize(img, width: int, height: int):
     image_data = []
+    img = Image.fromarray(img)
 
     img_width, img_height = img.size
 
