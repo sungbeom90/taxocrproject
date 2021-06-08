@@ -15,8 +15,7 @@ print(file_list_jpg)
 
 
 for file_num in range(52):
-    jpg_file = file_path + str(file_num) + ".jpg"
-    jpg_file_name = file_path + jpg_file  # 파일 경로
+    jpg_file_name = file_path + str(file_num) + ".jpg"  # 파일 경로
     print("preprossing...")
     bw_img = img_prepro.detection_preprocess(jpg_file_name)
     print(type(bw_img))
