@@ -4,22 +4,18 @@
 .graphbox {width : 100%; box-sizing: border-box; display: flex; margin-top: 100px;}
 .left_ghost {width : 5%;}
 .right_ghost {width : 5%;}
-
-.real_graph {display: flex;}
-
 .outbox{
     width : 80%; display: flex; flex-direction: column; margin:50px;
 }
 
+.real_graph {display: flex;}
+
 .container2{ width:300; padding-right: 5px; justify-content: right;}
 .container1{ width:300; padding-left: 5px; padding-top: 40px;}
 
-
-
 .dougnut {width: 600px; height : 500px;}
     #myChart {width : 200px; height : 200px;}
-.companyname{ width:600px; height:80px;
-}
+.companyname{ width:600px; height:80px;}
 
 .Bar {width: 500px; height : 300px;}
     #myBarChart { width: 400px; height: 300px;}
@@ -32,4 +28,4 @@
     margin:10px;
 }
 
-.btn_box {margin :auto;}
+.btn_box {width : 200px; margin :auto;}

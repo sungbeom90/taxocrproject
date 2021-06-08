@@ -9,6 +9,8 @@
 
 table {table-layout: fixed; color: black;}
 
+body {background-color: #E6E6E6;}
+
 .list_head {height:50px; overflow-x:auto; margin-top: 0px;
      border: 1px solid rgba(255,255,255,0.3); font-weight: bold;}
 
