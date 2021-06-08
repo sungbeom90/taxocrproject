@@ -57,38 +57,38 @@ def detection_preprocess(image: Image):
     horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (100, 1))
     horizontal_img = cv2.erode(horizontal_img, horizontal_kernel, iterations=1)
 
-    cv2.imshow("y100 침식", b_w)
+    cv2.imshow("y100 침식", horizontal_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     horizontal_img = cv2.dilate(horizontal_img, horizontal_kernel, iterations=1)
 
-    cv2.imshow("y100 팽창", b_w)
+    cv2.imshow("y100 팽창", horizontal_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 100))
     vertical_img = cv2.erode(vertical_img, vertical_kernel, iterations=1)
 
-    cv2.imshow("x100 침식", b_w)
+    cv2.imshow("x100 침식", vertical_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     vertical_img = cv2.dilate(vertical_img, vertical_kernel, iterations=1)
 
-    cv2.imshow("x100 팽창", b_w)
+    cv2.imshow("x100 팽창", vertical_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     mask_img = horizontal_img + vertical_img
 
-    cv2.imshow("이미지 브로드케스팅", b_w)
+    cv2.imshow("이미지 브로드케스팅", mask_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
     b_w2 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
-    cv2.imshow("이미지 THRESH_BINARY", b_w)
+    cv2.imshow("이미지 THRESH_BINARY", b_w2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
