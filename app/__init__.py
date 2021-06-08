@@ -268,7 +268,7 @@ def file_print():
     image_upload = upload_file_list.pop()
     # image_path2는 text파일로 변동 예정임
     # image_path2 = "./image/after_0.jpg"
-    return render_template("service.html", image_upload=image_upload)
+    return render_template("service.html", image_file=image_upload)
 
 
 @app.route("/uploader", methods=["GET", "POST"])
