@@ -18,7 +18,7 @@
     <div class='container-main'>
       <div class="container-fluid">
         <div class="flex-container">
-          <img src="{{url_for('predict', filename=jpg_file_name)}}">
+          <img src="{{url_for('static', filename=jpg_file_name)}}">
         </div>
         <div class="flex-container">
           <!-- 공급자 -->
@@ -89,7 +89,7 @@
                 <td><input type="text" , name='b_etc' , value="{{word_spot_dict.t_bill.b_etc.text}}" /></td>
               </tr>
             </tbody>
-          </table> -->
+          </table> 
           <!-- 가격 -->
           <table class="type1">
             <thead>
@@ -200,7 +200,7 @@
                 <td><input type="text" , name='i_tax_4' , value="{{word_spot_dict.t_item_4.i_tax.text}}" /></td>
               </tr>
             </tbody>
-          </table> -->
+          </table> 
           <!-- 영수증 -->
           <table class="type2">
             <thead>
@@ -226,7 +226,7 @@
                 </td>
               </tr>
             </tbody>
-          </table> -->
+          </table> 
         </div>
       </div>
     </div>
