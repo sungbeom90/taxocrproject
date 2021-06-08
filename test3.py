@@ -15,13 +15,13 @@ print(file_list_jpg)
 for jpg_file in file_list_jpg:
     jpg_file_name = file_path + jpg_file  # 파일 경로
     print("preprossing...")
-    img = img_prepro.detection_preprocess(jpg_file_name)
-    img_prepro.imshow("gaussian_map", img)  # 이미지 띄우기
-    cv2.imwrite(save_path + "prepro_" + jpg_file, img)
+    bw_img = img_prepro.detection_preprocess(jpg_file_name)
+    img_prepro.imshow("bw_img", bw_img)  # 이미지 띄우기
+    cv2.imwrite(save_path + "prepro_" + jpg_file, bw_img)
     with open(save_path + "heatmap_" + str(file_num), "wb") as fw:
-        pickle.dump(img, fw)
+        pickle.dump(bw_img, fw)
 
-    bw_img, _ = img_prepro.load_single_img_resize(img, 1600, 1600)
+    re_no_img, _ = img_prepro.load_single_img_resize(bw_img, 1600, 1600)
 
 
 file_path = "./data/image/original_image/"  # 원본파일 경로
