@@ -379,7 +379,7 @@ def predict():
     model = "./data/trained_weights/1600_pdfdata_origin_d05_decay1000_1600to1600_20210213-2203_last"  # 디텍션 모델 가중치 로드
     model_recog = "./data/trained_weights/tax_save_model_0309.hdf5"  # 리코그니션 모델 가중치 로드
 
-    jpg_file_name = upload_file_list.pop  # 입력 이미지 경로 로드
+    jpg_file_name = upload_file_list.pop()  # 입력 이미지 경로 로드
 
     print("Detecting...")  # 이미지 디텍팅 실행
     or_image, boxed_image, word_box = pred_detection(jpg_file_name, model, size=1600)
