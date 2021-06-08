@@ -254,14 +254,6 @@ def check_done():
 upload_file_list = []
 app.config["UPLOAD_DIR"] = "./static/image/"
 
-
-@app.route("/dashboard")
-def dashboard():
-    # 대시보드로 이동합니다.
-    # 대시보드를 조회할 수 있는 함수는 이곳에 구현하시면 됩니다.
-    return render_template("dashboard.html")
-
-
 @app.route("/done")
 def file_print():
     # 이미지 경로 설정
