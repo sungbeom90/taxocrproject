@@ -11,7 +11,6 @@
 
 
 <body>
-    {% include 'header.html' %}
     <form method="POST" , action="/check_done">
         <div class="container-fluid">
             <div class="flex-container">
@@ -170,21 +169,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <td width="76" colspan="4">
+                        <td width="76" colspan="10">
                             <p align="center">
                                 <font color="red">
                                     <span style="font-size:9pt;">작성일자</span>
                                 </font>
                             </p>
                         </td>
-                        <td width="76" colspan="6">
+                        <td width="76" colspan="11">
                             <p align="center">
                                 <font color="red">
                                     <span style="font-size:9pt;">공급가액</span>
                                 </font>
                             </p>
                         </td>
-                        <td width="76" colspan="12">
+                        <td width="76" colspan="11">
                             <p align="center">
                                 <font color="red">
                                     <span style="font-size:9pt;">세액</span>
@@ -193,21 +192,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <td width="76" colspan="6">
+                        <td width="76" colspan="10">
                           <p align="center">
                               <font color="red">
                                   <input type="date" , name='b_date' , value="{{word_spot_dict.t_bill.b_date.text}}" />
                               </font>
                           </p>
                         </td>
-                        <td width="76" colspan="4">
+                        <td width="76" colspan="11">
                             <p align="center">
                                 <font color="red">
                                     <input type="text" , name='b_cost_sup' , value="{{word_spot_dict.t_bill.b_cost_sup.text}}" />
                                 </font>
                             </p>
                         </td>
-                        <td width="76" colspan="4">
+                        <td width="76" colspan="11">
                             <p align="center">
                                 <font color="red">
                                     <input type="text" , name='b_cost_tax' , value="{{word_spot_dict.t_bill.b_cost_tax.text}}" />

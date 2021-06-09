@@ -9,24 +9,34 @@
 
 .flex-container{
     flex-basis: 50%;
+    width:665px;
+    height:750px;
 }
 
-div > table{
+.main-container{
+    flex-basis: 50%;
+    width:665px;
+    height:750px;
+}
+
+table{
     border:2;
     width:665px;
     height:750px; 
+    border-spacing:1;
     border:solid 5px #ff0000;
     text-align:center;
 }
 
-table > td{
+td{
+    border-spacing:1px;
     border:solid 1px #ff0000;
     text-align:center;
 }
 
 img{
-    width:700px;
-    height:500px;
+    width:665px;
+    height:750px;
 }
 
 #padd #p_email{
