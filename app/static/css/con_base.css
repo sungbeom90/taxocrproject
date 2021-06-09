@@ -39,7 +39,7 @@ td{
 
 img{
     max-width:665px;
-    max-height:750px;
+    max-height:1100px;
 }
 
 #padd #p_email{
@@ -57,125 +57,125 @@ button{
     max-width:665px;
     max-height:750px;
 }
-#b_id > input{
+#b_id {
     width:190px;
 }
 
-#p_add > input{
+#p_add {
     width:300px;
 }
 
-#p_email > input{
+#p_email {
     width:300px;
 }
 
-#b_cost_sup > input{
+#b_cost_sup {
     width:150px;
 }
 
-#b_cost_tax > input{
+#b_cost_tax {
     width:120px;
 }
 
-#b_mr > input {
+#b_mr {
     width:55px;
 }
 
-#b_etc > input {
+#b_etc {
     width: 55px;
 }
 
-#i_name_1 > input{
+#i_name_1 {
     width: 140px;
 }
-#i_name_2 > input{
+#i_name_2 {
     width: 140px;
 }
-#i_name_3 > input{
+#i_name_3 {
     width: 140px;
 }
-#i_name_4 > input{
+#i_name_4 {
     width: 140px;
 }
 
-#i_stand_1 > input{
+#i_stand_1 {
     width: 50px;
 }
-#i_stand_2 > input{
+#i_stand_2 {
     width: 50px;
 }
-#i_stand_3 > input{
+#i_stand_3 {
     width: 50px;
 }
-#i_stand_4 > input{
+#i_stand_4 {
     width: 50px;
 }
 
-#i_quan_1 > input{
+#i_quan_1 {
     width:50px;
 }
-#i_quan_2 > input{
+#i_quan_2 {
     width:50px;
 }
-#i_quan_3 > input{
+#i_quan_3 {
     width:50px;
 }
-#i_quan_4 > input{
+#i_quan_4 {
     width:50px;
 }
 
-#i_unit_1 > input{
+#i_unit_1 {
     width:105px;
 }
-#i_unit_2 > input{
+#i_unit_2 {
     width:105px;
 }
-#i_unit_3 > input{
+#i_unit_3 {
     width:105px;
 }
-#i_unit_4 > input{
+#i_unit_4 {
     width:105px;
 }
 
-#i_sup_1 > input{
+#i_sup_1 {
     width:95px;
 }
-#i_sup_2 > input{
+#i_sup_2 {
     width:95px;
 }
-#i_sup_3 > input{
+#i_sup_3 {
     width:95px;
 }
-#i_sup_4 > input{
+#i_sup_4 {
     width:95px;
 }
 
-#i_tax_1 > input{
+#i_tax_1 {
     width:100px
 }
-#i_tax_2 > input{
+#i_tax_2 {
     width:100px
 }
-#i_tax_3 > input{
+#i_tax_3{
     width:100px
 }
-#i_tax_4 > input{
+#i_tax_4 {
     width:100px
 }
 
-#b_cost_cash > input{
+#b_cost_cash {
     width:120px;
 }
 
-#b_cost_check > input{
+#b_cost_check {
     width:100px;
 }
 
-#b_cost_note > input{
+#b_cost_note {
     width:85px;
 }
 
-#b_cost_credit > input{
+#b_cost_credit{
     width:85px;
 }
 
