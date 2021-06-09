@@ -6,495 +6,494 @@
 <html>
 
 <head>
-  <title>홈페이지</title>
+    <title>홈페이지</title>
 </head>
 
 
 <body>
-  {% include 'header.html' %}
-  <form method="POST" , action="/check_done">
-      <div class="container-fluid">
-        <div class="flex-container">
-          <img src="{{url_for('static', filename='/image/'+upfilename)}}">
+    {% include 'header.html' %}
+    <form method="POST" , action="/check_done">
+        <div class="container-fluid">
+            <div class="flex-container">
+                <img src="{{url_for('static', filename='/image/'+upfilename)}}">
+            </div>
+            <div class="main-container">
+                <table>
+                    <tr>
+                        <td rowspan="2" colspan="12" width="320">
+                            <p align="center">
+                                <b>
+                                    <font size="6" color="red">전자세금계산서</font>
+                                </b>
+                            </p>
+                        </td>
+                        <td width="115" colspan="6" rowspan="2">
+                            <p align="center">
+                                <font size="3" color="red">승 인 번 호</font>
+                            </p>
+                        </td>
+                      </tr>
+                        <td width="115" colspan="14">
+                            <p align="center">
+                                <font color="red">
+                                    <input name="b_id" type="text" value="{{word_spot_dict.t_bill.b_id.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                    <tr>
+                        <td rowspan="4" colspan="1" width="16" height="167">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">공급자</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="55" height="43" colspan="5">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">등록번호</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="115" colspan="10">
+                            <p align="center">
+                                <font size="5" color="red">
+                                    <input type="text" , name="p_id" , value="{{word_spot_dict.t_provider.p_id.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="55" height="43" colspan="5">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">종사업장번호</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="115" colspan="10">
+                            <p align="center">
+                                <font size="5" color="red">
+                                    <input type="text" , name="p_corp_num" , value="{{word_spot_dict.t_provider.p_corp_num.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" height="43" colspan="5">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">상호(법인명)</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="115" colspan="10">
+                            <p align="center">
+                                <font size="5" color="red">
+                                    <input type="text" , name="p_corp_name" , value="{{word_spot_dict.t_provider.p_corp_name.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="55" height="43" colspan="5">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">성명</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="115" colspan="10">
+                            <p align="center">
+                                <font size="5" color="red">
+                                    <input type="text" , name="p_ceo_name" , value="{{word_spot_dict.t_provider.p_ceo_name.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" colspan="5" height="5%">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">사업장주소</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="239" colspan="28" height="5%">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='p_add' , value="{{word_spot_dict.t_provider.p_add.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" colspan="5">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">업 태</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="120" colspan="7">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='p_stat' , value="{{word_spot_dict.t_provider.p_stat.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="55" colspan="5">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">종 목</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="120" colspan="14">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='p_type' , value="{{word_spot_dict.t_provider.p_type.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" colspan="5" height="5%">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">이메일</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="239" colspan="28" height="5%">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='p_email' , value="{{word_spot_dict.t_provider.p_email.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="76" colspan="4">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">작성일자</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="76" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">공급가액</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="76" colspan="12">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">세액</span>
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="76" colspan="6">
+                          <p align="center">
+                              <font color="red">
+                                  <input type="date" , name='b_date' , value="{{word_spot_dict.t_bill.b_date.text}}" />
+                              </font>
+                          </p>
+                        </td>
+                        <td width="76" colspan="4">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_cost_sup' , value="{{word_spot_dict.t_bill.b_cost_sup.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="76" colspan="4">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_cost_tax' , value="{{word_spot_dict.t_bill.b_cost_tax.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="76" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">수정사유</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="76" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_mr' , value="{{word_spot_dict.t_bill.b_mr.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="76" colspan="4">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">비고</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="76" colspan="12">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_etc' , value="{{word_spot_dict.t_bill.b_etc.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="121" height="23" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">품목</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="55" height="23" colspan="3">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">규격</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="54" height="23" colspan="3">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">수량</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="95" height="23" colspan="5">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">단가</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="118" height="23" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">공급가액</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="115" height="23" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">세액</span>
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="121" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_name_1' , value="{{word_spot_dict.t_item_1.i_name.text}}" />
+                            </p>
+                        </td>
+                        <td width="55" colspan="4">
+                            <p align="center">
+                                <input type="text" , name='i_stand_1' , value="{{word_spot_dict.t_item_1.i_stand.text}}" />
+                            </p>
+                        </td>
+                        <td width="54" colspan="4">
+                            <p align="center">
+                                <input type="text" , name='i_quan_1' , value="{{word_spot_dict.t_item_1.i_quan.text}}" />
+                            </p>
+                        </td>
+                        <td width="95" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_unit_1' , value="{{word_spot_dict.t_item_1.i_unit.text}}" />
+                            </p>
+                        </td>
+                        <td width="118" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_sup_1' , value="{{word_spot_dict.t_item_1.i_sup.text}}" />
+                            </p>
+                        </td>
+                        <td width="115" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_tax_1' , value="{{word_spot_dict.t_item_1.i_tax.text}}" />
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="121" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_name_2' , value="{{word_spot_dict.t_item_2.i_name.text}}" />
+                            </p>
+                        </td>
+                        <td width="55" colspan="4">
+                            <p align="center">
+                                <input type="text" , name='i_stand_2' , value="{{word_spot_dict.t_item_2.i_stand.text}}" />
+                            </p>
+                        </td>
+                        <td width="54" colspan="4">
+                            <p align="center">
+                                <input type="text" , name='i_quan_2' , value="{{word_spot_dict.t_item_2.i_quan.text}}" />
+                            </p>
+                        </td>
+                        <td width="95" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_unit_2' , value="{{word_spot_dict.t_item_2.i_unit.text}}" />
+                            </p>
+                        </td>
+                        <td width="118" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_sup_2' , value="{{word_spot_dict.t_item_2.i_sup.text}}" />
+                            </p>
+                        </td>
+                        <td width="115" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_tax_2' , value="{{word_spot_dict.t_item_2.i_tax.text}}" />
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="121" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_name_3' , value="{{word_spot_dict.t_item_3.i_name.text}}" />
+                            </p>
+                        </td>
+                        <td width="55" colspan="4">
+                            <p align="center">
+                                <input type="text" , name='i_stand_3' , value="{{word_spot_dict.t_item_3.i_stand.text}}" />
+                            </p>
+                        </td>
+                        <td width="54" colspan="4">
+                            <p align="center">
+                                <input type="text" , name='i_quan_3' , value="{{word_spot_dict.t_item_3.i_quan.text}}" />
+                            </p>
+                        </td>
+                        <td width="95" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_unit_3' , value="{{word_spot_dict.t_item_3.i_unit.text}}" />
+                            </p>
+                        </td>
+                        <td width="118" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_sup_3' , value="{{word_spot_dict.t_item_3.i_sup.text}}" />
+                            </p>
+                        </td>
+                        <td width="115" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_tax_3' , value="{{word_spot_dict.t_item_3.i_tax.text}}" />
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="121" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_name_4' , value="{{word_spot_dict.t_item_4.i_name.text}}" />
+                            </p>
+                        </td>
+                        <td width="55" colspan="4">
+                            <p align="center">
+                                <input type="text" , name='i_stand_4' , value="{{word_spot_dict.t_item_4.i_stand.text}}" />
+                            </p>
+                        </td>
+                        <td width="54" colspan="4">
+                            <p align="center">
+                                <input type="text" , name='i_quan_4' , value="{{word_spot_dict.t_item_4.i_quan.text}}" />
+                            </p>
+                        </td>
+                        <td width="95" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_unit_4' , value="{{word_spot_dict.t_item_4.i_unit.text}}" />
+                            </p>
+                        </td>
+                        <td width="118" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_sup_4' , value="{{word_spot_dict.t_item_4.i_sup.text}}" />
+                            </p>
+                        </td>
+                        <td width="115" colspan="6">
+                            <p align="center">
+                                <input type="text" , name='i_tax_4' , value="{{word_spot_dict.t_item_4.i_tax.text}}" />
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="101" colspan="8">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">합계금액</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="95" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">현금</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="94" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">수표</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="95" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">어음</span>
+                                </font>
+                            </p>
+                        </td>
+                        <td width="98" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <span style="font-size:9pt;">외상미수금</span>
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="101" colspan="8">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_cost_total' , value="{{word_spot_dict.t_bill.b_cost_total.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="95" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_cost_cash' , value="{{word_spot_dict.t_bill.b_cost_cash.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="94" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_cost_check' , value="{{word_spot_dict.t_bill.b_cost_check.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="95" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_cost_note' , value="{{word_spot_dict.t_bill.b_cost_note.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                        <td width="98" colspan="6">
+                            <p align="center">
+                                <font color="red">
+                                    <input type="text" , name='b_cost_credit' , value="{{word_spot_dict.t_bill.b_cost_credit.text}}" />
+                                </font>
+                            </p>
+                        </td>
+                    </tr>
+            </div>
         </div>
-        <div class="main-container">
-          <table>
-            <tr>
-                <td rowspan="2" colspan="12" width="320">
-                    <p align="center">
-                        <b>
-                        <font size="6" color="red">전자세금계산서</font>
-                        </b>
-                    </p>
-                </td>
-                <td width="115" colspan="6" rowspan="2">
-                    <p align="center">
-                        <font size="3" color="red">승 인 번 호</font>
-                    </p>
-                </td>
-            </tr>
-                <td width="115" colspan="14">
-                  <p align="center">
-                    <font color="red">
-                      <input name="b_id" type="text" value="{{word_spot_dict.t_bill.b_id.text}}" />
-                    </font>
-                  </p>  
-                </td>
-            </td>
-        <tr>
-            <td rowspan="4" colspan="2" width="16" height="167">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">공급자</span>
-                    </font>
-                </p>
-            </t>
-            <td width="55" height="43" colspan="5">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">등록번호</span>
-                    </font>
-                </p>
-            </td>
-            <td width="115" colspan="10">
-                <p align="center">
-                    <font size="5" color="red">
-                      <input type="text" , name="p_id" , value="{{word_spot_dict.t_provider.p_id.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="55" height="43" colspan="5">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">종사업장번호</span>
-                    </font>
-                </p>
-            </td>
-            <td width="115" colspan="10">
-                <p align="center">
-                    <font size="5" color="red">
-                      <input type="text" , name="p_corp_num" , value="{{word_spot_dict.t_provider.p_corp_num.text}}"/>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td width="55" height="43" colspan="5">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">상호(법인명)</span>
-                    </font>
-                </p>
-            </td>
-            <td width="115" colspan="10">
-                <p align="center">
-                    <font size="5" color="red">
-                      <input type="text" , name="p_corp_name" , value="{{word_spot_dict.t_provider.p_corp_name.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="55" height="43" colspan="5">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">성명</span>
-                    </font>
-                </p>
-            </td>
-            <td width="115" colspan="10">
-                <p align="center">
-                    <font size="5" color="red">
-                      <input type="text" , name="p_ceo_name" , value="{{word_spot_dict.t_provider.p_ceo_name.text}}" />
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td width="55" colspan="5" height="5%">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">사업장주소</span>
-                    </font>
-                </p>
-            </td>
-            <td width="239" colspan="28" height="5%">
-                <p align="center">
-                  <font color="red">
-                    <input type="text" , name='p_add' , value="{{word_spot_dict.t_provider.p_add.text}}" />
-                  </font> 
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td width="55" colspan="5">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">업 태</span>
-                    </font>
-                </p>
-            </td>
-            <td width="120" colspan="7">
-                <p align="center">
-                  <font color="red">
-                    <input type="text" , name='p_stat' , value="{{word_spot_dict.t_provider.p_stat.text}}" />
-                  </font>
-                </p>
-            </td>
-            <td width="55" colspan="5">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">종 목</span>
-                    </font>
-                </p>
-            </td>
-            <td width="120" colspan="14">
-                <p align="center">
-                  <font color="red">
-                    <input type="text" , name='p_type' , value="{{word_spot_dict.t_provider.p_type.text}}" />
-                  </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-          <td width="55" colspan="5" height="5%">
-              <p align="center">
-                  <font color="red">
-                      <span style="font-size:9pt;">이메일</span>
-                  </font>
-              </p>
-          </td>
-          <td width="239" colspan="28" height="5%">
-              <p align="center">
-                <font color="red">
-                  <input type="text" , name='p_email' , value="{{word_spot_dict.t_provider.p_email.text}}" />
-                </font> 
-              </p>
-          </td>
-      </tr>
-        <tr>
-            <td width="76" colspan="4">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">작성일자</span>
-                    </font>
-                </p>
-            </td>
-            <td width="76" colspan="6">
-                <p align="center">
-                    <font color="red">
-                      <input type="date" , name='b_date' , value="{{word_spot_dict.t_bill.b_date.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="76" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">공급가액</span>
-                    </font>
-                </p>
-            </td>
-            <td width="76" colspan="4">
-                <p align="center">
-                    <font color="red">
-                      <input type="text" , name='b_cost_sup' , value="{{word_spot_dict.t_bill.b_cost_sup.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="76" colspan="12">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">세액</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td width="76" colspan="4">
-                <p align="center">
-                    <font color="red">
-                      <input type="text" , name='b_cost_tax' , value="{{word_spot_dict.t_bill.b_cost_tax.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="76" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">수정사유</span>
-                    </font>
-                </p>
-            </td>
-            <td width="76" colspan="6">
-                <p align="center">
-                    <font color="red">
-                      <input type="text" , name='b_mr' , value="{{word_spot_dict.t_bill.b_mr.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="76" colspan="4">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">비고</span>
-                    </font>
-                </p>
-            </td>
-            <td width="76" colspan="12">
-                <p align="center">
-                    <font color="red">
-                        <<input type="text" , name='b_etc' , value="{{word_spot_dict.t_bill.b_etc.text}}" />
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td width="121" height="23" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">품목</span>
-                    </font>
-                </p>
-            </td>
-            <td width="55" height="23" colspan="3">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">규격</span>
-                    </font>
-                </p>
-            </td>
-            <td width="54" height="23" colspan="3">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">수량</span>
-                    </font>
-                </p>
-            </td>
-            <td width="95" height="23" colspan="5">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">단가</span>
-                    </font>
-                </p>
-            </td>
-            <td width="118" height="23" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">공급가액</span>
-                    </font>
-                </p>
-            </td>
-            <td width="115" height="23" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">세액</span>
-                    </font>
-                </p>
-            </td>
-        </tr>
-        <tr>
-          <td width="121" colspan="6">
-              <p align="center">
-                <input type="text" , name='i_name_1' , value="{{word_spot_dict.t_item_1.i_name.text}}" />
-              </p>
-          </td>
-          <td width="55" colspan="4">
-              <p align="center">
-                <input type="text" , name='i_stand_1' , value="{{word_spot_dict.t_item_1.i_stand.text}}" />
-              </p>
-          </td>
-          <td width="54" colspan="4">
-              <p align="center">
-                <input type="text" , name='i_quan_1' , value="{{word_spot_dict.t_item_1.i_quan.text}}" />
-              </p>
-          </td>
-          <td width="95" colspan="6">
-              <p align="center">
-                <input type="text" , name='i_unit_1' , value="{{word_spot_dict.t_item_1.i_unit.text}}" />
-              </p>
-          </td>
-          <td width="118" colspan="6">
-              <p align="center">
-                <input type="text" , name='i_sup_1' , value="{{word_spot_dict.t_item_1.i_sup.text}}" />
-              </p>
-          </td>
-          <td width="115" colspan="6">
-              <p align="center">
-                <input type="text" , name='i_tax_1' , value="{{word_spot_dict.t_item_1.i_tax.text}}" />
-              </p>
-          </td>
-          </tr>
-          <tr>
-            <td width="121" colspan="6">
-                <p align="center">
-                  <input type="text" , name='i_name_2' , value="{{word_spot_dict.t_item_2.i_name.text}}" />
-                </p>
-            </td>
-            <td width="55" colspan="4">
-                <p align="center">
-                  <input type="text" , name='i_stand_2' , value="{{word_spot_dict.t_item_2.i_stand.text}}" />
-                </p>
-            </td>
-            <td width="54" colspan="4">
-                <p align="center">
-                  <input type="text" , name='i_quan_2' , value="{{word_spot_dict.t_item_2.i_quan.text}}" />
-                </p>
-            </td>
-            <td width="95" colspan="6">
-                <p align="center">
-                  <input type="text" , name='i_unit_2' , value="{{word_spot_dict.t_item_2.i_unit.text}}" />
-                </p>
-            </td>
-            <td width="118" colspan="6">
-                <p align="center">
-                  <input type="text" , name='i_sup_2' , value="{{word_spot_dict.t_item_2.i_sup.text}}" />
-                </p>
-            </td>
-            <td width="115" colspan="6">
-                <p align="center">
-                  <input type="text" , name='i_tax_2' , value="{{word_spot_dict.t_item_2.i_tax.text}}" />
-                </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="121" colspan="6">
-                <p align="center">
-                  <input type="text" , name='i_name_3' , value="{{word_spot_dict.t_item_3.i_name.text}}" />
-                </p>
-            </td>
-            <td width="55" colspan="4">
-                <p align="center">
-                  <input type="text" , name='i_stand_3' , value="{{word_spot_dict.t_item_3.i_stand.text}}" />
-                </p>
-            </td>
-            <td width="54" colspan="4">
-                <p align="center">
-                  <input type="text" , name='i_quan_3' , value="{{word_spot_dict.t_item_3.i_quan.text}}" />
-                </p>
-            </td>
-            <td width="95" colspan="6">
-                <p align="center">
-                  <input type="text" , name='i_unit_3' , value="{{word_spot_dict.t_item_3.i_unit.text}}" />
-                </p>
-            </td>
-            <td width="118" colspan="6">
-                <p align="center">
-                  <input type="text" , name='i_sup_3' , value="{{word_spot_dict.t_item_3.i_sup.text}}" />
-                </p>
-            </td>
-            <td width="115" colspan="6">
-                <p align="center">
-                  <input type="text" , name='i_tax_3' , value="{{word_spot_dict.t_item_3.i_tax.text}}" />
-                </p>
-            </td>
-          </tr>
-          <tr>
-          <td width="121" colspan="6">
-              <p align="center">
-                <input type="text" , name='i_name_4' , value="{{word_spot_dict.t_item_4.i_name.text}}" />
-              </p>
-          </td>
-          <td width="55" colspan="4">
-              <p align="center">
-                <input type="text" , name='i_stand_4' , value="{{word_spot_dict.t_item_4.i_stand.text}}" />
-              </p>
-          </td>
-          <td width="54" colspan="4">
-              <p align="center">
-                <input type="text" , name='i_quan_4' , value="{{word_spot_dict.t_item_4.i_quan.text}}" />
-              </p>
-          </td>
-          <td width="95" colspan="6">
-              <p align="center">
-                <input type="text" , name='i_unit_4' , value="{{word_spot_dict.t_item_4.i_unit.text}}" />
-              </p>
-          </td>
-          <td width="118" colspan="6">
-              <p align="center">
-                <input type="text" , name='i_sup_4' , value="{{word_spot_dict.t_item_4.i_sup.text}}" />
-              </p>
-          </td>
-          <td width="115" colspan="6">
-              <p align="center">
-                <input type="text" , name='i_tax_4' , value="{{word_spot_dict.t_item_4.i_tax.text}}" />
-              </p>
-          </td>
-          </tr>
-          <tr>
-            <td width="101" colspan="8">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">합계금액</span>
-                    </font>
-                </p>
-            </td>
-            <td width="95" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">현금</span>
-                    </font>
-                </p>
-            </td>
-            <td width="94" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">수표</span>
-                    </font>
-                </p>
-            </td>
-            <td width="95" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">어음</span>
-                    </font>
-                </p>
-            </td>
-            <td width="98" colspan="6">
-                <p align="center">
-                    <font color="red">
-                        <span style="font-size:9pt;">외상미수금</span>
-                    </font>
-                </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="101" colspan="8">
-                <p align="center">
-                    <font color="red">
-                      <input type="text" , name='b_cost_total' , value="{{word_spot_dict.t_bill.b_cost_total.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="95" colspan="6">
-                <p align="center">
-                    <font color="red">
-                      <input type="text" , name='b_cost_cash' , value="{{word_spot_dict.t_bill.b_cost_cash.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="94" colspan="6">
-                <p align="center">
-                    <font color="red">
-                      <input type="text" , name='b_cost_check' , value="{{word_spot_dict.t_bill.b_cost_check.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="95" colspan="6">
-                <p align="center">
-                    <font color="red">
-                      <input type="text" , name='b_cost_note' , value="{{word_spot_dict.t_bill.b_cost_note.text}}" />
-                    </font>
-                </p>
-            </td>
-            <td width="98" colspan="6">
-                <p align="center">
-                    <font color="red">
-                      <input type="text" , name='b_cost_credit' , value="{{word_spot_dict.t_bill.b_cost_credit.text}}" />
-                    </font>
-                </p>
-            </td>
-          </tr>
         </div>
-      </div>
-    </div>
-  <button type="submit">전송</button>
-  </form>
+        <button type="submit">전송</button>
+    </form>
 </body>
 
 </html>

@@ -1,36 +1,36 @@
 .container-fluid{
     display:flex;
     flex-direction: row;
-    align-items: center;
-    box-sizing: border-box;
+    flex-wrap: wrap;
     margin-top: 150px;
+    width: 1390px;
+    height: 750px;
 }
 
-table{
+.flex-container{
+    flex-basis: 50%;
+}
+
+div > table{
     border:2;
-    width:665;
-    height:450; 
-    border-spacing:1;
+    width:665px;
+    height:750px; 
     border:solid 5px #ff0000;
     text-align:center;
 }
 
-td{
-    border-spacing:1;
+table > td{
     border:solid 1px #ff0000;
     text-align:center;
 }
 
-.flex-container{
-    box-sizing: border-box;
-}
-
-.main-container{
-    box-sizing: border-box;
-}
-
 img{
-    box-sizing: border-box;
+    width:700px;
+    height:500px;
+}
+
+#padd #p_email{
+    width:400px;
 }
 
 button{
