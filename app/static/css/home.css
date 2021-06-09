@@ -16,7 +16,8 @@
 
 .main_contents{width: 568px; height: 580px; background-color: white;
                margin-top: 100px; text-align: center; display: table; }
-.contents1{font-weight:bold ; font-size:35px;   background-color: white; text-align: center; 
+.cibox{height: 50px;}
+               .contents1{font-weight:bold ; font-size:35px;   background-color: white; text-align: center; 
            margin:auto; padding-top:80px; width:290px;}
 .contents2{font-size: 18px;  background-color: white; text-align: center;
            margin: 16px auto 40px; width:276px; }
