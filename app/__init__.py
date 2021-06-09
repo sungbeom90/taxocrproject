@@ -166,7 +166,7 @@ def check_done():
         pass
     result = om.bill_insert(t_bill)  # 계산서 입력
 
-    return redirect(url_for("bargraph", year_="2010"))
+    return redirect(url_for("dashboard", year_="2010"))
 
 
 # ===================flaskr=========================
