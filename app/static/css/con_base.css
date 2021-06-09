@@ -5,7 +5,7 @@
     margin-top: 150px;
 }
 
-div table{
+div > table{
     border:2;
     width:665;
     height:450; 
@@ -14,7 +14,7 @@ div table{
     text-align:center;
 }
 
-table td{
+table > td{
     border-spacing:1;
     border:solid 1px #ff0000;
     text-align:center;
@@ -30,6 +30,10 @@ table td{
 
 img{
     box-sizing: border-box;
+}
+
+#padd #p_email{
+    width:400px;
 }
 
 button{
