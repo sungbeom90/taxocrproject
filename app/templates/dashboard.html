@@ -17,7 +17,21 @@
 </head>
 
 <body>
-    {% include 'header.html' %}
+   <!--{% include 'header.html' %}--> 
+    <div class="title">
+        <div class="menu">
+        <div class="empty"></div>
+        <a class="abox" href="{{ url_for('home')}}">
+            <img src="../static/dev_img/btn_home.png" class="logo"></a>
+        <a class="abox" href="{{ url_for('select_sup')}}">
+            <img src="../static/dev_img/btn_lookup.png" class="supply_menu"></a>
+        <a class="abox" href="{{ url_for('dashboard',year_='2010')}}">
+            <img src="../static/dev_img/btn_dashboard.png" class="dash_menu"></a>
+        <a class="abox" href="{{ url_for('guide')}}">
+            <img src="../static/dev_img/btn_manual.png" class="info"></a>
+        <div class="empty"></div>
+        </div>
+    </div>
     
     <div class='graphbox'>
         <div class="left_ghost">
