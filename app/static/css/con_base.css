@@ -8,15 +8,14 @@
 }
 
 .flex-container{
-    flex-basis: 50%;
     width:665px;
     height:750px;
 }
 
 .main-container{
-    flex-basis: 50%;
     width:665px;
     height:750px;
+    max-width:100%;
 }
 
 table{
@@ -46,11 +45,14 @@ img{
 button{
     width: 150px;
     height: 50px;
-    display: table;
     margin-left: 50%;
     margin-right: auto;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+.max{
+    max-width: 100%;
 }
 
 
