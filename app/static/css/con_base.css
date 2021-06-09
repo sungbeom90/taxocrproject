@@ -22,6 +22,7 @@ table{
     border:2;
     width:665px;
     height:750px; 
+    table-layout: fixed;
     border-spacing:1;
     border:solid 5px #ff0000;
     text-align:center;
@@ -34,8 +35,8 @@ td{
 }
 
 img{
-    width:665px;
-    height:750px;
+    max-width:665px;
+    max-height:750px;
 }
 
 #padd #p_email{
