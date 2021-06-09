@@ -100,7 +100,7 @@ def insert_bill():
         return render_template("home.html")
 
 
-@app.route("/dashboard", method=("GET"))
+@app.route("/dashboard", methods=("GET"))
 def dashboard():
     title = "bargraph"
     labels = []  # 도넛그래프 x축 : 회사명
