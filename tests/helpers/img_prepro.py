@@ -122,7 +122,7 @@ def detection_preprocess(image_path):
     )[
         1
     ]  # 텍스트와 표 그리드를 백, 나머지 배경을 흑
-    # imshow("THRESH_BINARY_INV", img_bw_np)  # 미리보기
+    imshow("THRESH_BINARY_INV", img_bw_np)  # 미리보기
 
     contours, _ = cv2.findContours(
         img_bw_np, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
@@ -137,39 +137,39 @@ def detection_preprocess(image_path):
     horizontal_img = cv2.erode(
         horizontal_img, horizontal_kernel, iterations=1
     )  # (100,1) 커널로 침식하여 가로줄 찾기
-    # imshow("y100 erode", horizontal_img)  # 미리보기
+    imshow("y100 erode", horizontal_img)  # 미리보기
 
     horizontal_img = cv2.dilate(
         horizontal_img, horizontal_kernel, iterations=1
     )  # (100,1) 커널로 팽창
-    # imshow("y100 dilate", horizontal_img)  # 미리보기
+    imshow("y100 dilate", horizontal_img)  # 미리보기
 
     vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 100))
     vertical_img = cv2.erode(
         vertical_img, vertical_kernel, iterations=1
     )  # (1,100) 커널로 침식하여 세로줄 찾기
-    # imshow("x100 erode", vertical_img)  # 미리보기
+    imshow("x100 erode", vertical_img)  # 미리보기
 
     vertical_img = cv2.dilate(
         vertical_img, vertical_kernel, iterations=1
     )  # (1,100) 커널로 팽창
-    # imshow("x100 dilate", vertical_img)  # 미리보기
+    imshow("x100 dilate", vertical_img)  # 미리보기
 
     mask_img = horizontal_img + vertical_img  # 가로 세로줄 합쳐 표 얻기 (표는 백색)
-    # imshow("img brodcasting", mask_img)  # 미리보기
+    imshow("img brodcasting", mask_img)  # 미리보기
 
     img_wb_np = cv2.threshold(img_g_np, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[
         1
     ]  #  텍스트와 표 그리드를 흑, 배경을 백
-    # imshow("THRESH_BINARY", img_wb_np)  # 미리보기
+    imshow("THRESH_BINARY", img_wb_np)  # 미리보기
 
     re_img = np.bitwise_or(img_wb_np, mask_img)  # 비트 or 연산하여 표 제거 (흑 + 백 = 백색)
-    # imshow("THRESH_BINARY", re_img)  # 미리보기
+    imshow("THRESH_BINARY", re_img)  # 미리보기
 
     re2_img = cv2.threshold(re_img, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[
         1
     ]  # 표가 제거된 이미지를 흑백 반전하여 텍스트를 백, 배경을 흑으로
 
-    # imshow("THRESH_BINARY_re", re2_img)  # 미리보기
+    imshow("THRESH_BINARY_re", re2_img)  # 미리보기
 
     return re2_img
