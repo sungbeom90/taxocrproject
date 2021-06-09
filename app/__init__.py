@@ -112,7 +112,7 @@ def dashboard():
     year_ = request.args.get("year_")
     print(year_)
     print(type(year_))
-    year_ = {"year": "2010"}
+    year_ = "2010"
     # year_ = {"year": request.args.get("year_")}
 
     # 세금 데이터----------------------------------------
