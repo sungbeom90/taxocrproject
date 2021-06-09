@@ -235,35 +235,3 @@ def barGraph(year_):
         data3.append(int(i["SUM(t_bill.b_cost_credit)"]))
 
     return data3
-
-
-# -------------이 이하부터는 __init__.py에서 대체되어야 할 부분입니다.
-from app import graph
-
-
-@app.route("/bargraph", methods=["POST"])
-def berGraph():  # 매개변수 받아야하나? ㄴㄴ
-    year_ = request.form.values()  # year_ 값
-    print(year_)
-
-    # 세금 데이터
-    taxdata = graph.taxdata(year_)
-
-    # 도넛 그래프
-    labels, data = graph.doughnutGraph(year_)
-
-    # 라인 그래프
-    data2 = graph.lineGraph(year_)
-
-    # 막대 그래프
-    data3 = graph.barGraph(year_)
-
-    return render_template(
-        "bargraph.html",
-        title=title,
-        taxdata=taxdata,
-        labels=labels,
-        data=data,
-        data2=data2,
-        data3=data3,
-    )
