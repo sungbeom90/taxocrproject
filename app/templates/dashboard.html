@@ -17,25 +17,27 @@
 
 <body>
     {% include 'header.html' %}
-
+    
     <div class='graphbox'>
-        <div class="left_ghost"></div>
+        <div class="left_ghost">
+        </div>
+
         <div class='outbox'>
             <div class="real_graph">
                 <div class='container2'>
                     <div class='companyname'>
-                        <h1 t>Expenditure DashBoard</h1>
-                        <div>
-                            <form method="GET" action="/dashboard">
-                                <input type="text" name='year_' placeholder="연도">
-                                <input type="submit" value="조회">
-                            </form>
-                        </div>
+                        <h1> DASHBOARD </h1>
+                    </div>
+                    <div class="year_ask">
+                        <form method="GET" action="/dashboard">
+                            <input type="text" name='year_' placeholder="연도">
+                            <input type="submit" value="조회">
+                        </form>
                     </div>
                     <div class='misoo'>
                         <div class="shadow-lg p-4 mb-4 bg-white rounded">
                             <h2 class='text-danger'>{{taxdata}}원</h2>
-                            <small> 올해 납부 세금 </small><br>
+                            <small> 올해 납부 세금 </small>
                         </div>
                     </div>
                     <div class='dougnut'>

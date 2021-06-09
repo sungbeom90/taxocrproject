@@ -2,11 +2,11 @@
 * {text-align: center;}
 
 .graphbox {width : 100%; box-sizing: border-box; display: flex; margin-top: 100px;}
-.left_ghost {width : 5%;}
-.right_ghost {width : 5%;}
-.outbox{
-    width : 80%; display: flex; flex-direction: column; margin:50px;
-}
+.left_ghost {width : 15%; display: flex; flex-direction: column;}
+.year_ask { width: 90%; height : 15px;  margin-top: 10px; margin: auto; justify-content: right; }
+
+.right_ghost {width : 15%;}
+.outbox{ width : 70%; display: flex; flex-direction: column; margin:50px; }
 
 .real_graph {display: flex;}
 
@@ -14,18 +14,14 @@
 .container1{ width:300; padding-left: 5px; padding-top: 40px;}
 
 .dougnut {width: 600px; height : 500px;}
-    #myChart {width : 200px; height : 200px;}
-.companyname{ width:600px; height:80px;}
+    #myChart {width : 200px; height : 300px;}
+.companyname{ width:600px; height:70px;}
 
 .Bar {width: 500px; height : 300px;}
     #myBarChart { width: 400px; height: 300px;}
-.line {width: 500px; height : 300px;}
-    #myLineChart {width: 400px; height: 300px;}
-.misoo {width: 600px; height: 200px;}
+.line {width: 470px; height : 300px; }
+    #myLineChart {width: 400px; height: 200px;}
+.misoo {width: 400px; height: 125px; margin-left: 200px; margin-top: 25px;}
 
-.misoo > p{ 
-    font-size: 50px;
-    margin:10px;
-}
-
+.misoo > p{ font-size: 50px;}
 .btn_box {width : 200px; margin :auto;}

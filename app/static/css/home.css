@@ -14,13 +14,14 @@
 
 .center_box{width: 50%; display : flex; justify-content: left;}
 
-.main_contents{box-shadow: rgb(0 0 0 / 30%) 0px 2px 12px; width: 568px; height: 580px; background-color: white;
+.main_contents{width: 568px; height: 580px; background-color: white;
                margin-top: 100px; text-align: center; display: table; }
 .contents1{font-weight:bold ; font-size:35px;   background-color: white; text-align: center; 
            margin:auto; padding-top:80px; width:290px;}
 .contents2{font-size: 18px;  background-color: white; text-align: center;
            margin: 16px auto 40px; width:276px; }
 .main_image{width:350px; height: 234px; }
+.cibox{width:380px; height: 100px; }
 
 .button_box{width: 100%; height: auto; display: flex; background-color: white; flex-direction: row;
                  justify-content: space-around; margin-top: 20px;}
