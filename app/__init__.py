@@ -212,7 +212,7 @@ def insert_bill():
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():  # 매개변수 받아야하나? ㄴㄴ
-    year_ = request.form.values()  # year_ 값
+    year_ = request.args.get("year_")  # year_ 값
     print(year_)
 
     # 세금 데이터
