@@ -1,11 +1,10 @@
-.main-container{
-    max-width: 500px;
-    max-height: 500px;
-}
 .container-fluid{
     display:flex;
     flex-direction: row;
     align-items: center;
+    width: 1500;
+    height: 1500;
+    box-sizing: border-box;
 }
 
 #main{
