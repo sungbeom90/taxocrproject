@@ -6,38 +6,18 @@
     display:flex;
     flex-direction: row;
     align-items: center;
-    box-sizing: border-box;
-    height: 1000px;
-    width: 1000px;
-}
-.table1{
-    max-width: 600px;
-    max-height: 600px;
-}
-
-.table2{
-    max-width: 600px;
-    max-height: 600px;
-}
-
-.table3{
-    max-width: 600px;
-    max-height: 600px;
-}
-
-.table4{
-    max-width: 600px;
-    max-height: 600px;
 }
 
 #main{
     width: 70%;
     height: 70%;
+    box-sizing: border-box;
 }
 
 img{
-    width: 90%;
-    height: 90%;
+    width: 70%;
+    height: 70%;
+    box-sizing: border-box;
 }
 
 button{
@@ -48,11 +28,4 @@ button{
     margin-right: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-}
-
-th{
-    width: 100px;
-}
-tr{
-    width:150px;
 }
