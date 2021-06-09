@@ -57,5 +57,127 @@ button{
     max-width:665px;
     max-height:750px;
 }
+#b_id > input{
+    width:190px;
+}
+
+#p_add > input{
+    width:300px;
+}
+
+#p_email > input{
+    width:300px;
+}
+
+#b_cost_sup > input{
+    width:150px;
+}
+
+#b_cost_tax > input{
+    width:120px;
+}
+
+#b_mr > input {
+    width:55px;
+}
+
+#b_etc > input {
+    width: 55px;
+}
+
+#i_name_1 > input{
+    width: 140px;
+}
+#i_name_2 > input{
+    width: 140px;
+}
+#i_name_3 > input{
+    width: 140px;
+}
+#i_name_4 > input{
+    width: 140px;
+}
+
+#i_stand_1 > input{
+    width: 50px;
+}
+#i_stand_2 > input{
+    width: 50px;
+}
+#i_stand_3 > input{
+    width: 50px;
+}
+#i_stand_4 > input{
+    width: 50px;
+}
+
+#i_quan_1 > input{
+    width:50px;
+}
+#i_quan_2 > input{
+    width:50px;
+}
+#i_quan_3 > input{
+    width:50px;
+}
+#i_quan_4 > input{
+    width:50px;
+}
+
+#i_unit_1 > input{
+    width:105px;
+}
+#i_unit_2 > input{
+    width:105px;
+}
+#i_unit_3 > input{
+    width:105px;
+}
+#i_unit_4 > input{
+    width:105px;
+}
+
+#i_sup_1 > input{
+    width:95px;
+}
+#i_sup_2 > input{
+    width:95px;
+}
+#i_sup_3 > input{
+    width:95px;
+}
+#i_sup_4 > input{
+    width:95px;
+}
+
+#i_tax_1 > input{
+    width:100px
+}
+#i_tax_2 > input{
+    width:100px
+}
+#i_tax_3 > input{
+    width:100px
+}
+#i_tax_4 > input{
+    width:100px
+}
+
+#b_cost_cash > input{
+    width:120px;
+}
+
+#b_cost_check > input{
+    width:100px;
+}
+
+#b_cost_note > input{
+    width:85px;
+}
+
+#b_cost_credit > input{
+    width:85px;
+}
+
 
 
