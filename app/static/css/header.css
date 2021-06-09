@@ -4,8 +4,8 @@
      top:0px; right: 0px; left:0px; display: flex; justify-content: center;
 }
 .menu{ margin-top: 20px; width: 50%; height: 70%; display: flex; justify-content: space-around; } 
-.dash_menu{background-color: #95B6E7;  height: 100%; padding-top: 20px;  }
-.supply_menu{background-color: #95B6E7; height: 100%; padding-top: 20px;  }
-.logo{background-color: #95B6E7;  height: 100%; padding-top: 20px;  }
+.dash_menu{background-color: #95B6E7;  height: 80%; padding-top: 25px;  }
+.supply_menu{background-color: #95B6E7; height: 80%; padding-top: 25px;  }
+.logo{background-color: #95B6E7;  height: 80%; padding-top: 25px;  }
 .info{background-color: #95B6E7;  height: 80%;  padding-top: 25px;  }
 a{background-color: #95B6E7;}
