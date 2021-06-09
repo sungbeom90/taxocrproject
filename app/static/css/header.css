@@ -2,12 +2,12 @@
 /*header css*/
 
 
-#navbar{background-color: #95B6E7;}
-.title{background-color: #95B6E7; width: 85%; height: 120px; position: fixed;
-     top:0px; right: 0px; left:0px; display: flex; justify-content: center;
-}
+#navbar{background-color: #95B6E7; display: flex; justify-content: center;
+}}
+.title{background-color: #95B6E7; width: 100%; height: 120px; position: fixed;
+     top:0px; right: 0px; left:0px; display: flex; justify-content: center;}
 .menu{ background-color: #95B6E7; margin-top: 20px; width: 70%; width:100%; height: 100%; 
-     display: flex; justify-content: space-around; } 
+     display: flex; justify-content: center; } 
 
 .dash_menu{background-color: #95B6E7; width:50%;  height: 40%; padding-top: 10px;}
 .supply_menu{background-color: #95B6E7; width:40%; height: 40%;padding-top: 10px;}
