@@ -1,12 +1,11 @@
 .container-fluid{
     display:flex;
     flex-direction: row;
-    align-items: center;
     box-sizing: border-box;
     margin-top: 150px;
 }
 
-table{
+div table{
     border:2;
     width:665;
     height:450; 
@@ -15,7 +14,7 @@ table{
     text-align:center;
 }
 
-td{
+table td{
     border-spacing:1;
     border:solid 1px #ff0000;
     text-align:center;
