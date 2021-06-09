@@ -7,6 +7,7 @@
 .flex-container{
     width:665px;
     height:1000px;
+    margin-top: 10%;
 }
 
 table{
@@ -30,6 +31,7 @@ td{
 img{
     max-width:665px;
     max-height:1100px;
+    height:750px;
 }
 
 #padd #p_email{
@@ -39,8 +41,10 @@ img{
 button{
     width: 150px;
     height: 50px;
-    margin-left: 50%;
-    margin-right: auto;
+    margin-left: 45%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .max{
