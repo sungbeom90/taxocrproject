@@ -214,6 +214,7 @@ def insert_bill():
 def dashboard():  # 매개변수 받아야하나? ㄴㄴ
     year_ = request.args.get("year_")  # year_ 값
     print(year_)
+    title = "dashboard"
 
     # 세금 데이터
     taxdata = om.taxdata(year_)
