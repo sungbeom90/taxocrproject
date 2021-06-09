@@ -112,12 +112,13 @@ def dashboard():
     year_ = request.args.get("year_")
     print(year_)
     print(type(year_))
+    year_ = {"year": "2010"}
     # year_ = {"year": request.args.get("year_")}
 
     # 세금 데이터----------------------------------------
     taxsql = """SELECT SUM(t_bill.b_cost_tax)
                 FROM t_bill
-                WHERE YEAR(t_bill.b_date) = '%s'"""
+                WHERE YEAR(t_bill.b_date) = %s """
     taxrow = db_class.executeOne(taxsql, year_)
 
     taxdata = int(taxrow["SUM(t_bill.b_cost_tax)"])
