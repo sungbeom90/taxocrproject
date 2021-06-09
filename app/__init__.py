@@ -100,107 +100,135 @@ def insert_bill():
         return render_template("home.html")
 
 
-@app.route("/dashboard", methods=["GET"])
-def dashboard():
-    title = "bargraph"
-    labels = []  # 도넛그래프 x축 : 회사명
-    data = []  # 도넛그래프 y축 : 거래 금액
-    data2 = []  # 라인 그래프 y축 : 거래 금액
-    data3 = []  # 막대 그래프 y축 : 수단별 거래 금액
+# @app.route("/dashboard", methods=["GET"])
+# def dashboard():
+#     title = "bargraph"
+#     labels = []  # 도넛그래프 x축 : 회사명
+#     data = []  # 도넛그래프 y축 : 거래 금액
+#     data2 = []  # 라인 그래프 y축 : 거래 금액
+#     data3 = []  # 막대 그래프 y축 : 수단별 거래 금액
 
-    # 연도 받아서 sql 바꿔야함
-    year_ = request.args.get("year_")
+#     # 연도 받아서 sql 바꿔야함
+#     year_ = request.args.get("year_")
+#     print(year_)
+#     print(type(year_))
+#     year_ = "2010"
+#     # year_ = {"year": request.args.get("year_")}
+
+#     # 세금 데이터----------------------------------------
+#     taxsql = """SELECT SUM(t_bill.b_cost_tax)
+#                 FROM t_bill
+#                 WHERE YEAR(t_bill.b_date) = '2010' """
+#     taxrow = db_class.executeOne(taxsql)
+
+#     taxdata = int(taxrow["SUM(t_bill.b_cost_tax)"])
+
+#     print("taxdata는 -> ", taxdata)
+
+#     # Doughnut graph------------------------------------
+#     temp = []
+#     temp2 = []
+#     temptuple = []
+#     sql = """SELECT t_provider.p_corp_name as p_corp_name,
+#             SUM(t_bill.b_cost_total) as b_cost_total_sum
+#             FROM t_provider, t_bill
+#             WHERE t_provider.p_id = t_bill.FK_p_id AND YEAR(t_bill.b_date) = '2010'
+#             GROUP BY FK_p_id
+#             ORDER BY SUM(t_bill.b_cost_total) DESC"""
+#     row = db_class.executeAll(sql)
+#     print("fetchall row:{}".format(row))
+#     print("fetchall rowtype:{}".format(type(row)))
+#     print("fetchall rowlength:{}".format(len(row)))
+#     for i in row:
+#         temp.append(i["p_corp_name"])
+#         temp2.append(int(i["b_cost_total_sum"]))
+#     print(temp)
+#     print(temp2)
+
+#     # 회사명, 거래금액
+#     for i in range(len(temp)):
+#         a = (temp[i], temp2[i])
+#         temptuple.append(a)
+#     print(temptuple)
+
+#     # 회사명 뽑아오기
+#     for i in range(len(temptuple)):
+#         labels.append(temptuple[i][0])
+
+#     print(labels)
+
+#     # 거래 금액
+#     for i in range(len(temptuple)):
+#         data.append(temptuple[i][1])
+
+#     print(data)
+
+#     # Line graph---------------------------------------------
+#     linesql = """SELECT MONTH(t_bill.b_date), SUM(t_bill.b_cost_total)
+#                 FROM t_bill
+#                 WHERE YEAR(t_bill.b_date) = '2010'
+#                 GROUP BY MONTH(t_bill.b_date)"""
+#     linerow = db_class.executeAll(linesql)  # [{'b_data':'1','b_cost_total':10000}, ...]
+
+#     print(linerow)
+
+#     # dict에서 금액 정보만 빼오기
+#     for i in linerow:
+#         data2.append(int(i["SUM(t_bill.b_cost_total)"]))
+#     print(data2)
+
+#     # Bar graph-----------------------------------------------
+#     barsql = """SELECT SUM(t_bill.b_cost_total),
+#                 SUM(t_bill.b_cost_cash),
+#                 SUM(t_bill.b_cost_check),
+#                 SUM(t_bill.b_cost_note),
+#                 SUM(t_bill.b_cost_credit)
+#         FROM t_bill
+#         WHERE YEAR(t_bill.b_date) = '2010'"""
+
+#     barrow = db_class.executeAll(
+#         barsql
+#     )  # [{'b_cost_total':50000,'b_cost_cash':50000,'b_cost_check':50000,'b_cost_note':50000, 'b_cost_credit':50000}, {}, ...]
+
+#     print(barrow)
+
+#     for i in barrow:
+#         data3.append(int(i["SUM(t_bill.b_cost_cash)"]))
+#         data3.append(int(i["SUM(t_bill.b_cost_check)"]))
+#         data3.append(int(i["SUM(t_bill.b_cost_note)"]))
+#         data3.append(int(i["SUM(t_bill.b_cost_credit)"]))
+#     print(data3)
+
+#     return render_template(
+#         "dashboard.html",
+#         title=title,
+#         taxdata=taxdata,
+#         labels=labels,
+#         data=data,
+#         data2=data2,
+#         data3=data3,
+#     )
+
+
+@app.route("/bargraph", methods=["GET"])
+def berGraph():  # 매개변수 받아야하나? ㄴㄴ
+    year_ = request.form.values()  # year_ 값
     print(year_)
-    print(type(year_))
-    year_ = "2010"
-    # year_ = {"year": request.args.get("year_")}
 
-    # 세금 데이터----------------------------------------
-    taxsql = """SELECT SUM(t_bill.b_cost_tax)
-                FROM t_bill
-                WHERE YEAR(t_bill.b_date) = '2010' """
-    taxrow = db_class.executeOne(taxsql)
+    # 세금 데이터
+    taxdata = om.taxdata(year_)
 
-    taxdata = int(taxrow["SUM(t_bill.b_cost_tax)"])
+    # 도넛 그래프
+    labels, data = om.doughnutGraph(year_)
 
-    print("taxdata는 -> ", taxdata)
+    # 라인 그래프
+    data2 = om.lineGraph(year_)
 
-    # Doughnut graph------------------------------------
-    temp = []
-    temp2 = []
-    temptuple = []
-    sql = """SELECT t_provider.p_corp_name as p_corp_name,
-            SUM(t_bill.b_cost_total) as b_cost_total_sum
-            FROM t_provider, t_bill
-            WHERE t_provider.p_id = t_bill.FK_p_id AND YEAR(t_bill.b_date) = '2010'
-            GROUP BY FK_p_id
-            ORDER BY SUM(t_bill.b_cost_total) DESC"""
-    row = db_class.executeAll(sql)
-    print("fetchall row:{}".format(row))
-    print("fetchall rowtype:{}".format(type(row)))
-    print("fetchall rowlength:{}".format(len(row)))
-    for i in row:
-        temp.append(i["p_corp_name"])
-        temp2.append(int(i["b_cost_total_sum"]))
-    print(temp)
-    print(temp2)
-
-    # 회사명, 거래금액
-    for i in range(len(temp)):
-        a = (temp[i], temp2[i])
-        temptuple.append(a)
-    print(temptuple)
-
-    # 회사명 뽑아오기
-    for i in range(len(temptuple)):
-        labels.append(temptuple[i][0])
-
-    print(labels)
-
-    # 거래 금액
-    for i in range(len(temptuple)):
-        data.append(temptuple[i][1])
-
-    print(data)
-
-    # Line graph---------------------------------------------
-    linesql = """SELECT MONTH(t_bill.b_date), SUM(t_bill.b_cost_total)
-                FROM t_bill
-                WHERE YEAR(t_bill.b_date) = '2010'
-                GROUP BY MONTH(t_bill.b_date)"""
-    linerow = db_class.executeAll(linesql)  # [{'b_data':'1','b_cost_total':10000}, ...]
-
-    print(linerow)
-
-    # dict에서 금액 정보만 빼오기
-    for i in linerow:
-        data2.append(int(i["SUM(t_bill.b_cost_total)"]))
-    print(data2)
-
-    # Bar graph-----------------------------------------------
-    barsql = """SELECT SUM(t_bill.b_cost_total),
-                SUM(t_bill.b_cost_cash),
-                SUM(t_bill.b_cost_check),
-                SUM(t_bill.b_cost_note),
-                SUM(t_bill.b_cost_credit) 
-        FROM t_bill
-        WHERE YEAR(t_bill.b_date) = '2010'"""
-
-    barrow = db_class.executeAll(
-        barsql
-    )  # [{'b_cost_total':50000,'b_cost_cash':50000,'b_cost_check':50000,'b_cost_note':50000, 'b_cost_credit':50000}, {}, ...]
-
-    print(barrow)
-
-    for i in barrow:
-        data3.append(int(i["SUM(t_bill.b_cost_cash)"]))
-        data3.append(int(i["SUM(t_bill.b_cost_check)"]))
-        data3.append(int(i["SUM(t_bill.b_cost_note)"]))
-        data3.append(int(i["SUM(t_bill.b_cost_credit)"]))
-    print(data3)
+    # 막대 그래프
+    data3 = om.barGraph(year_)
 
     return render_template(
-        "dashboard.html",
+        "bargraph.html",
         title=title,
         taxdata=taxdata,
         labels=labels,
