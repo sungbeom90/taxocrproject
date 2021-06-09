@@ -166,10 +166,10 @@ def doughnutGraph(year_):
     sql = """SELECT t_provider.p_corp_name as p_corp_name,
             SUM(t_bill.b_cost_total) as b_cost_total_sum
             FROM t_provider, t_bill
-            WHERE t_provider.p_id = t_bill.FK_p_id AND YEAR(t_bill.b_date) = '2010'
+            WHERE t_provider.p_id = t_bill.FK_p_id AND YEAR(t_bill.b_date) = %s
             GROUP BY FK_p_id
             ORDER BY SUM(t_bill.b_cost_total) DESC"""
-    row = db_class.executeAll(sql)
+    row = db_class.executeAll(sql, args=year_)
 
     print("도넛그래프 데이터 : ", row)
 
@@ -198,9 +198,9 @@ def lineGraph(year_):
     data2 = []  # 그래프 y축 : 거래 금액 (x축은 javascript로 고정)
     linesql = """SELECT MONTH(t_bill.b_date), SUM(t_bill.b_cost_total)
                 FROM t_bill
-                WHERE YEAR(t_bill.b_date) = '2010'
+                WHERE YEAR(t_bill.b_date) = %s
                 GROUP BY MONTH(t_bill.b_date)"""
-    linerow = db_class.executeAll(linesql)
+    linerow = db_class.executeAll(linesql, args=year_)
 
     print("선그래프 데이터 : ", linerow)
 
@@ -220,10 +220,10 @@ def barGraph(year_):
                 SUM(t_bill.b_cost_note),
                 SUM(t_bill.b_cost_credit) 
         FROM t_bill
-        WHERE YEAR(t_bill.b_date) = '2010'  """
+        WHERE YEAR(t_bill.b_date) = %s  """
 
     barrow = db_class.executeAll(
-        barsql
+        barsql, args=year_
     )  # [{'b_cost_total':50000,'b_cost_cash':50000,'b_cost_check':50000,'b_cost_note':50000, 'b_cost_credit':50000}, {}, ...]
 
     print("막대그래프 데이터 : ", barrow)
