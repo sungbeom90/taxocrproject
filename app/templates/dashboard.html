@@ -13,26 +13,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     
     <link rel="stylesheet" href="../static/css/graph.css">
-    <!--<link rel="stylesheet" href="../static/css/header.css">-->
+    <link rel="stylesheet" href="../static/css/header.css"
 </head>
 
 <body>
-   <!--{% include 'header.html' %}--> 
-    <div class="title">
-        <div class="menu">
-        <div class="empty"></br></div>
-        <a class="abox" href="{{ url_for('home')}}">
-            <img src="../static/dev_img/btn_home.png" class="logo"></a>
-        <a class="abox" href="{{ url_for('select_sup')}}">
-            <img src="../static/dev_img/btn_lookup.png" class="supply_menu"></a>
-        <a class="abox" href="{{ url_for('dashboard',year_='2010')}}">
-            <img src="../static/dev_img/btn_dashboard.png" class="dash_menu"></a>
-        <a class="abox" href="{{ url_for('guide')}}">
-            <img src="../static/dev_img/btn_manual.png" class="info"></a>
-        <div class="empty"></br></div>
-        </div>
-    </div>
-    
+   {% include 'header.html' %}
     <div class='graphbox'>
         <div class="left_ghost">
         </div>
