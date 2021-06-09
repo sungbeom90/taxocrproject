@@ -109,9 +109,9 @@ def dashboard():
     data3 = []  # 막대 그래프 y축 : 수단별 거래 금액
 
     # 연도 받아서 sql 바꿔야함
-    year = request.args.get("year_")
-    print(year)
-    print(type(year))
+    year_ = request.args.get("year_")
+    print(year_)
+    print(type(year_))
     # year_ = {"year": request.args.get("year_")}
 
     # 세금 데이터----------------------------------------
