@@ -3,6 +3,22 @@
     flex-direction: row;
     align-items: center;
     box-sizing: border-box;
+    margin-top: 150px;
+}
+
+table{
+    border:2;
+    width:665;
+    height:450; 
+    border-spacing:1;
+    border:solid 5px #ff0000;
+    text-align:center;
+}
+
+td{
+    border-spacing:1;
+    border:solid 1px #ff0000;
+    text-align:center;
 }
 
 .flex-container{
@@ -26,3 +42,5 @@ button{
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+
