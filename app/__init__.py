@@ -146,7 +146,6 @@ def check_done():
     }
     t_bill = (
         args_dict["b_id"],
-        args_dict["b_date"],
         args_dict["b_mr"],
         args_dict["b_etc"],
         om.cost_replace(args_dict["b_cost_total"]),
