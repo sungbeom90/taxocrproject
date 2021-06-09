@@ -1,13 +1,20 @@
 .container-fluid{
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 150px;
+    width: 1390px;
+    height: 750px;
+}
+
+.flex-container{
+    flex-basis: 50%;
 }
 
 div > table{
     border:2;
-    width:665;
-    height:450; 
+    width:665px;
+    height:750px; 
     border:solid 5px #ff0000;
     text-align:center;
 }
