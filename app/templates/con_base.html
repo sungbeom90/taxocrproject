@@ -11,10 +11,10 @@
 <body>
     <form method="POST" , action="/check_done">
         <div class="container-fluid">
-            <div class="flex-container">
-                <img src="{{url_for('static', filename='/image/'+upfilename)}}" class="max">
-            </div>
-            <div class="main-container">
+          <div class="flex-container">
+              <img src="{{url_for('static', filename='/image/'+upfilename)}}" class="max">
+          </div>
+          <div class="main-container">
                 <table class="max">
                     <tr>
                         <td rowspan="2" colspan="14" width="320">
@@ -85,7 +85,7 @@
                         <td width="115" colspan="10">
                             <p align="center">
                                 <font size="5" >
-                                    <input type="text" , name="p_corp_name" , value="{{word_spot_dict.t_provider.p_corp_name.text}}" />
+                                    <input type="text" , name="p_corp_name" style="width:190px;" value="{{word_spot_dict.t_provider.p_corp_name.text}}" />
                                 </font>
                             </p>
                         </td>
@@ -486,7 +486,7 @@
                             </p>
                         </td>
                     </tr>
-              </div>
+              </table>
           </div>  
         </div>
       <button type="submit">전송</button>
