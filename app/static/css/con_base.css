@@ -1,7 +1,6 @@
 .container-fluid{
     display:flex;
     flex-direction: row;
-    box-sizing: border-box;
     margin-top: 150px;
 }
 
@@ -18,16 +17,9 @@ table > td{
     text-align:center;
 }
 
-.flex-container{
-    box-sizing: border-box;
-}
-
-.main-container{
-    box-sizing: border-box;
-}
-
 img{
-    box-sizing: border-box;
+    width:700px;
+    height:500px;
 }
 
 #padd #p_email{
