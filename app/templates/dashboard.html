@@ -25,6 +25,12 @@
                 <div class='container2'>
                     <div class='companyname'>
                         <h1 t>Expenditure DashBoard</h1>
+                        <div>
+                            <form method="GET" action="/dashboard">
+                                <input type="text" name='year_' placeholder="연도">
+                                <input type="submit" value="조회">
+                            </form>
+                        </div>
                     </div>
                     <div class='misoo'>
                         <div class="shadow-lg p-4 mb-4 bg-white rounded">
@@ -163,16 +169,6 @@
 
         <div class="right_ghost"></div>
     </div>
-    <div>
-        <form method="GET" action="/dashboard">
-            <input type="text" name='year_' placeholder="연도">
-            <input type="submit" value="조회">
-        </form>
-    </div>
-
-
-
-
 </body>
 
 </html>

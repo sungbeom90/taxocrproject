@@ -109,15 +109,13 @@ def dashboard():
     data3 = []  # 막대 그래프 y축 : 수단별 거래 금액
 
     # 연도 받아서 sql 바꿔야함
-    year_ = request.args.get("year_")
-    print(year_)
-    year_ = "2010"
+    year_ = {"year": request.args.get("year_")}
 
     # 세금 데이터----------------------------------------
     taxsql = """SELECT SUM(t_bill.b_cost_tax)
                 FROM t_bill
-                WHERE YEAR(t_bill.b_date) = '2010'"""
-    taxrow = db_class.executeOne(taxsql)
+                WHERE YEAR(t_bill.b_date) = %s"""
+    taxrow = db_class.executeOne(taxsql, year_)
 
     taxdata = int(taxrow["SUM(t_bill.b_cost_tax)"])
 
@@ -130,10 +128,10 @@ def dashboard():
     sql = """SELECT t_provider.p_corp_name as p_corp_name,
             SUM(t_bill.b_cost_total) as b_cost_total_sum
             FROM t_provider, t_bill
-            WHERE t_provider.p_id = t_bill.FK_p_id AND YEAR(t_bill.b_date) = '2010'
+            WHERE t_provider.p_id = t_bill.FK_p_id AND YEAR(t_bill.b_date) = %s
             GROUP BY FK_p_id
             ORDER BY SUM(t_bill.b_cost_total) DESC"""
-    row = db_class.executeAll(sql)
+    row = db_class.executeAll(sql, year_)
     print("fetchall row:{}".format(row))
     print("fetchall rowtype:{}".format(type(row)))
     print("fetchall rowlength:{}".format(len(row)))
@@ -164,9 +162,11 @@ def dashboard():
     # Line graph---------------------------------------------
     linesql = """SELECT MONTH(t_bill.b_date), SUM(t_bill.b_cost_total)
                 FROM t_bill
-                WHERE YEAR(t_bill.b_date) = '2010' 
+                WHERE YEAR(t_bill.b_date) = %s
                 GROUP BY MONTH(t_bill.b_date)"""
-    linerow = db_class.executeAll(linesql)  # [{'b_data':'1','b_cost_total':10000}, ...]
+    linerow = db_class.executeAll(
+        linesql, year_
+    )  # [{'b_data':'1','b_cost_total':10000}, ...]
 
     print(linerow)
 
