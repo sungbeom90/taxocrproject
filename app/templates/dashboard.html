@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Expenditure DashBoard</title>
@@ -7,10 +8,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/graph.css">   
+    <link rel="stylesheet" href="../static/css/graph.css">
 </head>
 
 <body>
@@ -27,7 +29,7 @@
                     <div class='misoo'>
                         <div class="shadow-lg p-4 mb-4 bg-white rounded">
                             <h2 class='text-danger'>{{taxdata}}원</h2>
-                            <small>  올해 납부 세금 </small><br>
+                            <small> 올해 납부 세금 </small><br>
                         </div>
                     </div>
                     <div class='dougnut'>
@@ -37,19 +39,19 @@
                             <script>
                                 var ctx = document.getElementById('myChart');
                                 const doughnutdata = {
-                                        labels: {{labels|tojson}},
-                                        datasets: [{
-                                            label: '거래 총액(만원)',
-                                            data: {{data|tojson}},
-                                            backgroundColor: [
-                                                'rgba(255, 99, 132, 0.2)',
-                                                'rgba(54, 162, 235, 0.2)',
-                                                'rgba(255, 206, 86, 0.2)',
-                                                'rgba(75, 192, 192, 0.2)',
-                                                'rgba(153, 102, 255, 0.2)',
-                                                'rgba(255, 159, 64, 0.2)'
-                                            ],
-                                            hoverOffset:4
+                                    labels: {{ labels| tojson}},
+                                datasets: [{
+                                    label: '거래 총액(만원)',
+                                    data: {{ data| tojson}},
+                                    backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                    hoverOffset: 4
                                         }]
                                     };
                                 var myChart = new Chart(ctx, {
@@ -63,20 +65,20 @@
 
                 <div class='container1'>
                     <div class='line'>
-                        <div class="shadow-lg p-4 mb-4 bg-white rounded" >
+                        <div class="shadow-lg p-4 mb-4 bg-white rounded">
                             <h5>월별 거래금액</h5>
                             <canvas id="myLineChart"></canvas>
                             <script>
                                 var ctx = document.getElementById('myLineChart');
-                                const labels = ['1월','2월','3월','4월','5월','6월',
-                                                '7월','8월','9월','10월','11월','12월'];
+                                const labels = ['1월', '2월', '3월', '4월', '5월', '6월',
+                                    '7월', '8월', '9월', '10월', '11월', '12월'];
                                 const linedata = {
                                     labels: labels,
                                     datasets: [{
                                         label: '월별 거래 금액',
-                                        data: {{data2|tojson}},
-                                        fill: false,
-                                        borderColor: 'rgb(75, 192, 192)',
+                                        data: {{ data2| tojson}},
+                                fill: false,
+                                    borderColor: 'rgb(75, 192, 192)',
                                         tension: 0.1
                                     }]
                                 };
@@ -86,11 +88,11 @@
                                     options: {
                                         responsive: false,
                                         scales: {
-                                            yAxes:[{
+                                            yAxes: [{
                                                 scaleLabel: {
-                                                display: true,
-                                                labelString: '거래 총액(만원)'
-                                            },
+                                                    display: true,
+                                                    labelString: '거래 총액(만원)'
+                                                },
                                                 ticks: {
                                                     beginAtZero: true
                                                 }
@@ -109,22 +111,22 @@
                             <script>
                                 var ctx = document.getElementById('myBarChart');
                                 const bardata = {
-                                    labels: ['현금','수표','어음','외상미수금'],
+                                    labels: ['현금', '수표', '어음', '외상미수금'],
                                     datasets: [{
                                         label: 'My First Dataset',
-                                        data: {{data3|tojson}},
-                                        backgroundColor: [
-                                        'rgba(255, 99, 132, 0.2)',
-                                        'rgba(255, 159, 64, 0.2)',
-                                        'rgba(255, 205, 86, 0.2)',
-                                        'rgba(75, 192, 192, 0.2)'
-                                        ],
-                                        borderColor: [
+                                        data: {{ data3| tojson}},
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(255, 205, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)'
+                                ],
+                                    borderColor: [
                                         'rgb(255, 99, 132)',
                                         'rgb(255, 159, 64)',
                                         'rgb(255, 205, 86)',
                                         'rgb(75, 192, 192)',
-                                        ],
+                                    ],
                                         borderWidth: 1
                                     }]
                                     };
@@ -145,25 +147,32 @@
 
                             </script>
 
-                            </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
 
-            <div class="btn_box"> 
+            <div class="btn_box">
                 <div class='backbtn'>
-                 <a href="{{url_for('home')}}" class="btn btn-dark">돌아가기</a>
+                    <a href="{{url_for('home')}}" class="btn btn-dark">돌아가기</a>
                 </div>
             </div>
         </div>
 
-            
+
         <div class="right_ghost"></div>
     </div>
-        
-        
-        
+    <div>
+        <form method="GET" action="/dashboard">
+            <input type="text" name='year_' placeholder="연도">
+            <input type="submit" value="조회">
+        </form>
+    </div>
+
+
+
 
 </body>
+
 </html>

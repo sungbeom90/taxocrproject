@@ -100,7 +100,7 @@ def insert_bill():
         return render_template("home.html")
 
 
-@app.route("/dashboard")
+@app.route("/dashboard", method=("GET"))
 def dashboard():
     title = "bargraph"
     labels = []  # 도넛그래프 x축 : 회사명
@@ -109,6 +109,8 @@ def dashboard():
     data3 = []  # 막대 그래프 y축 : 수단별 거래 금액
 
     # 연도 받아서 sql 바꿔야함
+    year_ = request.args.get("year_")
+    print(year_)
     year_ = "2010"
 
     # 세금 데이터----------------------------------------
@@ -244,7 +246,7 @@ def check_done():
         pass
     result = om.bill_insert(t_bill)  # 계산서 입력
 
-    return redirect(url_for("bargraph"))
+    return redirect(url_for("bargraph", year_="2010"))
 
 
 # ===================flaskr=========================
@@ -254,6 +256,7 @@ def check_done():
 upload_file_list = []
 upload_name_list = []
 app.config["UPLOAD_DIR"] = "./static/image/"
+
 
 @app.route("/done")
 def file_print():
@@ -415,7 +418,10 @@ def predict():
     word_spot_dict = test_logic(text_list, score_list, word_list)
 
     return render_template(
-        "con_base.html", jpg_file_name=jpg_file_name, word_spot_dict=word_spot_dict, upfilename=upfilename
+        "con_base.html",
+        jpg_file_name=jpg_file_name,
+        word_spot_dict=word_spot_dict,
+        upfilename=upfilename,
     )
     # return redirect(
     #     url_for(
