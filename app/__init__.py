@@ -229,7 +229,7 @@ def dashboard():  # 매개변수 받아야하나? ㄴㄴ
     data3 = om.barGraph(year_)
 
     return render_template(
-        "bargraph.html",
+        "dashboard.html",
         title=title,
         taxdata=taxdata,
         labels=labels,
