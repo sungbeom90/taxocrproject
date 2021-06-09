@@ -214,6 +214,7 @@ def insert_bill():
 def dashboard():
     year_ = request.args.get("year_")  # year_ 값
     print(year_)
+    print(type(year_))
     title = "dashboard"
 
     # 세금 데이터

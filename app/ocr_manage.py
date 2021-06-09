@@ -141,15 +141,15 @@ def cost_replace(cost_str):
 
 
 # =================== 최지영 작성 =================
-year_ = "2010"  # 이거 웹에서 받아올거라 변수 여기서 선언 안되어있어도 됨(?)
+
 
 # 세금 데이터----------------------------------------
 def taxdata(year_):
     taxsql = """SELECT SUM(t_bill.b_cost_tax)
                 FROM t_bill
-                WHERE YEAR(t_bill.b_date) = '2010' """
+                WHERE YEAR(t_bill.b_date) = %s """
 
-    taxrow = db_class.executeOne(taxsql)
+    taxrow = db_class.executeOne(taxsql, args=year_)
     taxdata = int(taxrow["SUM(t_bill.b_cost_tax)"])
 
     return taxdata
