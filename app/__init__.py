@@ -210,8 +210,8 @@ def insert_bill():
 #     )
 
 
-@app.route("/bargraph", methods=["GET"])
-def berGraph():  # 매개변수 받아야하나? ㄴㄴ
+@app.route("/dashboard", methods=["GET"])
+def dashboard():  # 매개변수 받아야하나? ㄴㄴ
     year_ = request.form.values()  # year_ 값
     print(year_)
 
