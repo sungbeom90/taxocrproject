@@ -12,4 +12,4 @@
 .supply_menu{background-color: #95B6E7; width:30%; height: 50%;}
 .logo{background-color: #95B6E7; width:30%;  height: 50%;}
 .info{background-color: #95B6E7; width:30%;  height: 50%;}
-/*a{background-color: #95B6E7;}*/
+a{background-color: #95B6E7; display: flex; justify-content: center;}
