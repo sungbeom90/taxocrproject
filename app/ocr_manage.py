@@ -178,7 +178,7 @@ def doughnutGraph(year_):
         temp2.append(int(i["b_cost_total_sum"]))
 
     # 회사명, 거래금액
-    for i in range(len(temp)):
+    for i in range(6):
         a = (temp[i], temp2[i])
         temptuple.append(a)
 
