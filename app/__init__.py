@@ -211,7 +211,7 @@ def insert_bill():
 
 
 @app.route("/dashboard", methods=["GET"])
-def dashboard():  # 매개변수 받아야하나? ㄴㄴ
+def dashboard():
     year_ = request.args.get("year_")  # year_ 값
     print(year_)
     title = "dashboard"
@@ -362,6 +362,8 @@ def select_sup():
 # 상세 보기
 def select_sup_desc():
     p_id = request.args.get("p_id")
+    print(p_id)
+    print(type(p_id))
     desc_dict = om.supply_desc(p_id)  # om 참고
     return render_template("supply_desc.html", desc_dict=desc_dict[0])
 
