@@ -1,5 +1,5 @@
 /*전체 css */
-/**{ box-sizing: border-box;}*/
+*{ box-sizing: border-box;}
 
 
 body {background-color: #E6E6E6;}
