@@ -3,7 +3,7 @@
 
 .graphbox {width : 100%; box-sizing: border-box; display: flex; margin-top: 100px;}
 .left_ghost {width : 15%; display: flex; flex-direction: column;}
-.year_ask { width: 90%; height : 15px;  margin-top: 10px; margin: auto; justify-content: right; }
+.year_ask {width: 50%; height : 15px; margin-top: 10px; margin: auto; justify-content: right; margin-bottom: 20px; border: 2px solid black;}
 
 .right_ghost {width : 15%;}
 .outbox{ width : 70%; display: flex; flex-direction: column; margin:50px; }
