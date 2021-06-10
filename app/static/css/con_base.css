@@ -41,9 +41,18 @@ img{
 button{
     width: 150px;
     height: 50px;
-    margin-left: 20%;
+    margin-left: 15%;
     position: absolute;
-    bottom: -40%;
+    bottom: -35%;
+    left: 0;
+}
+
+.btn{
+    width: 150px;
+    height: 50px;
+    margin-left: 18%;
+    position: absolute;
+    bottom: -35%;
     left: 0;
 }
 
