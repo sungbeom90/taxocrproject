@@ -43,22 +43,29 @@
       readImage(e.target)
     })
 
-
     // function checkImage(){
-    //    var setImage = document.myDIV.inputGroupFile04;
-    //   // 파일  입력 유무 체크
-    //   if (userId.value == '' || !(userId.value.length >= 3 && userId.value.length <= 12)) {
-    //     window.alert("아이디를 입력하시오");
-    //     document.fmField.uerId.focus();
-    //     document.getElementById('userId').select();
-    //     return false; // 아이디 입력이 안되어 있다면 submint 이벤트를 중지
+    //   var imgFile = $('#isFile').val();
+    //   var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+    //   var maxSize = 5 * 1024 * 1024;
+    //   var fileSize;
+
+    //   if ($('#isFile').val() == "") {
+    //     alert("첨부파일은 필수!");
+    //     $("#isFile").focus();
+    //     return;
     //   }
-    //   var uerPw = document.getElementById('userPw');
-    //   // 암호 입력 유무 체크
-    //   if (document.fmField.userPw.value == '') {
-    //     alert('암호를 입력하세요.');
-    //     userPw.focus();
-    //     return false;
+
+    //   if (imgFile != "" && imgFile != null) {
+    //     fileSize = document.getElementById("isFile").files[0].size;
+
+    //     if (!imgFile.match(fileForm)) {
+    //       alert("이미지 파일만 업로드 가능");
+    //       return;
+    //     } else if (fileSize = maxSize) {
+    //       alert("파일 사이즈는 5MB까지 가능");
+    //       return;
+    //     }
+    //   }
     //   }
   </script>
 
@@ -76,7 +83,7 @@
 
       <div class="hidden_form">
         <div id="myDIV" style="display: none;">
-          <form name="form" class="real_hidden" id="form" action="checkImage" method="POST"
+          <form name="form" class="real_hidden" id="form" action="/uploader" method="POST"
             enctype="multipart/form-data">
             <div class="input-group">
               <img id="preview-image">
