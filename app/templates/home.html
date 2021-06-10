@@ -42,6 +42,24 @@
     inputImage.addEventListener("change", e => {
       readImage(e.target)
     })
+
+
+    // function checkImage(){
+    //    var setImage = document.myDIV.inputGroupFile04;
+    //   // 파일  입력 유무 체크
+    //   if (userId.value == '' || !(userId.value.length >= 3 && userId.value.length <= 12)) {
+    //     window.alert("아이디를 입력하시오");
+    //     document.fmField.uerId.focus();
+    //     document.getElementById('userId').select();
+    //     return false; // 아이디 입력이 안되어 있다면 submint 이벤트를 중지
+    //   }
+    //   var uerPw = document.getElementById('userPw');
+    //   // 암호 입력 유무 체크
+    //   if (document.fmField.userPw.value == '') {
+    //     alert('암호를 입력하세요.');
+    //     userPw.focus();
+    //     return false;
+    //   }
   </script>
 
 
@@ -58,12 +76,13 @@
 
       <div class="hidden_form">
         <div id="myDIV" style="display: none;">
-          <form name="form" class="real_hidden" id="form" action="/uploader" method="POST"
+          <form name="form" class="real_hidden" id="form" action="checkImage" method="POST"
             enctype="multipart/form-data">
             <div class="input-group">
               <img id="preview-image">
               <input type="file" name='file' class="form-control" id="inputGroupFile04"
                 aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*">
+              <!-- <button class="btn btn-outline-secondary" onclick="checkImage">최종 제출</button> -->
               <input class="btn btn-outline-secondary" type="submit" value="최종 제출"></input>
             </div>
           </form>
@@ -73,7 +92,7 @@
 
     <div class="center_box">
       <div class="main_contents">
-      </br>
+        </br>
         <img src="../static/dev_img/vertical_ci.png" class="cibox">
         </br></br>
         <img src="../static/dev_img/sample.PNG" class="main_image">
