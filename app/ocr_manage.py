@@ -177,8 +177,12 @@ def doughnutGraph(year_):
         temp.append(i["p_corp_name"])
         temp2.append(int(i["b_cost_total_sum"]))
 
+    range_num = len(temp)
+    if range_num > 6:
+        range_num = 6
+
     # 회사명, 거래금액
-    for i in range(6):
+    for i in range(range_num):
         a = (temp[i], temp2[i])
         temptuple.append(a)
 
