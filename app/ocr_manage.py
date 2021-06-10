@@ -212,6 +212,7 @@ def lineGraph(year_):
     for i in linerow:
         data2.append(int(i["SUM(t_bill.b_cost_total)"]))
 
+    print("선그래프 데이터 필터링 : ", data2)
     return data2
 
 
