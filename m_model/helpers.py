@@ -534,7 +534,7 @@ def test_logic(text_list, score_list, word_list):
                 #         column_key,
                 #         column_value["location"],
                 #     )
-                )
+                # )
                 if find_position(column_value["location"], word_list[index]):
                     word_spot_dict[table_key][column_key]["text"].append(
                         text_list[index]
