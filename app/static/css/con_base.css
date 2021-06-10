@@ -40,16 +40,16 @@ img{
 
 button{
     width: 150px;
-    height: 50px;
+    height: 40px;
     margin-left: 15%;
     position: absolute;
     bottom: -35%;
     left: 0;
 }
 
-.btn{
+a{
     width: 150px;
-    height: 50px;
+    height: 40px;
     margin-left: 18%;
     position: absolute;
     bottom: -35%;
