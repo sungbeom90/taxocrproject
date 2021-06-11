@@ -47,7 +47,7 @@
   $(document).ready(function() {
 
   $('#loading').hide();
-  $('#file_upload2').submit(function(){
+  $('#form').submit(function(){
       $('#loading').show();
       return true;
       });
@@ -72,7 +72,7 @@
               <div class="input-group">
                 <img id="preview-image">
                 <input type="file" name='file' class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*">
-                <input class="btn btn-outline-secondary" type="submit" id="file_upload2"  value="최종 제출"></input>
+                <input class="btn btn-outline-secondary" type="submit"  value="최종 제출"></input>
               </div>
             </form>
           </div>
