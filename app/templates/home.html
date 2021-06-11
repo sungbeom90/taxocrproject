@@ -66,12 +66,6 @@
     //     }
     //   }
     //   }
-
-    function confirm(){
-      var confirm = $(".confirmMessage");
-      if (!document.form.form-contorl.value){confirm.text("파일을 선택해주세요!"); document.form.form-control.focus(); return;}
-      document.form.submit();
-    }
   </script>
 
 
@@ -87,13 +81,12 @@
       <div class="hidden_form">
         <div id="myDIV" style="display: none;">
           <form name="form" class="real_hidden" id="form" action="/uploader" method="POST"
-            enctype="multipart/form-data" onsubmit="confirm(); return false;">
+            enctype="multipart/form-data">
             <div class="input-group">
               <img id="preview-image">
               <input type="file" name='file' class="form-control" id="inputGroupFile04"
                 aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*">
               <!-- <button class="btn btn-outline-secondary" onclick="checkImage">최종 제출</button> -->
-              <div class="confirmMessage"></div>
               <input class="btn btn-outline-secondary" type="submit" value="최종 제출"></input>
             </div>
           </form>
