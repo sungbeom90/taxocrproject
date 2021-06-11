@@ -41,6 +41,16 @@
     inputImage.addEventListener("change", e => {
         readImage(e.target)
     })
+
+    
+  $(document).ready(function() {
+
+  $('#loading').hide();
+  $('#file_upload').submit(function(){
+      $('#loading').show();
+      return true;
+      });
+  });
   </script>
 
 
@@ -82,10 +92,12 @@
       </div>
 
       <div class="right_box">
+        </div>
       </div>
+
+    <div id="loading" style="margin-left: 0px;">
+      <img src="../static/dev_img/Rocket.gif">
+      <p>처리중입니다..잠시기다려주세요.</p>
     </div>
-
-
-  
   </body>
 </html>
