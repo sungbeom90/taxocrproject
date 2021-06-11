@@ -6,7 +6,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/css/home.css">
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/header.css">
@@ -67,6 +66,12 @@
     //     }
     //   }
     //   }
+
+    function confirm(){
+      var confirm = $(".confirmMessage");
+      if (!document.form.form-contorl.value){confirm.text("파일을 선택해주세요!"); document.form.form-control.focus(); return;}
+      document.form.submit();
+    }
   </script>
 
 
@@ -79,18 +84,17 @@
   <div class="contents">
 
     <div class="hidden_upload_box">
-
-
       <div class="hidden_form">
         <div id="myDIV" style="display: none;">
           <form name="form" class="real_hidden" id="form" action="/uploader" method="POST"
-            enctype="multipart/form-data">
+            enctype="multipart/form-data" onsubmit="confirm(); return false;">
             <div class="input-group">
               <img id="preview-image">
               <input type="file" name='file' class="form-control" id="inputGroupFile04"
                 aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*">
               <!-- <button class="btn btn-outline-secondary" onclick="checkImage">최종 제출</button> -->
               <input class="btn btn-outline-secondary" type="submit" value="최종 제출"></input>
+              <div class="confirmMessage"></div>
             </div>
           </form>
         </div>
@@ -112,10 +116,8 @@
     </div>
 
     <div class="right_box">
+      </div>
     </div>
-  </div>
-
-
 
 </body>
 
