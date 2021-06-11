@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="../static/css/header.css">  
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
   <script type="text/javascript">
   var bDisplay = true;
@@ -43,7 +45,7 @@
 
     $(document).ready(function() {
       $('#loading').hide();
-      $('#form').submit(function(){
+      $('#file').submit(function(){
         $('#loading').show();
         return true;
       });
