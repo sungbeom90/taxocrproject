@@ -43,13 +43,7 @@
         readImage(e.target)
     })
 
-    $(document).ready(function() {
-      $('#loading').hide();
-      $('#file').submit(function(){
-        $('#loading').show();
-        return true;
-      });
-    });
+    
   </script>
 
 
@@ -78,6 +72,16 @@
           </div>
         </div>
       </div>
+      
+      <script>
+        $(document).ready(function() {
+          $('#loading').hide();
+          $('#form').submit(function(){
+            $('#loading').show();
+            return true;
+          });
+        });
+      </script>
 
       <div class="center_box">
         <div class="main_contents">
