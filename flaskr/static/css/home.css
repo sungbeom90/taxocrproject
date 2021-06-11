@@ -71,22 +71,17 @@
     left: 0;
     position: fixed;
     display: block;
-    opacity: 0.6;
-    background: #e4e4e4;
+    opacity: 0.8;
+    background: white;
     z-index: 99;
     text-align: center;
 }
+
+
 
 #loading > img {
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 100;
-}
-
-#loading > p {
-    position: absolute;
-    top: 57%;
-    left: 43%;
-    z-index: 101;
 }
