@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  
   <script type="text/javascript">
   var bDisplay = true;
   function doDisplay() {
@@ -73,7 +72,7 @@
               <div class="input-group">
                 <img id="preview-image">
                 <input type="file" name='file' class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*">
-                <input class="btn btn-outline-secondary" type="submit"  value="최종 제출"></input>
+                <input class="btn btn-outline-secondary" type="submit" id="file_upload2"  value="최종 제출"></input>
               </div>
             </form>
           </div>
@@ -87,7 +86,7 @@
             <img src="../static/dev_img/sample.PNG" class="main_image"> 
           <div class="button_box">
             <div class="main_buttons" id="file_upload">
-              <button type="button" id="file_upload2" class = "btn btn-primary btn-lg" onclick="doDisplay()">이미지 업로드</button>
+              <button type="button" class = "btn btn-primary btn-lg" onclick="doDisplay()">이미지 업로드</button>
             </div>
           </div>
         </div>
