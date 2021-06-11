@@ -44,14 +44,11 @@
     })
 
     
-  $(document).ready(function() {
-
-  $('#loading').hide();
-  $('#form').submit(function(){
-      $('#loading').show();
-      return true;
-      });
-  });
+  $('#form').on('click', function () {
+  var $btn = $(this).button('loading');
+  // business logic...
+  $btn.button('reset');
+  })
   </script>
 
 
@@ -64,11 +61,9 @@
     <div class="contents">
 
       <div class="hidden_upload_box">
-
-
         <div class="hidden_form">
           <div id="myDIV" style="display: none;">
-            <form name="form" class= "real_hidden" id="form" action="http://192.168.2.23:80/uploader" method="POST" enctype="multipart/form-data">
+            <form name="form" class= "real_hidden" id="form" data-loading-text="Loading..." action="http://192.168.2.23:80/uploader" method="POST" enctype="multipart/form-data">
               <div class="input-group">
                 <img id="preview-image">
                 <input type="file" name='file' class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" accept="image/*">
